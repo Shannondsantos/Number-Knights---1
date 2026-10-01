@@ -1,0 +1,41 @@
+[gd_scene load_steps=11 format=3 uid="uid://dbnmpqqr26sqh"]
+
+[ext_resource type="Texture2D" uid="uid://dscfaiqd2wpcq" path="res://Enemies Assets/Officer_Pawn.png" id="1_phsbq"]
+[ext_resource type="Script" uid="uid://b38rnje7m78lj" path="res://ENEMY/enemy_officer.gd" id="2_c7mwg"]
+[ext_resource type="Texture2D" uid="uid://84mye8jkjfo1" path="res://Enemies Assets/Officer_Pawn_Dead.png" id="3_vswt5"]
+[ext_resource type="PackedScene" uid="uid://dvhxvkfuc4ik2" path="res://ENEMY/Enemy_Test.tscn" id="4_tmbnq"]
+[ext_resource type="AudioStream" uid="uid://wplnxctvnlps" path="res://SOUNDS/03_transform_heavy.mp3" id="5_7kdtk"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="5_b6g2t"]
+[ext_resource type="AudioStream" uid="uid://cc2pqpa5tce5m" path="res://SOUNDS/drone_death.mp3" id="6_fvsdk"]
+[ext_resource type="AudioStream" uid="uid://c6a8qd0qgmpi8" path="res://SOUNDS/01_getout_foghorn.mp3" id="7_vdk1k"]
+[ext_resource type="Texture2D" uid="uid://cqw5ikqtbhdyj" path="res://Enemies Assets/officer_Indicator.png" id="9_b6g2t"]
+[ext_resource type="Texture2D" uid="uid://c36krjr2usbvs" path="res://Enemies Assets/Command_Aura_2.png" id="10_k4li1"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 47)
+texture = ExtResource("1_phsbq")
+script = ExtResource("2_c7mwg")
+dead_texture = ExtResource("3_vswt5")
+death_effect = ExtResource("5_b6g2t")
+drone_scene = ExtResource("4_tmbnq")
+windup_sound = ExtResource("5_7kdtk")
+death_sound = ExtResource("6_fvsdk")
+burst_windup_sound = ExtResource("7_vdk1k")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 26.0
+offset_right = 145.0
+offset_bottom = 76.0
+texture = ExtResource("9_b6g2t")
+
+[node name="Command_Aura" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -27.0
+offset_right = 140.0
+offset_bottom = 123.0
+texture = ExtResource("10_k4li1")

@@ -1,0 +1,108 @@
+[gd_scene load_steps=17 format=3 uid="uid://dy0l0ooh08xgp"]
+
+[ext_resource type="Texture2D" uid="uid://dyoys6idrl8x8" path="res://MENU/midmenubackground.png" id="1_8ov7x"]
+[ext_resource type="Script" uid="uid://bfq02yle8tvr3" path="res://MENUS/mid_menu.gd" id="1_m1nr0"]
+[ext_resource type="Script" uid="uid://vp1qa5l4yedn" path="res://background_1.gd" id="2_1snk8"]
+[ext_resource type="Texture2D" uid="uid://bipngikrhd4y8" path="res://MENU/PointsBox.png" id="3_1snk8"]
+[ext_resource type="Texture2D" uid="uid://dqrr52xqa3muq" path="res://MENU/UpgradesButton.png" id="4_yn4jp"]
+[ext_resource type="Script" uid="uid://b82xxk2bk2yno" path="res://points_label.gd" id="5_k3v4w"]
+[ext_resource type="Texture2D" uid="uid://ch5smcgea7wey" path="res://MENU/storymode.png" id="6_uh0xr"]
+[ext_resource type="Texture2D" uid="uid://rtfnfg0ai6fx" path="res://MENU/storymode_clicked.png" id="7_g5to3"]
+[ext_resource type="Script" uid="uid://dq53au57oww12" path="res://MENUS/demolevel1.gd" id="8_uh0xr"]
+[ext_resource type="Texture2D" uid="uid://riiomxxbtldc" path="res://MENU/UpgradesButton_clicked.png" id="8_yn4jp"]
+[ext_resource type="Script" uid="uid://dn8lkn7io2uuu" path="res://MENUS/upgrades_button.gd" id="9_k3v4w"]
+[ext_resource type="PackedScene" uid="uid://bdm5oktrfc7nd" path="res://MENU/cog.tscn" id="9_n4ev1"]
+[ext_resource type="PackedScene" uid="uid://c4oou5s0otjg6" path="res://MENU/cog2.tscn" id="10_fx2qh"]
+[ext_resource type="Texture2D" uid="uid://b5xkjs0g6vomi" path="res://MENU/back.png" id="12_cja5g"]
+[ext_resource type="Script" uid="uid://cpxcw3htvu3lk" path="res://MENUS/midmenu_back_button.gd" id="13_cja5g"]
+[ext_resource type="Texture2D" uid="uid://4iokg6iqpfal" path="res://MENU/back_pressed.png" id="13_g5ov6"]
+
+[node name="MidMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m1nr0")
+
+[node name="Background1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_8ov7x")
+script = ExtResource("2_1snk8")
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 1280.0
+offset_right = 720.0
+offset_bottom = 2560.0
+texture = ExtResource("1_8ov7x")
+script = ExtResource("2_1snk8")
+
+[node name="PointsBox" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 451.0
+offset_top = 26.0
+offset_right = 701.0
+offset_bottom = 146.0
+texture = ExtResource("3_1snk8")
+
+[node name="PointsLabel" type="Label" parent="PointsBox"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 8.0
+offset_right = 238.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.34901962, 0.29411766, 0.27058825, 1)
+theme_override_font_sizes/font_size = 40
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_k3v4w")
+
+[node name="StoryModeButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 296.0
+offset_right = 553.0
+offset_bottom = 416.0
+texture_normal = ExtResource("6_uh0xr")
+texture_pressed = ExtResource("7_g5to3")
+script = ExtResource("8_uh0xr")
+
+[node name="Cog" parent="StoryModeButton" instance=ExtResource("9_n4ev1")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -18.0
+offset_right = 66.0
+offset_bottom = 32.0
+
+[node name="Cog2" parent="StoryModeButton" instance=ExtResource("10_fx2qh")]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 15.0
+offset_right = 40.0
+offset_bottom = 65.0
+
+[node name="UpgradesButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 620.0
+offset_right = 555.0
+offset_bottom = 740.0
+texture_normal = ExtResource("4_yn4jp")
+texture_pressed = ExtResource("8_yn4jp")
+script = ExtResource("9_k3v4w")
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 1123.0
+offset_right = 491.0
+offset_bottom = 1243.0
+texture_normal = ExtResource("12_cja5g")
+texture_pressed = ExtResource("13_g5ov6")
+script = ExtResource("13_cja5g")
+next_scene = "res://MENUS/MainMenu.tscn"

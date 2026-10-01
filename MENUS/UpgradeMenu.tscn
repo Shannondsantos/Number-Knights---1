@@ -1,0 +1,235 @@
+[gd_scene load_steps=58 format=3 uid="uid://b3kb34ibdtfs8"]
+
+[ext_resource type="Script" uid="uid://b45ubyr4batik" path="res://MENUS/upgrade_menu.gd" id="1_0nd1c"]
+[ext_resource type="Texture2D" uid="uid://dyoys6idrl8x8" path="res://MENU/midmenubackground.png" id="1_s6tjf"]
+[ext_resource type="Script" uid="uid://vp1qa5l4yedn" path="res://background_1.gd" id="2_7optk"]
+[ext_resource type="Texture2D" uid="uid://78kgj6l0we8o" path="res://GUNS/assault_mk1.png" id="3_7optk"]
+[ext_resource type="Texture2D" uid="uid://s0eayps3ajg6" path="res://GUNS/assault_mk2.png" id="3_svvlb"]
+[ext_resource type="Texture2D" uid="uid://bmra4oeq21bl7" path="res://GUNS/assault_mk3.png" id="4_myweq"]
+[ext_resource type="Texture2D" uid="uid://vad8x5ssyi2s" path="res://GUNS/assault_mk4.png" id="5_txbm2"]
+[ext_resource type="Texture2D" uid="uid://b3blu48o5aiep" path="res://GUNS/assault_mk5.png" id="6_ijq8a"]
+[ext_resource type="Texture2D" uid="uid://dbl17g1wgqs8a" path="res://GUNS/heavy_mk1.png" id="7_qvyli"]
+[ext_resource type="Texture2D" uid="uid://bvcpqldbb37tm" path="res://GUNS/heavy_mk2.png" id="8_l0du7"]
+[ext_resource type="Texture2D" uid="uid://bqkdnpkwvofic" path="res://GUNS/heavy_mk3.png" id="9_rcv5j"]
+[ext_resource type="Texture2D" uid="uid://da2pvtarufx6w" path="res://GUNS/heavy_mk4.png" id="10_dtipo"]
+[ext_resource type="Texture2D" uid="uid://boqqtbfrj1d5w" path="res://GUNS/heavy_mk5.png" id="11_e141q"]
+[ext_resource type="Texture2D" uid="uid://bipngikrhd4y8" path="res://MENU/PointsBox.png" id="11_myweq"]
+[ext_resource type="Script" uid="uid://c3x77nnre60gm" path="res://MENUS/upgrades_back_button.gd" id="11_txbm2"]
+[ext_resource type="Texture2D" uid="uid://c56ebj076fu2p" path="res://GUNS/scout_mk1.png" id="12_d2upt"]
+[ext_resource type="Script" uid="uid://b82xxk2bk2yno" path="res://points_label.gd" id="13_ijq8a"]
+[ext_resource type="Texture2D" uid="uid://btbxs1v8od8qa" path="res://GUNS/scout_mk2.png" id="13_sgd1k"]
+[ext_resource type="Texture2D" uid="uid://ctdr13t6wr7il" path="res://GUNS/scout_mk3.png" id="14_8bm6g"]
+[ext_resource type="Texture2D" uid="uid://oi48xt4hfmvx" path="res://GUNS/scout_mk4.png" id="15_2yx1y"]
+[ext_resource type="Texture2D" uid="uid://0gry57am6pth" path="res://GUNS/scout_mk5.png" id="16_68fwl"]
+[ext_resource type="Texture2D" uid="uid://d1qkk7s1epams" path="res://MENU/Left.png" id="16_q4wjg"]
+[ext_resource type="Texture2D" uid="uid://cjtnyf5qjt8oc" path="res://MENU/Left_Pressed.png" id="17_htfdu"]
+[ext_resource type="Texture2D" uid="uid://dle8n2yfp7p23" path="res://MENU/Righy.png" id="18_ad0m1"]
+[ext_resource type="Texture2D" uid="uid://cq3kthxyu0ttk" path="res://Assault_Class/PlayerAssaultMk2.png" id="18_xlx4u"]
+[ext_resource type="Texture2D" uid="uid://dwbefvtuj2dy0" path="res://Assault_Class/PlayerAssaultMk3.png" id="19_6pms4"]
+[ext_resource type="Texture2D" uid="uid://b16w63h05fr1r" path="res://MENU/Right_pressed.png" id="19_kpy3d"]
+[ext_resource type="Texture2D" uid="uid://dvfrv785chg5j" path="res://Assault_Class/PlayerAssaultMk4.png" id="20_8w33e"]
+[ext_resource type="Texture2D" uid="uid://c2fp5ivd10w86" path="res://Assault_Class/PlayerAssaultMk5.png" id="21_t4g35"]
+[ext_resource type="Texture2D" uid="uid://ycco0a687wul" path="res://Heavy_Class/PlayerHeavyMk1.png" id="22_vhri0"]
+[ext_resource type="Texture2D" uid="uid://d2bqbpgum2753" path="res://Heavy_Class/PlayerHeavyMk2.png" id="23_skwmq"]
+[ext_resource type="Texture2D" uid="uid://c1q8gbrvim8b5" path="res://Heavy_Class/PlayerHeavyMk3.png" id="24_h0clh"]
+[ext_resource type="Texture2D" uid="uid://craqlvln5ccl" path="res://Heavy_Class/PlayerHeavyMk4.png" id="25_0uouw"]
+[ext_resource type="Texture2D" uid="uid://bcdr1h2owrudf" path="res://Heavy_Class/PlayerHeavyMk5.png" id="26_ebgxs"]
+[ext_resource type="Texture2D" uid="uid://bjqd1abhkhmvh" path="res://Scout_Class/PlayerScoutMk1.png" id="27_dwauf"]
+[ext_resource type="Texture2D" uid="uid://c1uidsb1vbo4b" path="res://Scout_Class/PlayerScoutMk3.png" id="28_0rsbr"]
+[ext_resource type="Texture2D" uid="uid://cmtswk6m13n13" path="res://Scout_Class/PlayerScoutMk2.png" id="28_6pms4"]
+[ext_resource type="Texture2D" uid="uid://d2p5t63mbbs3a" path="res://Scout_Class/PlayerScoutMk4.png" id="29_aad2s"]
+[ext_resource type="Texture2D" uid="uid://effxtt4bppli" path="res://MENU/Player_Class_Display.png" id="30_l0du7"]
+[ext_resource type="Texture2D" uid="uid://dxsllt411ykp" path="res://Scout_Class/PlayerScoutMk5.png" id="30_pwemo"]
+[ext_resource type="Texture2D" uid="uid://dc2m3jbn2kxjr" path="res://Assault_Class/PlayerAssaultMk1.png" id="31_rcv5j"]
+[ext_resource type="Texture2D" uid="uid://46epi188atxy" path="res://MENU/button_generic.png" id="34_y2jg2"]
+[ext_resource type="Texture2D" uid="uid://boad1gxaci3ur" path="res://MENU/button_generic_pressed.png" id="35_75uq1"]
+[ext_resource type="PackedScene" uid="uid://bdm5oktrfc7nd" path="res://MENU/cog.tscn" id="36_f1lmg"]
+[ext_resource type="Texture2D" uid="uid://b5xkjs0g6vomi" path="res://MENU/back.png" id="36_vhri0"]
+[ext_resource type="PackedScene" uid="uid://c4oou5s0otjg6" path="res://MENU/cog2.tscn" id="37_0crh3"]
+[ext_resource type="Texture2D" uid="uid://4iokg6iqpfal" path="res://MENU/back_pressed.png" id="37_skwmq"]
+[ext_resource type="Texture2D" uid="uid://cipd7a3mq61la" path="res://PLAYER UI/shield.png" id="46_75uq1"]
+[ext_resource type="Texture2D" uid="uid://bywbatskhwvet" path="res://PLAYER UI/shieldpressed.png" id="47_2yb2e"]
+[ext_resource type="Script" uid="uid://dm4ag5p35krhp" path="res://Abilities/ability_select_shield.gd" id="48_vhri0"]
+[ext_resource type="AudioStream" uid="uid://ioansqnexlnq" path="res://SOUNDS/09_heal.mp3" id="51_0crh3"]
+[ext_resource type="Texture2D" uid="uid://ckub1b377w5wf" path="res://PLAYER UI/beacon.png" id="51_goo3e"]
+[ext_resource type="Texture2D" uid="uid://2dlogkjj6adl" path="res://PLAYER UI/beaconpressed.png" id="52_f8kqd"]
+[ext_resource type="Script" uid="uid://b2n4645lm4ybu" path="res://Abilities/ability_select_beacon.gd" id="53_8sedy"]
+[ext_resource type="Texture2D" uid="uid://dchf055ya3cq3" path="res://MENU/infiniteammo.png" id="54_goo3e"]
+[ext_resource type="Texture2D" uid="uid://p5exh3p8jimr" path="res://MENU/infiniteammopressed.png" id="55_goo3e"]
+[ext_resource type="Script" uid="uid://kvpq7itthufm" path="res://Abilities/ability_select_ammo.gd" id="56_327al"]
+
+[node name="UpgradeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0nd1c")
+assault_textures = Array[Texture2D]([ExtResource("3_7optk"), ExtResource("3_svvlb"), ExtResource("4_myweq"), ExtResource("5_txbm2"), ExtResource("6_ijq8a")])
+heavy_textures = Array[Texture2D]([ExtResource("7_qvyli"), ExtResource("8_l0du7"), ExtResource("9_rcv5j"), ExtResource("10_dtipo"), ExtResource("11_e141q")])
+scout_textures = Array[Texture2D]([ExtResource("12_d2upt"), ExtResource("13_sgd1k"), ExtResource("14_8bm6g"), ExtResource("15_2yx1y"), ExtResource("16_68fwl")])
+assault_idle = Array[Texture2D]([ExtResource("31_rcv5j"), ExtResource("18_xlx4u"), ExtResource("19_6pms4"), ExtResource("20_8w33e"), ExtResource("21_t4g35")])
+heavy_idle = Array[Texture2D]([ExtResource("22_vhri0"), ExtResource("23_skwmq"), ExtResource("24_h0clh"), ExtResource("25_0uouw"), ExtResource("26_ebgxs")])
+scout_idle = Array[Texture2D]([ExtResource("27_dwauf"), ExtResource("28_6pms4"), ExtResource("28_0rsbr"), ExtResource("29_aad2s"), ExtResource("30_pwemo")])
+
+[node name="Background1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_s6tjf")
+script = ExtResource("2_7optk")
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 1280.0
+offset_right = 720.0
+offset_bottom = 2560.0
+texture = ExtResource("1_s6tjf")
+script = ExtResource("2_7optk")
+
+[node name="AssaultUpgradeButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 770.0
+offset_right = 490.0
+offset_bottom = 890.0
+texture_normal = ExtResource("34_y2jg2")
+texture_pressed = ExtResource("35_75uq1")
+
+[node name="PriceLabel" type="Label" parent="AssaultUpgradeButton"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 15.0
+offset_right = 197.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="AssaultUpgradeButton"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 69.0
+offset_right = 198.0
+offset_bottom = 117.0
+theme_override_colors/font_color = Color(0.33333334, 0.2784314, 0.25490198, 1)
+text = "UPGRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cog" parent="AssaultUpgradeButton" instance=ExtResource("36_f1lmg")]
+layout_mode = 0
+
+[node name="Cog2" parent="AssaultUpgradeButton" instance=ExtResource("37_0crh3")]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 33.0
+offset_right = 24.0
+offset_bottom = 83.0
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 1125.0
+offset_right = 296.0
+offset_bottom = 1245.0
+texture_normal = ExtResource("36_vhri0")
+texture_pressed = ExtResource("37_skwmq")
+script = ExtResource("11_txbm2")
+
+[node name="PointsBox" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 1122.0
+offset_right = 686.0
+offset_bottom = 1242.0
+texture = ExtResource("11_myweq")
+
+[node name="PointsLabel" type="Label" parent="PointsBox"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 8.0
+offset_right = 238.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.38431373, 0.32941177, 0.30588236, 1)
+theme_override_font_sizes/font_size = 40
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_ijq8a")
+
+[node name="PrevClassButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 761.0
+offset_right = 194.0
+offset_bottom = 911.0
+texture_normal = ExtResource("16_q4wjg")
+texture_pressed = ExtResource("17_htfdu")
+
+[node name="NextClassButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 762.0
+offset_right = 568.0
+offset_bottom = 912.0
+texture_normal = ExtResource("18_ad0m1")
+texture_pressed = ExtResource("19_kpy3d")
+
+[node name="PlayerClassDisplay" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 306.0
+offset_right = 595.0
+offset_bottom = 756.0
+texture = ExtResource("30_l0du7")
+
+[node name="PlayerPreview" type="TextureRect" parent="PlayerClassDisplay"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -2.0
+offset_right = 456.0
+offset_bottom = 448.0
+texture = ExtResource("31_rcv5j")
+
+[node name="AbilityShield" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 357.0
+offset_right = 853.0
+offset_bottom = 477.0
+texture_normal = ExtResource("46_75uq1")
+texture_pressed = ExtResource("47_2yb2e")
+script = ExtResource("48_vhri0")
+
+[node name="AbilityBeacon" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 463.0
+offset_right = 853.0
+offset_bottom = 583.0
+texture_normal = ExtResource("51_goo3e")
+texture_pressed = ExtResource("52_f8kqd")
+script = ExtResource("53_8sedy")
+
+[node name="AbilityAmmo" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 571.0
+offset_right = 853.0
+offset_bottom = 691.0
+texture_normal = ExtResource("54_goo3e")
+texture_pressed = ExtResource("55_goo3e")
+script = ExtResource("56_327al")
+
+[node name="AssaultGun" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 8.0
+offset_right = 587.0
+offset_bottom = 308.0
+texture = ExtResource("3_7optk")
+
+[node name="UpgradeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("51_0crh3")

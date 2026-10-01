@@ -1,0 +1,449 @@
+[gd_scene load_steps=42 format=3 uid="uid://dg2q5qbda3vla"]
+
+[ext_resource type="Script" uid="uid://cr3y6rwpevpnd" path="res://combat_hud.gd" id="1_byuv7"]
+[ext_resource type="Texture2D" uid="uid://jkeqksbeo7n7" path="res://PLAYER UI/bullets_100.png" id="2_6mtg0"]
+[ext_resource type="Texture2D" uid="uid://dgx57ymimw0r5" path="res://PLAYER UI/bullets_75.png" id="3_fdrd1"]
+[ext_resource type="Texture2D" uid="uid://cjetb2okcqkq7" path="res://PLAYER UI/bullets_50.png" id="4_kp4uk"]
+[ext_resource type="Texture2D" uid="uid://bdpms8oepwp5n" path="res://PLAYER UI/bullets_25.png" id="5_4jaa4"]
+[ext_resource type="Texture2D" uid="uid://r1xymavkum4f" path="res://PLAYER UI/bullets_0.png" id="6_xkxd6"]
+[ext_resource type="Texture2D" uid="uid://rkkijrao4t6i" path="res://PLAYER UI/heart4hp.png" id="7_biri6"]
+[ext_resource type="Texture2D" uid="uid://ly6yv0cwq2bs" path="res://PLAYER UI/heart3hp.png" id="8_gbhqo"]
+[ext_resource type="Texture2D" uid="uid://disbl6vauh2rc" path="res://PLAYER UI/heart2hp.png" id="9_e83dp"]
+[ext_resource type="Texture2D" uid="uid://ctg1fk4w8u4kc" path="res://PLAYER UI/heart1hp.png" id="10_40nq7"]
+[ext_resource type="Texture2D" uid="uid://b0qll2lidikg6" path="res://PLAYER UI/heart0hp.png" id="11_vjmbj"]
+[ext_resource type="Script" uid="uid://d3pi7cip7jau3" path="res://handheld_cam.gd" id="12_01vcf"]
+[ext_resource type="Texture2D" uid="uid://cmxfnpwya1a8p" path="res://Level_Assets/BackDrop1.png" id="13_ygy5r"]
+[ext_resource type="Texture2D" uid="uid://dlrgmor16g57i" path="res://Level_Assets/MidDrop.png" id="14_5dyc6"]
+[ext_resource type="Texture2D" uid="uid://raf82rvy3f5s" path="res://MENU/gameewinsplash.png" id="15_biri6"]
+[ext_resource type="PackedScene" uid="uid://d1n3xdbot87b2" path="res://ENEMY/Mini_Boss_Baby.tscn" id="15_msro4"]
+[ext_resource type="Script" uid="uid://do4yvjycd4mx5" path="res://retry_button.gd" id="16_xkxd6"]
+[ext_resource type="AudioStream" uid="uid://c8cyk7oqj6et0" path="res://SOUNDS/AssaultShot.wav" id="16_yskcr"]
+[ext_resource type="AudioStream" uid="uid://crmoo7bfyagox" path="res://SOUNDS/HeavyShot.wav" id="17_ldmg3"]
+[ext_resource type="AudioStream" uid="uid://dborx0hipasgg" path="res://SOUNDS/ScoutShot.wav" id="18_ouefl"]
+[ext_resource type="AudioStream" uid="uid://dxqtkxmpxnk2n" path="res://SOUNDS/Reloading.wav" id="19_ljijw"]
+[ext_resource type="Texture2D" uid="uid://c5g7c04668hm6" path="res://Level_Assets/PlayerCover_Level_1.png" id="20_ve4xe"]
+[ext_resource type="Texture2D" uid="uid://brrhudveklc4c" path="res://Abilities/shield100.png" id="21_f1gn6"]
+[ext_resource type="Texture2D" uid="uid://daubj85yf2tf0" path="res://Abilities/shield75.png" id="22_8fol5"]
+[ext_resource type="Texture2D" uid="uid://c8psa61a7pv2c" path="res://Abilities/shield50.png" id="23_e5gbc"]
+[ext_resource type="Texture2D" uid="uid://44v1cmftrtyf" path="res://Abilities/shield25.png" id="24_oe4ec"]
+[ext_resource type="Texture2D" uid="uid://c4bv13ejpxv14" path="res://Abilities/shield0.png" id="25_lxngn"]
+[ext_resource type="PackedScene" uid="uid://dv84twyqtjdvp" path="res://Player.tscn" id="26_rdij5"]
+[ext_resource type="Texture2D" uid="uid://dsxujy5wssu74" path="res://PLAYER UI/reloading.png" id="27_8rlmf"]
+[ext_resource type="Texture2D" uid="uid://bipngikrhd4y8" path="res://MENU/PointsBox.png" id="28_lllue"]
+[ext_resource type="Script" uid="uid://b82xxk2bk2yno" path="res://points_label.gd" id="29_rw4d2"]
+[ext_resource type="Texture2D" uid="uid://dxyy33n3tkps8" path="res://MENU/BackButton.png" id="30_411hr"]
+[ext_resource type="Texture2D" uid="uid://mqp12ej1ta8x" path="res://MENU/BackButton_Pressed.png" id="31_a87oa"]
+[ext_resource type="Script" uid="uid://c7c5wa5kljgh8" path="res://level_back_button.gd" id="32_g1w1s"]
+[ext_resource type="Texture2D" uid="uid://0xrbg76yo8mq" path="res://MENU/generic 1.png" id="33_jsndb"]
+[ext_resource type="Texture2D" uid="uid://yd00nrj1qsof" path="res://MENU/Abilities Button.png" id="33_kp4uk"]
+[ext_resource type="Script" uid="uid://cbbyw08ksrtff" path="res://ability_button.gd" id="34_c7s47"]
+[ext_resource type="Script" uid="uid://dkweus1ryb2cg" path="res://game_over.gd" id="36_4jaa4"]
+[ext_resource type="Texture2D" uid="uid://bq0nj1u0vfvhv" path="res://MENU/gameoversplash.png" id="37_xkxd6"]
+[ext_resource type="PackedScene" uid="uid://7ebp1kntgwre" path="res://LevelMusic.tscn" id="38_4jaa4"]
+
+[sub_resource type="GDScript" id="GDScript_jopgt"]
+script/source = "extends TextureRect
+
+@export var tex_100: Texture2D
+@export var tex_75: Texture2D
+@export var tex_50: Texture2D
+@export var tex_25: Texture2D
+@export var tex_0: Texture2D
+
+var _last_hp := 0
+var _base_pos := Vector2.ZERO
+var _base_scale := Vector2.ONE
+var _base_rot := 0.0
+var _base_mod := Color.WHITE
+var _tween: Tween
+var _flash := 0.0
+var _dying := false
+
+func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_base_pos = position
+	_base_scale = scale
+	_base_rot = rotation
+	_base_mod = modulate
+	pivot_offset = size * 0.5
+	PlayerData.shield_hp = 0
+	_last_hp = 0
+	_dying = false
+	visible = false
+	modulate = _base_mod
+	position = _base_pos
+	scale = _base_scale
+	rotation = _base_rot
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_5:
+			PlayerData.spawn_shield()
+
+func _process(delta: float) -> void:
+	var hp := PlayerData.shield_hp
+	if hp != _last_hp:
+		if hp > 0 and _last_hp <= 0:
+			_on_spawn()
+		elif hp > 0 and hp < _last_hp:
+			_on_hit()
+		elif hp <= 0 and _last_hp > 0:
+			_on_break()
+		_last_hp = hp
+	if _flash > 0.0:
+		_flash -= delta
+		if _flash <= 0.0 and not _dying:
+			modulate = _base_mod
+
+func _refresh_tex() -> void:
+	var hp := PlayerData.shield_hp
+	match hp:
+		5:
+			texture = tex_100
+		4:
+			texture = tex_75
+		3:
+			texture = tex_50
+		2:
+			texture = tex_25
+		1:
+			texture = tex_0
+		_:
+			pass
+
+func _kill_tween() -> void:
+	if _tween:
+		_tween.kill()
+
+func _on_spawn() -> void:
+	_dying = false
+	_refresh_tex()
+	visible = true
+	modulate = _base_mod
+	position = _base_pos + Vector2(0, -80)
+	scale = _base_scale * Vector2(0.7, 1.25)
+	rotation = _base_rot
+	_kill_tween()
+	_tween = create_tween()
+	_tween.tween_property(self, \"position\", _base_pos, 0.28)\\
+		.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	_tween.parallel().tween_property(self, \"scale\", _base_scale, 0.28)\\
+		.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
+func _on_hit() -> void:
+	_refresh_tex()
+	_flash = 0.1
+	modulate = Color(6, 6, 6)
+	_kill_tween()
+	position = _base_pos
+	rotation = _base_rot
+	_tween = create_tween()
+	_tween.tween_property(self, \"position:x\", _base_pos.x - 12.0, 0.04)
+	_tween.tween_property(self, \"position:x\", _base_pos.x + 12.0, 0.04)
+	_tween.tween_property(self, \"position:x\", _base_pos.x, 0.04)
+
+func _on_break() -> void:
+	_dying = true
+	texture = tex_0
+	visible = true
+	_kill_tween()
+	_tween = create_tween()
+	_tween.set_parallel(true)
+	_tween.tween_property(self, \"scale\", _base_scale * Vector2(1.35, 0.15), 0.28)\\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	_tween.tween_property(self, \"position:y\", _base_pos.y + 20.0, 0.28)
+	_tween.tween_property(self, \"modulate:a\", 0.0, 0.35)
+	_tween.chain().tween_callback(func() -> void:
+		visible = false
+		scale = _base_scale
+		position = _base_pos
+		rotation = _base_rot
+		modulate = _base_mod
+		_dying = false
+	)
+"
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 77.0
+offset_top = -56.0
+offset_right = 77.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_byuv7")
+bullets_100 = ExtResource("2_6mtg0")
+bullets_75 = ExtResource("3_fdrd1")
+bullets_50 = ExtResource("4_kp4uk")
+bullets_25 = ExtResource("5_4jaa4")
+bullets_0 = ExtResource("6_xkxd6")
+heart_4 = ExtResource("7_biri6")
+heart_3 = ExtResource("8_gbhqo")
+heart_2 = ExtResource("9_e83dp")
+heart_1 = ExtResource("10_40nq7")
+heart_0 = ExtResource("11_vjmbj")
+
+[node name="LevelMusic" parent="." instance=ExtResource("38_4jaa4")]
+
+[node name="GameOverLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+visible = false
+script = ExtResource("36_4jaa4")
+lose_tex = ExtResource("37_xkxd6")
+win_tex = ExtResource("15_biri6")
+
+[node name="Splash" type="TextureRect" parent="GameOverLayer"]
+offset_left = 127.0
+offset_top = 237.0
+offset_right = 627.0
+offset_bottom = 737.0
+texture = ExtResource("37_xkxd6")
+
+[node name="RetryButton" type="TextureButton" parent="GameOverLayer"]
+offset_left = 98.0
+offset_top = 741.0
+offset_right = 348.0
+offset_bottom = 861.0
+texture_normal = ExtResource("33_jsndb")
+texture_pressed = ExtResource("33_jsndb")
+script = ExtResource("16_xkxd6")
+
+[node name="MenuButton" type="TextureButton" parent="GameOverLayer"]
+offset_left = 431.0
+offset_top = 740.0
+offset_right = 681.0
+offset_bottom = 860.0
+texture_normal = ExtResource("30_411hr")
+texture_pressed = ExtResource("31_a87oa")
+script = ExtResource("32_g1w1s")
+
+[node name="PointsLabel" type="Label" parent="GameOverLayer"]
+offset_left = 167.00002
+offset_top = 647.0
+offset_right = 313.0
+offset_bottom = 710.0
+scale = Vector2(2.909759, 2.2243898)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShakeRig" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_01vcf")
+
+[node name="Far" type="Control" parent="ShakeRig"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="ShakeRig/Far"]
+layout_mode = 0
+offset_left = -236.0
+offset_top = 56.0
+offset_right = 764.0
+offset_bottom = 1336.0
+texture = ExtResource("13_ygy5r")
+
+[node name="Mid" type="Control" parent="ShakeRig"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="ShakeRig/Mid"]
+layout_mode = 0
+offset_left = -250.0
+offset_top = 27.0
+offset_right = 830.0
+offset_bottom = 1427.0
+scale = Vector2(1, 0.68)
+texture = ExtResource("14_5dyc6")
+
+[node name="Mini_Boss_Baby" parent="ShakeRig/Mid" instance=ExtResource("15_msro4")]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 390.0
+offset_right = 690.0
+offset_bottom = 690.0
+
+[node name="Near" type="Control" parent="ShakeRig"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AssaultShot" type="AudioStreamPlayer2D" parent="ShakeRig/Near"]
+stream = ExtResource("16_yskcr")
+
+[node name="HeavyShot" type="AudioStreamPlayer2D" parent="ShakeRig/Near"]
+stream = ExtResource("17_ldmg3")
+
+[node name="ScoutShot" type="AudioStreamPlayer2D" parent="ShakeRig/Near"]
+stream = ExtResource("18_ouefl")
+
+[node name="ReloadSound" type="AudioStreamPlayer2D" parent="ShakeRig/Near"]
+stream = ExtResource("19_ljijw")
+
+[node name="Rubble" type="TextureRect" parent="ShakeRig/Near"]
+layout_mode = 0
+offset_left = -244.0
+offset_top = 68.0
+offset_right = 756.0
+offset_bottom = 1348.0
+texture = ExtResource("20_ve4xe")
+
+[node name="Shield" type="TextureRect" parent="ShakeRig/Near"]
+layout_mode = 0
+offset_left = -109.0
+offset_top = 742.0
+offset_right = 341.0
+offset_bottom = 1192.0
+texture = ExtResource("21_f1gn6")
+script = SubResource("GDScript_jopgt")
+tex_100 = ExtResource("21_f1gn6")
+tex_75 = ExtResource("22_8fol5")
+tex_50 = ExtResource("23_e5gbc")
+tex_25 = ExtResource("24_oe4ec")
+tex_0 = ExtResource("25_lxngn")
+
+[node name="Player" parent="ShakeRig/Near" instance=ExtResource("26_rdij5")]
+layout_mode = 0
+offset_left = -109.0
+offset_top = 739.0
+offset_right = 341.0
+offset_bottom = 1189.0
+
+[node name="AmmoIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 1125.0
+offset_right = 638.0
+offset_bottom = 1225.0
+texture = ExtResource("2_6mtg0")
+
+[node name="Hearts" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 1224.0
+offset_right = 637.0
+offset_bottom = 1324.0
+texture = ExtResource("7_biri6")
+
+[node name="ReloadingBanner" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 586.0
+offset_right = 322.0
+offset_bottom = 686.0
+texture = ExtResource("27_8rlmf")
+
+[node name="PointsBox" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -38.0
+offset_top = 91.0
+offset_right = 212.0
+offset_bottom = 211.0
+texture = ExtResource("28_lllue")
+
+[node name="PointsLabel" type="Label" parent="PointsBox"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 8.0
+offset_right = 238.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 40
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("29_rw4d2")
+
+[node name="PointsBox2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -38.0
+offset_top = 91.0
+offset_right = 212.0
+offset_bottom = 211.0
+texture = ExtResource("28_lllue")
+
+[node name="PointsLabel" type="Label" parent="PointsBox2"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 8.0
+offset_right = 238.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 40
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("29_rw4d2")
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 99.0
+offset_right = 580.0
+offset_bottom = 219.0
+texture_normal = ExtResource("30_411hr")
+texture_pressed = ExtResource("31_a87oa")
+script = ExtResource("32_g1w1s")
+
+[node name="AbilityButton" type="TextureButton" parent="." node_paths=PackedStringArray("prompt")]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 988.0
+offset_right = 627.0
+offset_bottom = 1108.0
+texture_normal = ExtResource("33_kp4uk")
+script = ExtResource("34_c7s47")
+prompt = NodePath("../AbilityPrompt")
+
+[node name="AbilityPrompt" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Question" type="Label" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 793.0
+offset_right = 340.0
+offset_bottom = 816.0
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer0" type="TextureButton" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 841.0
+offset_right = 293.0
+offset_bottom = 961.0
+texture_normal = ExtResource("33_jsndb")
+
+[node name="Label" type="Label" parent="AbilityPrompt/Answer0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(6.12, 5.12)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer1" type="TextureButton" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 369.0
+offset_top = 841.0
+offset_right = 619.0
+offset_bottom = 961.0
+texture_normal = ExtResource("33_jsndb")
+
+[node name="Label" type="Label" parent="AbilityPrompt/Answer1"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(6.12, 5.12)
+horizontal_alignment = 1
+vertical_alignment = 1

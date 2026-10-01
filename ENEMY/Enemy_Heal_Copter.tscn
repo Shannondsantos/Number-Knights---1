@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3ug66883vk5s"]
+
+[ext_resource type="Texture2D" uid="uid://ddxqvv64gjgsv" path="res://Enemies Assets/heal_blimp_dead.png" id="2_nxorn"]
+[ext_resource type="Script" uid="uid://b2i4s17rvquok" path="res://ENEMY/enemy_heal.gd" id="2_y3kk8"]
+[ext_resource type="AudioStream" uid="uid://ioansqnexlnq" path="res://SOUNDS/09_heal.mp3" id="5_m6unc"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="5_tx3lq"]
+[ext_resource type="Texture2D" uid="uid://bj2ta4bpa1yei" path="res://Enemies Assets/heal_crate.png" id="5_y3rvq"]
+[ext_resource type="Texture2D" uid="uid://bn4vmp58sbvnt" path="res://Enemies Assets/heal_blimp.png" id="6_gbhv3"]
+
+[node name="HealCopter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_y3kk8")
+blimp_dead = ExtResource("2_nxorn")
+death_effect = ExtResource("5_tx3lq")
+death_sound = ExtResource("5_m6unc")
+
+[node name="Crate" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 82.0
+offset_right = 204.0
+offset_bottom = 182.0
+texture = ExtResource("5_y3rvq")
+
+[node name="Blimp" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_gbhv3")

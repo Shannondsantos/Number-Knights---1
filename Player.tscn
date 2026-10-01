@@ -1,0 +1,64 @@
+[gd_scene load_steps=36 format=3 uid="uid://dv84twyqtjdvp"]
+
+[ext_resource type="Texture2D" uid="uid://dc2m3jbn2kxjr" path="res://Assault_Class/PlayerAssaultMk1.png" id="1_m7dl7"]
+[ext_resource type="Script" uid="uid://drs6vxp55kwbi" path="res://player.gd" id="2_48og4"]
+[ext_resource type="Texture2D" uid="uid://cq3kthxyu0ttk" path="res://Assault_Class/PlayerAssaultMk2.png" id="3_xmpta"]
+[ext_resource type="Texture2D" uid="uid://dwbefvtuj2dy0" path="res://Assault_Class/PlayerAssaultMk3.png" id="4_mrbh7"]
+[ext_resource type="Texture2D" uid="uid://dvfrv785chg5j" path="res://Assault_Class/PlayerAssaultMk4.png" id="5_lrhq4"]
+[ext_resource type="Texture2D" uid="uid://c2fp5ivd10w86" path="res://Assault_Class/PlayerAssaultMk5.png" id="6_ibubc"]
+[ext_resource type="Texture2D" uid="uid://drhpmeqpg78o1" path="res://Assault_Class/PlayerAssaultMk1_Shooting.png" id="7_gueye"]
+[ext_resource type="Texture2D" uid="uid://c2wsxdbrqhgjg" path="res://Assault_Class/PlayerAssaultMk2_Shooting.png" id="8_3tfrk"]
+[ext_resource type="Texture2D" uid="uid://cltn7qeamf7nn" path="res://Assault_Class/PlayerAssaultMk3_Shooting.png" id="9_f7new"]
+[ext_resource type="Texture2D" uid="uid://7qb6emkxy4b6" path="res://Assault_Class/PlayerAssaultMk4_Shooting.png" id="10_ravlb"]
+[ext_resource type="Texture2D" uid="uid://b3yub8gfyfjja" path="res://Assault_Class/PlayerAssaultMk5_Shooting.png" id="11_6efpq"]
+[ext_resource type="Texture2D" uid="uid://ycco0a687wul" path="res://Heavy_Class/PlayerHeavyMk1.png" id="12_fhngp"]
+[ext_resource type="Texture2D" uid="uid://d2bqbpgum2753" path="res://Heavy_Class/PlayerHeavyMk2.png" id="13_nd6qy"]
+[ext_resource type="Texture2D" uid="uid://c1q8gbrvim8b5" path="res://Heavy_Class/PlayerHeavyMk3.png" id="14_23wgl"]
+[ext_resource type="Texture2D" uid="uid://craqlvln5ccl" path="res://Heavy_Class/PlayerHeavyMk4.png" id="15_u4q42"]
+[ext_resource type="Texture2D" uid="uid://bcdr1h2owrudf" path="res://Heavy_Class/PlayerHeavyMk5.png" id="16_ctcj5"]
+[ext_resource type="Texture2D" uid="uid://c1b5wr075vyqu" path="res://Heavy_Class/PlayerHeavyMk1_Shooting.png" id="17_chpgb"]
+[ext_resource type="Texture2D" uid="uid://dyyhck6px2xyi" path="res://Heavy_Class/PlayerHeavyMk2_Shooting.png" id="18_xjpfi"]
+[ext_resource type="Texture2D" uid="uid://d3rp61u2b0smf" path="res://Heavy_Class/PlayerHeavyMk3_Shooting.png" id="19_po6o7"]
+[ext_resource type="Texture2D" uid="uid://di4bsneg4573v" path="res://Heavy_Class/PlayerHeavyMk4_Shooting.png" id="20_b3xlj"]
+[ext_resource type="Texture2D" uid="uid://ck5lg2344p8ag" path="res://Heavy_Class/PlayerHeavyMk5_Shooting.png" id="21_4cdfs"]
+[ext_resource type="Texture2D" uid="uid://bjqd1abhkhmvh" path="res://Scout_Class/PlayerScoutMk1.png" id="22_njqbf"]
+[ext_resource type="Texture2D" uid="uid://cmtswk6m13n13" path="res://Scout_Class/PlayerScoutMk2.png" id="23_ffn1m"]
+[ext_resource type="Texture2D" uid="uid://c1uidsb1vbo4b" path="res://Scout_Class/PlayerScoutMk3.png" id="24_mft6i"]
+[ext_resource type="Texture2D" uid="uid://d2p5t63mbbs3a" path="res://Scout_Class/PlayerScoutMk4.png" id="25_ctv73"]
+[ext_resource type="Texture2D" uid="uid://dxsllt411ykp" path="res://Scout_Class/PlayerScoutMk5.png" id="26_1ofp1"]
+[ext_resource type="Texture2D" uid="uid://cermiumf8xxd4" path="res://Scout_Class/PlayerScoutMk1_Shooting.png" id="27_vh7e4"]
+[ext_resource type="Texture2D" uid="uid://c4kpp6eq2d4vk" path="res://Scout_Class/PlayerScoutMk2_Shooting.png" id="28_dbi5o"]
+[ext_resource type="Texture2D" uid="uid://bx8fu7nntjq7m" path="res://Scout_Class/PlayerScoutMk3_Shooting.png" id="29_ud5ta"]
+[ext_resource type="Texture2D" uid="uid://cl7vvlmfo2o7q" path="res://Scout_Class/PlayerScoutMk4_Shooting.png" id="30_abyjm"]
+[ext_resource type="Texture2D" uid="uid://gr2l8ikj6vrk" path="res://Scout_Class/PlayerScoutMk5_Shooting.png" id="31_5p6yf"]
+[ext_resource type="Texture2D" uid="uid://b3u5pu4dp2o35" path="res://Assault_Class/muzzle_assault.png" id="32_m7dl7"]
+[ext_resource type="Texture2D" uid="uid://siwwopcxfr2p" path="res://Heavy_Class/Heavy_Puff.png" id="33_48og4"]
+[ext_resource type="Texture2D" uid="uid://djjn26aqfrr1k" path="res://Scout_Class/muzzle_assault.png" id="34_48og4"]
+[ext_resource type="AudioStream" uid="uid://cymyyklreycsu" path="res://SOUNDS/magic_beam_01_arcane.wav" id="34_m7dl7"]
+
+[node name="Player" type="TextureRect"]
+offset_left = -94.0
+offset_top = 731.0
+offset_right = 356.0
+offset_bottom = 1181.0
+texture = ExtResource("1_m7dl7")
+script = ExtResource("2_48og4")
+assault_idle = Array[Texture2D]([ExtResource("1_m7dl7"), ExtResource("3_xmpta"), ExtResource("4_mrbh7"), ExtResource("5_lrhq4"), ExtResource("6_ibubc")])
+assault_shoot = Array[Texture2D]([ExtResource("7_gueye"), ExtResource("8_3tfrk"), ExtResource("9_f7new"), ExtResource("10_ravlb"), ExtResource("11_6efpq")])
+heavy_idle = Array[Texture2D]([ExtResource("12_fhngp"), ExtResource("13_nd6qy"), ExtResource("14_23wgl"), ExtResource("15_u4q42"), ExtResource("16_ctcj5")])
+heavy_shoot = Array[Texture2D]([ExtResource("17_chpgb"), ExtResource("18_xjpfi"), ExtResource("19_po6o7"), ExtResource("20_b3xlj"), ExtResource("21_4cdfs")])
+scout_idle = Array[Texture2D]([ExtResource("22_njqbf"), ExtResource("23_ffn1m"), ExtResource("24_mft6i"), ExtResource("25_ctv73"), ExtResource("26_1ofp1")])
+scout_shoot = Array[Texture2D]([ExtResource("27_vh7e4"), ExtResource("28_dbi5o"), ExtResource("29_ud5ta"), ExtResource("30_abyjm"), ExtResource("31_5p6yf")])
+assault_puff = ExtResource("32_m7dl7")
+heavy_puff = ExtResource("33_48og4")
+scout_puff = ExtResource("34_48og4")
+scout_shot = ExtResource("34_m7dl7")
+
+[node name="Muzzle_Heavy" type="Marker2D" parent="."]
+position = Vector2(389, 230)
+
+[node name="Muzzle_Scout" type="Marker2D" parent="."]
+position = Vector2(386, 48)
+
+[node name="Muzzle_Assault" type="Marker2D" parent="."]
+position = Vector2(300, 175)

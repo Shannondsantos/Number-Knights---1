@@ -1,0 +1,84 @@
+[gd_scene load_steps=18 format=3 uid="uid://dnvj5m28beru3"]
+
+[ext_resource type="Script" uid="uid://523exh46ur3j" path="res://ENEMY/enemy_tank.gd" id="1_cn7tg"]
+[ext_resource type="Texture2D" uid="uid://c4cw4wt35mdq" path="res://Enemies Assets/tank.png" id="1_ql2uk"]
+[ext_resource type="Texture2D" uid="uid://d4kh3q1eu6n7k" path="res://Enemies Assets/tank_tracks.png" id="2_hxaw6"]
+[ext_resource type="PackedScene" uid="uid://bbw8ugtkkg0os" path="res://ENEMY/enemy_tank_shell.tscn" id="2_qfvq4"]
+[ext_resource type="PackedScene" uid="uid://dvhxvkfuc4ik2" path="res://ENEMY/Enemy_Test.tscn" id="3_6q81e"]
+[ext_resource type="Texture2D" uid="uid://dcj7wjl4hucy2" path="res://Enemies Assets/Attack_Indicator.png" id="3_hxaw6"]
+[ext_resource type="AudioStream" uid="uid://t6bci47rao8d" path="res://SOUNDS/01_tank_tracks_a.mp3" id="3_r7ti8"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="4_b23ir"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="4_r7ti8"]
+[ext_resource type="AudioStream" uid="uid://biphrf8c8cyn8" path="res://SOUNDS/01_enemy_windup_warning.mp3" id="5_7s43b"]
+[ext_resource type="Texture2D" uid="uid://rlb6464tknu5" path="res://Enemies Assets/tank_50.png" id="6_r70dg"]
+[ext_resource type="Texture2D" uid="uid://cyf7244u71fkh" path="res://Enemies Assets/tank_25.png" id="7_0myb5"]
+[ext_resource type="Texture2D" uid="uid://dcc55mwouqm66" path="res://Enemies Assets/tank_dead.png" id="8_txt5i"]
+[ext_resource type="Texture2D" uid="uid://cr7xl7fx5tnm8" path="res://Enemies Assets/tank_tracks_dead_50.png" id="10_p43hu"]
+[ext_resource type="Texture2D" uid="uid://dh3v3pnie47cj" path="res://Enemies Assets/tank_tracks_dead_20.png" id="11_73esq"]
+[ext_resource type="Texture2D" uid="uid://civk8pjfttkka" path="res://Enemies Assets/tank_tracks_dead.png" id="12_2iga3"]
+[ext_resource type="AudioStream" uid="uid://co6lifya0cdli" path="res://SOUNDS/HeavyShot (2).wav" id="16_txt5i"]
+
+[node name="Enemy_Tank" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 372.0
+offset_top = 281.0
+offset_right = 372.0
+offset_bottom = 281.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(273, -43)
+script = ExtResource("1_cn7tg")
+shell_scene = ExtResource("2_qfvq4")
+heal_drone_scene = ExtResource("3_6q81e")
+death_effect = ExtResource("4_b23ir")
+heal_rise = 400.0
+hull_wobble_move = 1.0
+hull_wobble_speed = 1.0
+hull_tex_100 = ExtResource("1_ql2uk")
+hull_tex_50 = ExtResource("6_r70dg")
+hull_tex_20 = ExtResource("7_0myb5")
+hull_tex_dead = ExtResource("8_txt5i")
+tracks_tex_100 = ExtResource("2_hxaw6")
+tracks_tex_50 = ExtResource("10_p43hu")
+tracks_tex_20 = ExtResource("11_73esq")
+tracks_tex_dead = ExtResource("12_2iga3")
+tracks_loop = ExtResource("3_r7ti8")
+windup_sound = ExtResource("5_7s43b")
+fire_sound = ExtResource("4_r7ti8")
+death_sound = ExtResource("16_txt5i")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -204.0
+offset_top = -200.0
+offset_right = 196.0
+offset_bottom = 100.0
+texture = ExtResource("1_ql2uk")
+
+[node name="Tracks" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -187.0
+offset_right = 173.0
+offset_bottom = 87.0
+texture = ExtResource("2_hxaw6")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -173.0
+offset_top = -179.0
+offset_right = -23.0
+offset_bottom = -129.0
+pivot_offset = Vector2(39, 50)
+texture = ExtResource("3_hxaw6")
+
+[node name="Attack_Indicator2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -52.0
+offset_top = -91.0
+offset_right = 98.0
+offset_bottom = -41.0
+pivot_offset = Vector2(46, 50)
+texture = ExtResource("3_hxaw6")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq5vwsqkbb7ad"]
+
+[ext_resource type="Script" uid="uid://0wy1500k4n82" path="res://ENEMY/enemy_death_effect.gd" id="1_d1bca"]
+[ext_resource type="Texture2D" uid="uid://cbnbdtj4vpq8l" path="res://Enemies Assets/gears1.png" id="2_ba4na"]
+[ext_resource type="Texture2D" uid="uid://cuvdxylied8g7" path="res://Enemies Assets/gears2.png" id="3_fh4ha"]
+[ext_resource type="Texture2D" uid="uid://71s4mt8yhhx1" path="res://Enemies Assets/gears3.png" id="4_3kgln"]
+
+[node name="Enemy_Death_Effect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d1bca")
+piece_1 = ExtResource("2_ba4na")
+piece_2 = ExtResource("3_fh4ha")
+piece_3 = ExtResource("4_3kgln")

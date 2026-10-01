@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://dtf6ohsaotrqy"]
+
+[ext_resource type="Texture2D" uid="uid://dyoys6idrl8x8" path="res://MENU/midmenubackground.png" id="1_2fv1l"]
+[ext_resource type="Script" uid="uid://dwd0a34nl5a86" path="res://MENUS/settings.gd" id="1_blqn1"]
+[ext_resource type="Script" uid="uid://vp1qa5l4yedn" path="res://background_1.gd" id="2_mx4kw"]
+[ext_resource type="Texture2D" uid="uid://b5xkjs0g6vomi" path="res://MENU/back.png" id="4_blqn1"]
+[ext_resource type="Texture2D" uid="uid://4iokg6iqpfal" path="res://MENU/back_pressed.png" id="5_j7x76"]
+[ext_resource type="Script" uid="uid://cpxcw3htvu3lk" path="res://MENUS/midmenu_back_button.gd" id="6_8uskx"]
+[ext_resource type="Texture2D" uid="uid://46epi188atxy" path="res://MENU/button_generic.png" id="7_x5sme"]
+[ext_resource type="Texture2D" uid="uid://boad1gxaci3ur" path="res://MENU/button_generic_pressed.png" id="8_lo14l"]
+[ext_resource type="Script" uid="uid://xc4mcskhyi4v" path="res://MENUS/data_reset_button.gd" id="9_lo14l"]
+[ext_resource type="Script" uid="uid://cc2uk382q3dlj" path="res://MENUS/data_delete_continue_button.gd" id="10_cuefh"]
+[ext_resource type="Script" uid="uid://bganq2crq2mp6" path="res://MENUS/data_delete_cancel_button.gd" id="11_cik5g"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_blqn1")
+
+[node name="Background1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_2fv1l")
+script = ExtResource("2_mx4kw")
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 1280.0
+offset_right = 720.0
+offset_bottom = 2560.0
+texture = ExtResource("1_2fv1l")
+script = ExtResource("2_mx4kw")
+
+[node name="MusicSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 436.0
+offset_right = 568.0
+offset_bottom = 684.0
+tick_count = 4
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 1132.0
+offset_right = 282.0
+offset_bottom = 1252.0
+texture_normal = ExtResource("4_blqn1")
+texture_pressed = ExtResource("5_j7x76")
+script = ExtResource("6_8uskx")
+next_scene = "res://MENUS/MainMenu.tscn"
+
+[node name="ResetButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 1126.0
+offset_right = 688.0
+offset_bottom = 1246.0
+texture_normal = ExtResource("7_x5sme")
+texture_pressed = ExtResource("8_lo14l")
+script = ExtResource("9_lo14l")
+
+[node name="Label" type="Label" parent="ResetButton"]
+layout_mode = 0
+offset_right = 246.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0.33333334, 0.27450982, 0.2509804, 1)
+theme_override_font_sizes/font_size = 30
+text = "[Reset Data]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetConfirm" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ContinueButton" type="TextureButton" parent="ResetConfirm"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 668.0
+offset_right = 338.0
+offset_bottom = 788.0
+texture_normal = ExtResource("7_x5sme")
+texture_pressed = ExtResource("8_lo14l")
+script = ExtResource("10_cuefh")
+
+[node name="Label" type="Label" parent="ResetConfirm/ContinueButton"]
+layout_mode = 0
+offset_right = 246.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0.33333334, 0.27450982, 0.2509804, 1)
+theme_override_font_sizes/font_size = 30
+text = "[CONFIRM
+DATA]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CancelButton" type="TextureButton" parent="ResetConfirm"]
+layout_mode = 0
+offset_left = 382.0
+offset_top = 668.0
+offset_right = 632.0
+offset_bottom = 788.0
+texture_normal = ExtResource("7_x5sme")
+texture_pressed = ExtResource("8_lo14l")
+script = ExtResource("11_cik5g")
+
+[node name="Label" type="Label" parent="ResetConfirm/CancelButton"]
+layout_mode = 0
+offset_right = 246.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0.33333334, 0.27450982, 0.2509804, 1)
+theme_override_font_sizes/font_size = 30
+text = "[CANCEL]"
+horizontal_alignment = 1
+vertical_alignment = 1

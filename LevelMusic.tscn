@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://7ebp1kntgwre"]
+
+[ext_resource type="Script" uid="uid://yjrusxir0dot" path="res://level_music.gd" id="1_f3ggv"]
+[ext_resource type="AudioStream" uid="uid://bfsk6ck6llj38" path="res://Music_/Music_sergequadrado-mafia-13004.mp3" id="2_sonhj"]
+[ext_resource type="AudioStream" uid="uid://bayhwfhafe131" path="res://Music_/Music_nastelbom-action-440170.mp3" id="3_f3ggv"]
+
+[node name="LevelMusic" type="Node"]
+script = ExtResource("1_f3ggv")
+level_track = ExtResource("2_sonhj")
+boss_track = ExtResource("3_f3ggv")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdm5oktrfc7nd"]
+
+[ext_resource type="Texture2D" uid="uid://71s4mt8yhhx1" path="res://Enemies Assets/gears3.png" id="1_our0c"]
+[ext_resource type="Script" uid="uid://bepwrn0tg7v2i" path="res://cog.gd" id="2_2llkm"]
+
+[node name="Cog" type="TextureRect"]
+offset_right = 50.0
+offset_bottom = 50.0
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("1_our0c")
+script = ExtResource("2_2llkm")

@@ -1,0 +1,132 @@
+[gd_scene load_steps=18 format=3 uid="uid://c1qpwj7xue4gh"]
+
+[ext_resource type="Script" uid="uid://cwx0bhrm0rcvp" path="res://PlayerData.gd" id="1_a8rfn"]
+[ext_resource type="Texture2D" uid="uid://drogu0cyc5u55" path="res://MENU/menubackground.png" id="2_j4w58"]
+[ext_resource type="Script" uid="uid://dvpamb2fjnxm1" path="res://background.gd" id="3_320ax"]
+[ext_resource type="Texture2D" uid="uid://bcp661vo0lsv" path="res://MENU/menustatic1.png" id="4_pj4tk"]
+[ext_resource type="Texture2D" uid="uid://lpboy5d4a7hr" path="res://MENU/menuplay.png" id="5_i8fpq"]
+[ext_resource type="Texture2D" uid="uid://56lu71v1sudj" path="res://MENU/menuplay_clicked.png" id="6_ibo8s"]
+[ext_resource type="Script" uid="uid://w8cabsot8m0x" path="res://MENUS/play_button.gd" id="7_fypkw"]
+[ext_resource type="PackedScene" uid="uid://bdm5oktrfc7nd" path="res://MENU/cog.tscn" id="8_g7to6"]
+[ext_resource type="PackedScene" uid="uid://c4oou5s0otjg6" path="res://MENU/cog2.tscn" id="9_nggpp"]
+[ext_resource type="Texture2D" uid="uid://quqtpd41jayi" path="res://MENU/settings.png" id="10_g7to6"]
+[ext_resource type="Script" uid="uid://b5e4r2fhsnye" path="res://settings_button.gd" id="10_kajcf"]
+[ext_resource type="Texture2D" uid="uid://7xg8biv1c7rg" path="res://MENU/settingspressed.png" id="11_nggpp"]
+[ext_resource type="Script" uid="uid://blwrvcmeggm62" path="res://texture_rect.gd" id="12_v5ouy"]
+[ext_resource type="Texture2D" uid="uid://btrk67ng1hq6g" path="res://MENU/logo700x700.png" id="13_g7to6"]
+
+[sub_resource type="GDScript" id="GDScript_jix8l"]
+
+[sub_resource type="Shader" id="Shader_glbon"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+script = SubResource("GDScript_jix8l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nlkkf"]
+shader = SubResource("Shader_glbon")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a8rfn")
+
+[node name="Background1" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_nlkkf")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_j4w58")
+stretch_mode = 1
+script = ExtResource("3_320ax")
+
+[node name="Background2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_nlkkf")
+layout_mode = 0
+offset_top = 1280.0
+offset_right = 720.0
+offset_bottom = 2560.0
+texture = ExtResource("2_j4w58")
+stretch_mode = 1
+script = ExtResource("3_320ax")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("4_pj4tk")
+
+[node name="PlayButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 795.0
+offset_right = 579.0
+offset_bottom = 915.0
+pivot_offset = Vector2(198, 53)
+texture_normal = ExtResource("5_i8fpq")
+texture_pressed = ExtResource("6_ibo8s")
+script = ExtResource("7_fypkw")
+
+[node name="Cog" parent="PlayButton" instance=ExtResource("8_g7to6")]
+layout_mode = 0
+
+[node name="Cog2" parent="PlayButton" instance=ExtResource("9_nggpp")]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 33.0
+offset_right = 24.0
+offset_bottom = 83.0
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 919.0
+offset_right = 577.0
+offset_bottom = 1039.0
+pivot_offset = Vector2(196, 53)
+texture_normal = ExtResource("10_g7to6")
+texture_pressed = ExtResource("11_nggpp")
+script = ExtResource("10_kajcf")
+next_scene = "res://MENUS/Settings.tscn"
+
+[node name="Cog" parent="SettingsButton" instance=ExtResource("8_g7to6")]
+layout_mode = 0
+offset_left = 382.18643
+offset_top = 49.337524
+offset_right = 432.18643
+offset_bottom = 99.337524
+rotation = 1.1796355
+
+[node name="Cog2" parent="SettingsButton" instance=ExtResource("9_nggpp")]
+layout_mode = 0
+offset_left = 356.18643
+offset_top = 82.337524
+offset_right = 406.18643
+offset_bottom = 132.33752
+rotation = 1.1796355
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 65.0
+offset_right = 704.0
+offset_bottom = 765.0
+pivot_offset = Vector2(367, 354)
+texture = ExtResource("13_g7to6")
+script = ExtResource("12_v5ouy")

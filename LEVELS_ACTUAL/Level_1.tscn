@@ -1,0 +1,595 @@
+[gd_scene load_steps=67 format=3 uid="uid://baprnpl1ueqo1"]
+
+[ext_resource type="Script" uid="uid://cr3y6rwpevpnd" path="res://combat_hud.gd" id="1_wvvvq"]
+[ext_resource type="Script" uid="uid://r88nq477pyp5" path="res://LEVELS_ACTUAL/level_1_director.gd" id="2_w0yia"]
+[ext_resource type="PackedScene" uid="uid://dvhxvkfuc4ik2" path="res://ENEMY/Enemy_Test.tscn" id="3_pou12"]
+[ext_resource type="PackedScene" uid="uid://7ebp1kntgwre" path="res://LevelMusic.tscn" id="8_ekdi6"]
+[ext_resource type="Script" uid="uid://hnlxynnpuglr" path="res://pause.gd" id="9_kscnv"]
+[ext_resource type="Texture2D" uid="uid://cf4c2ea2rgmsg" path="res://MENU/game pause.png" id="10_2yldo"]
+[ext_resource type="Texture2D" uid="uid://te4f38fbivmr" path="res://MENU/retry.png" id="11_rdt3l"]
+[ext_resource type="Texture2D" uid="uid://bv52i5kykqet7" path="res://MENU/retrypressed.png" id="12_rbh31"]
+[ext_resource type="Script" uid="uid://bqpb6u16q5xdm" path="res://retry_button_pause.gd" id="13_6picd"]
+[ext_resource type="Texture2D" uid="uid://b5xkjs0g6vomi" path="res://MENU/back.png" id="14_dwp21"]
+[ext_resource type="Texture2D" uid="uid://4iokg6iqpfal" path="res://MENU/back_pressed.png" id="15_ok3ac"]
+[ext_resource type="Script" uid="uid://cub832ku2qy5w" path="res://menu_button_pause.gd" id="16_axp6w"]
+[ext_resource type="Texture2D" uid="uid://dttkinjdoccbb" path="res://MENU/continue.png" id="17_ppsom"]
+[ext_resource type="Texture2D" uid="uid://dpftybht82y1k" path="res://MENU/continuepressed.png" id="18_r3psx"]
+[ext_resource type="Script" uid="uid://d3y5bxiu4df4e" path="res://pause_continue.gd" id="19_hpjw0"]
+[ext_resource type="Script" uid="uid://dkweus1ryb2cg" path="res://game_over.gd" id="20_oj531"]
+[ext_resource type="Texture2D" uid="uid://bq0nj1u0vfvhv" path="res://MENU/gameoversplash.png" id="21_ftg7u"]
+[ext_resource type="Texture2D" uid="uid://dg4n236j203w4" path="res://MENU/game win.png" id="22_lusjb"]
+[ext_resource type="Script" uid="uid://do4yvjycd4mx5" path="res://retry_button.gd" id="23_gmdvq"]
+[ext_resource type="Script" uid="uid://c7c5wa5kljgh8" path="res://level_back_button.gd" id="24_oo26d"]
+[ext_resource type="Texture2D" uid="uid://46epi188atxy" path="res://MENU/button_generic.png" id="25_tsstb"]
+[ext_resource type="Script" uid="uid://d3pi7cip7jau3" path="res://handheld_cam.gd" id="26_pk7k0"]
+[ext_resource type="Texture2D" uid="uid://dksndyajg382l" path="res://Level_Assets/biome1far.png" id="27_efco6"]
+[ext_resource type="Texture2D" uid="uid://vdirr3ptaf1u" path="res://Level_Assets/biome1mid.png" id="28_wvvvq"]
+[ext_resource type="PackedScene" uid="uid://b0npocht2i1s0" path="res://ENEMY/Enemy_Chef.tscn" id="30_bi5wl"]
+[ext_resource type="AudioStream" uid="uid://c8cyk7oqj6et0" path="res://SOUNDS/AssaultShot.wav" id="31_s3c40"]
+[ext_resource type="AudioStream" uid="uid://crmoo7bfyagox" path="res://SOUNDS/HeavyShot.wav" id="32_wong8"]
+[ext_resource type="AudioStream" uid="uid://dborx0hipasgg" path="res://SOUNDS/ScoutShot.wav" id="33_b5m87"]
+[ext_resource type="AudioStream" uid="uid://dxqtkxmpxnk2n" path="res://SOUNDS/Reloading.wav" id="34_b74b7"]
+[ext_resource type="Texture2D" uid="uid://bo6s2433vfax" path="res://Level_Assets/biome1near.png" id="34_eqy4w"]
+[ext_resource type="Texture2D" uid="uid://brrhudveklc4c" path="res://Abilities/shield100.png" id="36_h03n5"]
+[ext_resource type="Texture2D" uid="uid://daubj85yf2tf0" path="res://Abilities/shield75.png" id="37_u4iwe"]
+[ext_resource type="Texture2D" uid="uid://c8psa61a7pv2c" path="res://Abilities/shield50.png" id="38_lu3ps"]
+[ext_resource type="Texture2D" uid="uid://44v1cmftrtyf" path="res://Abilities/shield25.png" id="39_bfn2f"]
+[ext_resource type="Texture2D" uid="uid://c4bv13ejpxv14" path="res://Abilities/shield0.png" id="40_of5x5"]
+[ext_resource type="PackedScene" uid="uid://dv84twyqtjdvp" path="res://Player.tscn" id="41_vu5c6"]
+[ext_resource type="AudioStream" uid="uid://dlsxpxphug0a7" path="res://GUNS/crossbow_01_classic.wav" id="42_3r4bi"]
+[ext_resource type="AudioStream" uid="uid://q05cdye6m178" path="res://GUNS/crossbow_02_heavy.wav" id="43_jtueo"]
+[ext_resource type="AudioStream" uid="uid://ddw2sycijjqc7" path="res://GUNS/crossbow_03_pistol.wav" id="44_iysfi"]
+[ext_resource type="AudioStream" uid="uid://bxmkwl13br4e1" path="res://GUNS/cannon_01_field.wav" id="45_rx2vm"]
+[ext_resource type="AudioStream" uid="uid://b6uhudy0cue06" path="res://GUNS/cannon_02_naval.wav" id="46_mxjxn"]
+[ext_resource type="AudioStream" uid="uid://bhx5jckqtq4n6" path="res://GUNS/cannon_03_fortress.wav" id="47_blueh"]
+[ext_resource type="Texture2D" uid="uid://cb6ppormjxm3q" path="res://Abilities/beacon.png" id="48_xklpa"]
+[ext_resource type="Script" uid="uid://dugrnnmf2bana" path="res://Abilities/ability_beacon.gd" id="49_v6wm5"]
+[ext_resource type="Texture2D" uid="uid://dvf6aboqtpami" path="res://Abilities/beacon_2.png" id="50_30wa4"]
+[ext_resource type="Texture2D" uid="uid://dy80myqxwits3" path="res://Abilities/ammo.png" id="51_21ho7"]
+[ext_resource type="Script" uid="uid://h0o0cmkjh718" path="res://Abilities/ability_ammo.gd" id="52_pgx8b"]
+[ext_resource type="Texture2D" uid="uid://iibvdc5ojsn1" path="res://PLAYER UI/COUNTER.png" id="53_m3e6i"]
+[ext_resource type="PackedScene" uid="uid://bdm5oktrfc7nd" path="res://MENU/cog.tscn" id="54_ph8g1"]
+[ext_resource type="PackedScene" uid="uid://c4oou5s0otjg6" path="res://MENU/cog2.tscn" id="55_xugnu"]
+[ext_resource type="Texture2D" uid="uid://bj85grnttpnsk" path="res://MENU/InfiniteAmmoLogo.png" id="56_d80yd"]
+[ext_resource type="Texture2D" uid="uid://dsxujy5wssu74" path="res://PLAYER UI/reloading.png" id="57_507pk"]
+[ext_resource type="Texture2D" uid="uid://bih8lkmbiwmfy" path="res://PLAYER UI/abilities.png" id="58_gi51h"]
+[ext_resource type="Script" uid="uid://cbbyw08ksrtff" path="res://ability_button.gd" id="59_blyt6"]
+[ext_resource type="Texture2D" uid="uid://cipd7a3mq61la" path="res://PLAYER UI/shield.png" id="60_i3x7y"]
+[ext_resource type="Texture2D" uid="uid://dchf055ya3cq3" path="res://MENU/infiniteammo.png" id="61_aw77s"]
+[ext_resource type="Texture2D" uid="uid://ckub1b377w5wf" path="res://PLAYER UI/beacon.png" id="62_ihm6w"]
+[ext_resource type="Texture2D" uid="uid://bm7h5x25gaahj" path="res://PLAYER UI/genericbutton.png" id="63_ltsuo"]
+[ext_resource type="Texture2D" uid="uid://n7tr7ym7wban" path="res://PLAYER UI/genericbuttonpressed.png" id="64_1oktm"]
+[ext_resource type="Texture2D" uid="uid://dwiual8urhr0m" path="res://MENU/paused.png" id="65_e61sl"]
+[ext_resource type="Texture2D" uid="uid://va7k7vg8610f" path="res://MENU/pausedpressed.png" id="66_wdmuw"]
+[ext_resource type="Script" uid="uid://t4mip4radjpx" path="res://level_pause.gd" id="67_7vxb4"]
+[ext_resource type="Texture2D" uid="uid://ccjrba14eys1t" path="res://PLAYER UI/reload.png" id="68_g8fr4"]
+[ext_resource type="Texture2D" uid="uid://0f0f5bednsmq" path="res://PLAYER UI/reloadpressed.png" id="69_0wbhh"]
+[ext_resource type="Script" uid="uid://dlyc6t41jsgo2" path="res://level_reload.gd" id="70_eu2lb"]
+
+[sub_resource type="GDScript" id="GDScript_jopgt"]
+script/source = "extends TextureRect
+
+@export var tex_100: Texture2D
+@export var tex_75: Texture2D
+@export var tex_50: Texture2D
+@export var tex_25: Texture2D
+@export var tex_0: Texture2D
+
+var _last_hp := 0
+var _base_pos := Vector2.ZERO
+var _base_scale := Vector2.ONE
+var _base_rot := 0.0
+var _base_mod := Color.WHITE
+var _tween: Tween
+var _flash := 0.0
+var _dying := false
+
+func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_base_pos = position
+	_base_scale = scale
+	_base_rot = rotation
+	_base_mod = modulate
+	pivot_offset = size * 0.5
+	PlayerData.shield_hp = 0
+	_last_hp = 0
+	_dying = false
+	visible = false
+	modulate = _base_mod
+	position = _base_pos
+	scale = _base_scale
+	rotation = _base_rot
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_5:
+			PlayerData.spawn_shield()
+
+func _process(delta: float) -> void:
+	var hp := PlayerData.shield_hp
+	if hp != _last_hp:
+		if hp > 0 and _last_hp <= 0:
+			_on_spawn()
+		elif hp > 0 and hp < _last_hp:
+			_on_hit()
+		elif hp <= 0 and _last_hp > 0:
+			_on_break()
+		_last_hp = hp
+	if _flash > 0.0:
+		_flash -= delta
+		if _flash <= 0.0 and not _dying:
+			modulate = _base_mod
+
+func _refresh_tex() -> void:
+	var hp := PlayerData.shield_hp
+	match hp:
+		5:
+			texture = tex_100
+		4:
+			texture = tex_75
+		3:
+			texture = tex_50
+		2:
+			texture = tex_25
+		1:
+			texture = tex_0
+		_:
+			pass
+
+func _kill_tween() -> void:
+	if _tween:
+		_tween.kill()
+
+func _on_spawn() -> void:
+	_dying = false
+	_refresh_tex()
+	visible = true
+	modulate = _base_mod
+	position = _base_pos + Vector2(0, -80)
+	scale = _base_scale * Vector2(0.7, 1.25)
+	rotation = _base_rot
+	_kill_tween()
+	_tween = create_tween()
+	_tween.tween_property(self, \"position\", _base_pos, 0.28)\\
+		.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	_tween.parallel().tween_property(self, \"scale\", _base_scale, 0.28)\\
+		.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
+func _on_hit() -> void:
+	_refresh_tex()
+	_flash = 0.1
+	modulate = Color(6, 6, 6)
+	_kill_tween()
+	position = _base_pos
+	rotation = _base_rot
+	_tween = create_tween()
+	_tween.tween_property(self, \"position:x\", _base_pos.x - 12.0, 0.04)
+	_tween.tween_property(self, \"position:x\", _base_pos.x + 12.0, 0.04)
+	_tween.tween_property(self, \"position:x\", _base_pos.x, 0.04)
+
+func _on_break() -> void:
+	_dying = true
+	texture = tex_0
+	visible = true
+	_kill_tween()
+	_tween = create_tween()
+	_tween.set_parallel(true)
+	_tween.tween_property(self, \"scale\", _base_scale * Vector2(1.35, 0.15), 0.28)\\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	_tween.tween_property(self, \"position:y\", _base_pos.y + 20.0, 0.28)
+	_tween.tween_property(self, \"modulate:a\", 0.0, 0.35)
+	_tween.chain().tween_callback(func() -> void:
+		visible = false
+		scale = _base_scale
+		position = _base_pos
+		rotation = _base_rot
+		modulate = _base_mod
+		_dying = false
+	)
+"
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 77.0
+offset_top = -56.0
+offset_right = 77.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wvvvq")
+
+[node name="Director" type="Node" parent="."]
+script = ExtResource("2_w0yia")
+fodder = ExtResource("3_pou12")
+
+[node name="LevelMusic" parent="." instance=ExtResource("8_ekdi6")]
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+visible = false
+script = ExtResource("9_kscnv")
+
+[node name="Splash" type="TextureRect" parent="PauseLayer"]
+offset_left = 93.0
+offset_top = 188.0
+offset_right = 593.0
+offset_bottom = 688.0
+texture = ExtResource("10_2yldo")
+
+[node name="RetryButton_Paused" type="TextureButton" parent="PauseLayer"]
+offset_left = 21.0
+offset_top = 823.0
+offset_right = 271.0
+offset_bottom = 943.0
+texture_normal = ExtResource("11_rdt3l")
+texture_pressed = ExtResource("12_rbh31")
+script = ExtResource("13_6picd")
+
+[node name="MenuButton_Pause" type="TextureButton" parent="PauseLayer"]
+offset_left = 446.0
+offset_top = 827.0
+offset_right = 696.0
+offset_bottom = 947.0
+texture_normal = ExtResource("14_dwp21")
+texture_pressed = ExtResource("15_ok3ac")
+script = ExtResource("16_axp6w")
+
+[node name="Continue" type="TextureButton" parent="PauseLayer"]
+process_mode = 3
+offset_left = 314.0
+offset_top = 838.0
+offset_right = 414.0
+offset_bottom = 938.0
+texture_normal = ExtResource("17_ppsom")
+texture_pressed = ExtResource("18_r3psx")
+script = ExtResource("19_hpjw0")
+
+[node name="GameOverLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+visible = false
+script = ExtResource("20_oj531")
+lose_tex = ExtResource("21_ftg7u")
+win_tex = ExtResource("22_lusjb")
+
+[node name="Splash" type="TextureRect" parent="GameOverLayer"]
+offset_left = 92.0
+offset_top = 188.0
+offset_right = 592.0
+offset_bottom = 688.0
+texture = ExtResource("21_ftg7u")
+
+[node name="RetryButton" type="TextureButton" parent="GameOverLayer"]
+offset_left = 90.0
+offset_top = 825.0
+offset_right = 340.0
+offset_bottom = 945.0
+texture_normal = ExtResource("11_rdt3l")
+texture_pressed = ExtResource("12_rbh31")
+script = ExtResource("23_gmdvq")
+
+[node name="MenuButton" type="TextureButton" parent="GameOverLayer"]
+offset_left = 427.0
+offset_top = 827.0
+offset_right = 677.0
+offset_bottom = 947.0
+texture_normal = ExtResource("14_dwp21")
+texture_pressed = ExtResource("15_ok3ac")
+script = ExtResource("24_oo26d")
+
+[node name="TextureRect" type="TextureRect" parent="GameOverLayer"]
+offset_left = 255.0
+offset_top = 697.0
+offset_right = 505.0
+offset_bottom = 817.0
+texture = ExtResource("25_tsstb")
+
+[node name="PointsLabel" type="Label" parent="GameOverLayer"]
+offset_left = 216.0
+offset_top = 687.0
+offset_right = 362.0
+offset_bottom = 750.0
+scale = Vector2(2.1897602, 2.2243898)
+theme_override_colors/font_color = Color(0.33333334, 0.2784314, 0.25490198, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShakeRig" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("26_pk7k0")
+
+[node name="Far" type="Control" parent="ShakeRig"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background2" type="TextureRect" parent="ShakeRig/Far"]
+layout_mode = 0
+offset_left = -236.0
+offset_top = 56.0
+offset_right = 844.0
+offset_bottom = 1456.0
+texture = ExtResource("27_efco6")
+
+[node name="Background" type="TextureRect" parent="ShakeRig/Far"]
+layout_mode = 0
+offset_left = -236.0
+offset_top = 56.0
+offset_right = 764.0
+offset_bottom = 1336.0
+texture = ExtResource("27_efco6")
+
+[node name="Mid" type="Control" parent="ShakeRig"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ground" type="TextureRect" parent="ShakeRig/Mid"]
+layout_mode = 0
+offset_left = -156.0
+offset_top = 102.0
+offset_right = 924.0
+offset_bottom = 1502.0
+scale = Vector2(0.8000014, 0.7100701)
+texture = ExtResource("28_wvvvq")
+
+[node name="Spawn1" type="Marker2D" parent="ShakeRig/Mid"]
+position = Vector2(284, 587)
+
+[node name="Spawn2" type="Marker2D" parent="ShakeRig/Mid"]
+position = Vector2(491, 425)
+
+[node name="Spawn3" type="Marker2D" parent="ShakeRig/Mid"]
+position = Vector2(46, 413)
+
+[node name="Enemy_chef" parent="ShakeRig/Mid" instance=ExtResource("30_bi5wl")]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 347.0
+offset_right = 352.0
+offset_bottom = 447.0
+
+[node name="Near" type="Control" parent="ShakeRig"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AssaultShot" type="AudioStreamPlayer2D" parent="ShakeRig/Near"]
+stream = ExtResource("31_s3c40")
+
+[node name="HeavyShot" type="AudioStreamPlayer2D" parent="ShakeRig/Near"]
+stream = ExtResource("32_wong8")
+
+[node name="ScoutShot" type="AudioStreamPlayer2D" parent="ShakeRig/Near"]
+stream = ExtResource("33_b5m87")
+
+[node name="ReloadSound" type="AudioStreamPlayer2D" parent="ShakeRig/Near"]
+stream = ExtResource("34_b74b7")
+
+[node name="Rubble" type="TextureRect" parent="ShakeRig/Near"]
+layout_mode = 0
+offset_left = -197.0
+offset_top = 56.000015
+offset_right = 803.0
+offset_bottom = 1336.0
+scale = Vector2(0.9999998, 0.9999998)
+texture = ExtResource("34_eqy4w")
+
+[node name="Shield" type="TextureRect" parent="ShakeRig/Near"]
+visible = false
+layout_mode = 0
+offset_left = -53.0
+offset_top = 729.0
+offset_right = 397.0
+offset_bottom = 1179.0
+texture = ExtResource("36_h03n5")
+script = SubResource("GDScript_jopgt")
+tex_100 = ExtResource("36_h03n5")
+tex_75 = ExtResource("37_u4iwe")
+tex_50 = ExtResource("38_lu3ps")
+tex_25 = ExtResource("39_bfn2f")
+tex_0 = ExtResource("40_of5x5")
+
+[node name="Player" parent="ShakeRig/Near" instance=ExtResource("41_vu5c6")]
+layout_mode = 0
+offset_left = -109.0
+offset_top = 739.0
+offset_right = 341.0
+offset_bottom = 1189.0
+assault_shots = Array[AudioStream]([ExtResource("42_3r4bi"), ExtResource("43_jtueo"), ExtResource("44_iysfi")])
+heavy_shots = Array[AudioStream]([ExtResource("45_rx2vm"), ExtResource("46_mxjxn"), ExtResource("47_blueh")])
+
+[node name="Beacon" type="TextureRect" parent="ShakeRig/Near"]
+visible = false
+layout_mode = 0
+offset_left = -67.0
+offset_top = 761.0
+offset_right = 383.0
+offset_bottom = 1211.0
+texture = ExtResource("48_xklpa")
+script = ExtResource("49_v6wm5")
+light_off = ExtResource("48_xklpa")
+light_on = ExtResource("50_30wa4")
+
+[node name="Ammo" type="TextureRect" parent="ShakeRig/Near"]
+visible = false
+layout_mode = 0
+offset_left = -159.0
+offset_top = 846.0
+offset_right = 291.0
+offset_bottom = 1296.0
+texture = ExtResource("51_21ho7")
+script = ExtResource("52_pgx8b")
+
+[node name="AmmoIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 1125.0
+offset_right = 638.0
+offset_bottom = 1225.0
+texture = ExtResource("53_m3e6i")
+
+[node name="Fill" type="ColorRect" parent="AmmoIcon"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 392.0
+offset_bottom = 91.0
+color = Color(0.40784314, 0.5921569, 0.8235294, 1)
+
+[node name="Cog" parent="AmmoIcon" instance=ExtResource("54_ph8g1")]
+layout_mode = 0
+offset_left = 13.186432
+offset_top = -12.662476
+offset_right = 63.18643
+offset_bottom = 37.337524
+rotation = 1.1796355
+
+[node name="Cog2" parent="AmmoIcon" instance=ExtResource("55_xugnu")]
+layout_mode = 0
+offset_left = -12.813568
+offset_top = 20.337524
+offset_right = 37.18643
+offset_bottom = 70.337524
+rotation = 1.1796355
+
+[node name="InfiniteAmmo" type="TextureRect" parent="AmmoIcon"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = -8.0
+offset_right = 264.0
+offset_bottom = 112.0
+texture = ExtResource("56_d80yd")
+
+[node name="Hearts" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 1224.0
+offset_right = 637.0
+offset_bottom = 1324.0
+texture = ExtResource("53_m3e6i")
+
+[node name="Fill" type="ColorRect" parent="Hearts"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 392.0
+offset_bottom = 91.0
+color = Color(0.41179755, 0.1193857, 0.15155813, 1)
+
+[node name="Cog" parent="Hearts" instance=ExtResource("54_ph8g1")]
+layout_mode = 0
+offset_left = 372.18637
+offset_top = 30.337524
+offset_right = 422.18637
+offset_bottom = 80.337524
+rotation = 1.1796355
+
+[node name="Cog2" parent="Hearts" instance=ExtResource("55_xugnu")]
+layout_mode = 0
+offset_left = 346.18637
+offset_top = 63.337524
+offset_right = 396.18637
+offset_bottom = 113.337524
+rotation = 1.1796355
+
+[node name="ReloadingBanner" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 586.0
+offset_right = 322.0
+offset_bottom = 686.0
+texture = ExtResource("57_507pk")
+
+[node name="AbilityButton" type="TextureButton" parent="." node_paths=PackedStringArray("prompt")]
+layout_mode = 0
+offset_left = 517.0
+offset_top = 983.0
+offset_right = 617.0
+offset_bottom = 1103.0
+texture_normal = ExtResource("58_gi51h")
+script = ExtResource("59_blyt6")
+prompt = NodePath("../AbilityPrompt")
+shield_icon = ExtResource("60_i3x7y")
+ammo_icon = ExtResource("61_aw77s")
+beacon_icon = ExtResource("62_ihm6w")
+
+[node name="AbilityPrompt" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Question" type="Label" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 793.0
+offset_right = 340.0
+offset_bottom = 816.0
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer0" type="TextureButton" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 849.0
+offset_right = 633.0
+offset_bottom = 969.0
+texture_normal = ExtResource("63_ltsuo")
+texture_pressed = ExtResource("64_1oktm")
+
+[node name="Label" type="Label" parent="AbilityPrompt/Answer0"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 11.999999
+offset_right = 35.176468
+offset_bottom = 35.0
+scale = Vector2(3.5933664, 3.0488021)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer1" type="TextureButton" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 849.0
+offset_right = 766.0
+offset_bottom = 969.0
+texture_normal = ExtResource("63_ltsuo")
+texture_pressed = ExtResource("64_1oktm")
+
+[node name="Label" type="Label" parent="AbilityPrompt/Answer1"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 11.999999
+offset_right = 35.176468
+offset_bottom = 35.0
+scale = Vector2(3.5933664, 3.0488021)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 103.0
+offset_right = 608.0
+offset_bottom = 203.0
+texture_normal = ExtResource("65_e61sl")
+texture_pressed = ExtResource("66_wdmuw")
+script = ExtResource("67_7vxb4")
+
+[node name="ReloadButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 983.0
+offset_right = 480.0
+offset_bottom = 1083.0
+texture_normal = ExtResource("68_g8fr4")
+texture_pressed = ExtResource("69_0wbhh")
+script = ExtResource("70_eu2lb")
