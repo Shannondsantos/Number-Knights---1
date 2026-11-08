@@ -1,36 +1,47 @@
 extends TextureRect
-
+@export var nurse_assault_idle: Array[Texture2D] = []
+@export var nurse_assault_shoot: Array[Texture2D] = []
+@export var nurse_heavy_idle: Array[Texture2D] = []
+@export var nurse_heavy_shoot: Array[Texture2D] = []
+@export var nurse_scout_idle: Array[Texture2D] = []
+@export var nurse_scout_shoot: Array[Texture2D] = []
+@export var armor_assault_idle: Array[Texture2D] = []
+@export var armor_assault_shoot: Array[Texture2D] = []
+@export var armor_heavy_idle: Array[Texture2D] = []
+@export var armor_heavy_shoot: Array[Texture2D] = []
+@export var armor_scout_idle: Array[Texture2D] = []
+@export var armor_scout_shoot: Array[Texture2D] = []
+@export var hunter_assault_idle: Array[Texture2D] = []
+@export var hunter_assault_shoot: Array[Texture2D] = []
+@export var hunter_heavy_idle: Array[Texture2D] = []
+@export var hunter_heavy_shoot: Array[Texture2D] = []
+@export var hunter_scout_idle: Array[Texture2D] = []
+@export var hunter_scout_shoot: Array[Texture2D] = []
 @export var assault_idle: Array[Texture2D] = []
 @export var assault_shoot: Array[Texture2D] = []
 @export var heavy_idle: Array[Texture2D] = []
 @export var heavy_shoot: Array[Texture2D] = []
 @export var scout_idle: Array[Texture2D] = []
 @export var scout_shoot: Array[Texture2D] = []
-
 @export var assault_puff: Texture2D
 @export var heavy_puff: Texture2D
 @export var scout_puff: Texture2D
 @export var puff_time := 0.28
-
 @export var assault_shots: Array[AudioStream] = []
 @export var heavy_shots: Array[AudioStream] = []
 @export var scout_shot: AudioStream
-
 @export var shoot_hold := 1.5
 @export var breathe_amount := 0.012
 @export var breathe_speed := 1.6
 @export var shot_pitch_min := 0.82
 @export var shot_pitch_max := 0.95
-
 @onready var muzzle_assault: Node = get_node_or_null("Muzzle_Assault")
 @onready var muzzle_heavy: Node = get_node_or_null("Muzzle_Heavy")
 @onready var muzzle_scout: Node = get_node_or_null("Muzzle_Scout")
-
 var shot_sound: AudioStreamPlayer
 var _scout_loop: AudioStream
 var _assault_i := 0
 var _heavy_i := 0
-
 var _base_scale := Vector2.ONE
 var _base_rot := 0.0
 var _shooting := false
@@ -40,7 +51,6 @@ var _cooldown := 0.0
 var _holding := false
 var _flash_left := 0.0
 var _base_mod := Color.WHITE
-
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_base_scale = scale
@@ -55,7 +65,6 @@ func _ready() -> void:
 	_prepare_scout_loop()
 	_show_idle()
 	add_to_group("player")
-
 func _prepare_scout_loop() -> void:
 	if scout_shot == null:
 		return
@@ -64,7 +73,6 @@ func _prepare_scout_loop() -> void:
 		_scout_loop.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	elif _scout_loop is AudioStreamOggVorbis:
 		_scout_loop.loop = true
-
 func _input(event: InputEvent) -> void:
 	var hover := get_viewport().gui_get_hovered_control()
 	if hover is BaseButton:
@@ -87,7 +95,6 @@ func _input(event: InputEvent) -> void:
 			_try_shot()
 		else:
 			_stop_scout_loop()
-
 func _process(delta: float) -> void:
 	if _cooldown > 0.0:
 		_cooldown -= delta
@@ -109,9 +116,6 @@ func _process(delta: float) -> void:
 		return
 	var b := sin(Time.get_ticks_msec() / 1000.0 * breathe_speed) * breathe_amount
 	scale = _base_scale * Vector2(1.0 + b, 1.0 - b)
-
-
-
 func _fire_delay() -> float:
 	var lvl := clampi(PlayerData.class_level(), 1, 5)
 	match PlayerData.current_class:
@@ -121,55 +125,103 @@ func _fire_delay() -> float:
 			return maxf(0.045, 0.09 - float(lvl - 1) * 0.01)
 		_:
 			return maxf(0.05, 0.14 - float(lvl - 1) * 0.018)
-
 func _mk_index() -> int:
 	return clampi(PlayerData.class_level(), 1, 5) - 1
-
-func _idle_list() -> Array[Texture2D]:
-	match PlayerData.current_class:
-		"heavy":
-			return heavy_idle
-		"scout":
-			return scout_idle
-		_:
-			return assault_idle
-
-func _shoot_list() -> Array[Texture2D]:
-	match PlayerData.current_class:
-		"heavy":
-			return heavy_shoot
-		"scout":
-			return scout_shoot
-		_:
-			return assault_shoot
-
+func _idle_tex() -> Texture2D:
+	var costume := PlayerData.equipped_costume
+	var cls := PlayerData.current_class
+	var lvl := _mk_index()
+	if costume != "":
+		var arr := _costume_idle(costume, cls)
+		if arr.size() > lvl and arr[lvl]:
+			return arr[lvl]
+		if arr.size() > 0 and arr[0]:
+			return arr[0]
+	var normal := _normal_idle(cls)
+	if normal.size() > lvl and normal[lvl]:
+		return normal[lvl]
+	return null
+func _shoot_tex() -> Texture2D:
+	var costume := PlayerData.equipped_costume
+	var cls := PlayerData.current_class
+	var lvl := _mk_index()
+	if costume != "":
+		var arr := _costume_shoot(costume, cls)
+		if arr.size() > lvl and arr[lvl]:
+			return arr[lvl]
+		if arr.size() > 0 and arr[0]:
+			return arr[0]
+	var normal := _normal_shoot(cls)
+	if normal.size() > lvl and normal[lvl]:
+		return normal[lvl]
+	return null
+func _costume_idle(costume: String, cls: String) -> Array[Texture2D]:
+	match costume:
+		"nurse":
+			match cls:
+				"heavy": return nurse_heavy_idle
+				"scout": return nurse_scout_idle
+				_: return nurse_assault_idle
+		"armor":
+			match cls:
+				"heavy": return armor_heavy_idle
+				"scout": return armor_scout_idle
+				_: return armor_assault_idle
+		"hunter":
+			match cls:
+				"heavy": return hunter_heavy_idle
+				"scout": return hunter_scout_idle
+				_: return hunter_assault_idle
+	return []
+func _costume_shoot(costume: String, cls: String) -> Array[Texture2D]:
+	match costume:
+		"nurse":
+			match cls:
+				"heavy": return nurse_heavy_shoot
+				"scout": return nurse_scout_shoot
+				_: return nurse_assault_shoot
+		"armor":
+			match cls:
+				"heavy": return armor_heavy_shoot
+				"scout": return armor_scout_shoot
+				_: return armor_assault_shoot
+		"hunter":
+			match cls:
+				"heavy": return hunter_heavy_shoot
+				"scout": return hunter_scout_shoot
+				_: return hunter_assault_shoot
+	return []
+func _normal_idle(cls: String) -> Array[Texture2D]:
+	match cls:
+		"heavy": return heavy_idle
+		"scout": return scout_idle
+		_: return assault_idle
+func _normal_shoot(cls: String) -> Array[Texture2D]:
+	match cls:
+		"heavy": return heavy_shoot
+		"scout": return scout_shoot
+		_: return assault_shoot
 func _show_idle() -> void:
-	var list := _idle_list()
-	var i := _mk_index()
-	if list.size() > i and list[i] != null:
-		texture = list[i]
+	var tex := _idle_tex()
+	if tex:
+		texture = tex
 	scale = _base_scale
 	rotation = _base_rot
-
 func _show_shoot() -> void:
-	var list := _shoot_list()
-	var i := _mk_index()
-	if list.size() > i and list[i] != null:
-		texture = list[i]
-
+	var tex := _shoot_tex()
+	if tex:
+		texture = tex
 func _hud() -> Node:
 	var n := get_tree().current_scene
 	if n != null and n.has_method("try_fire"):
 		return n
 	return get_tree().root.get_node_or_null("Game")
-
 func _hits(e: Node, screen_pos: Vector2) -> bool:
 	if not (e is Control) or not bool(e.get("_alive")):
 		return false
 	if e.has_method("contains_point"):
 		return e.contains_point(screen_pos)
 	return e.get_global_rect().has_point(screen_pos)
-
 func _enemy_at(screen_pos: Vector2) -> Node:
 	for e in get_tree().get_nodes_in_group("projectiles"):
 		if _hits(e, screen_pos):
@@ -186,7 +238,6 @@ func _enemy_at(screen_pos: Vector2) -> Node:
 			if _hits(e, screen_pos):
 				return e
 	return null
-
 func _try_shot() -> void:
 	if _cooldown > 0.0:
 		return
@@ -202,10 +253,7 @@ func _try_shot() -> void:
 	_play_shot()
 	_recoil()
 	_spawn_muzzle_puff()
-	var enemy := _enemy_at(get_global_mouse_position())
-	if enemy != null and enemy.has_method("receive_shot"):
-		enemy.receive_shot()
-
+	_hit_all_under(get_global_mouse_position())
 func _muzzle_for() -> Node:
 	match PlayerData.current_class:
 		"heavy":
@@ -214,7 +262,6 @@ func _muzzle_for() -> Node:
 			return muzzle_scout
 		_:
 			return muzzle_assault
-
 func _puff_tex_for() -> Texture2D:
 	match PlayerData.current_class:
 		"heavy":
@@ -223,7 +270,6 @@ func _puff_tex_for() -> Texture2D:
 			return scout_puff
 		_:
 			return assault_puff
-
 func _spawn_muzzle_puff() -> void:
 	var tex := _puff_tex_for()
 	if tex == null:
@@ -256,7 +302,6 @@ func _spawn_muzzle_puff() -> void:
 	tw.tween_property(puff, "modulate:a", 0.0, puff_time)
 	tw.tween_property(puff, "rotation", puff.rotation + randf_range(-0.4, 0.4), puff_time)
 	tw.chain().tween_callback(puff.queue_free)
-
 func _cycle(list: Array[AudioStream], idx: int) -> Array:
 	if list.is_empty():
 		return [null, idx]
@@ -268,7 +313,6 @@ func _cycle(list: Array[AudioStream], idx: int) -> Array:
 		if i == idx % list.size():
 			break
 	return [s, (i + 1) % list.size()]
-
 func _play_shot() -> void:
 	if shot_sound == null:
 		return
@@ -296,11 +340,9 @@ func _play_shot() -> void:
 			shot_sound.stream = pack[0]
 			shot_sound.pitch_scale = randf_range(shot_pitch_min, shot_pitch_max)
 			shot_sound.play()
-
 func _stop_scout_loop() -> void:
 	if shot_sound != null and shot_sound.playing and PlayerData.current_class == "scout":
 		shot_sound.stop()
-
 func _recoil() -> void:
 	if _tween:
 		_tween.kill()
@@ -315,7 +357,6 @@ func _recoil() -> void:
 			_recoil_scout()
 		_:
 			_recoil_assault()
-
 func _recoil_assault() -> void:
 	_tween.tween_property(self, "scale", _base_scale * Vector2(1.03, 0.97), 0.05)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
@@ -324,7 +365,6 @@ func _recoil_assault() -> void:
 	_tween.tween_property(self, "rotation", _base_rot - 0.03, 0.05)
 	_tween.tween_property(self, "rotation", _base_rot + 0.015, 0.08).set_delay(0.05)
 	_tween.tween_property(self, "rotation", _base_rot, 0.12).set_delay(0.13)
-
 func _recoil_heavy() -> void:
 	_tween.tween_property(self, "scale", _base_scale * Vector2(1.10, 0.88), 0.07)\
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -333,7 +373,6 @@ func _recoil_heavy() -> void:
 	_tween.tween_property(self, "rotation", _base_rot - 0.09, 0.07)
 	_tween.tween_property(self, "rotation", _base_rot + 0.04, 0.10).set_delay(0.07)
 	_tween.tween_property(self, "rotation", _base_rot, 0.16).set_delay(0.17)
-
 func _recoil_scout() -> void:
 	_tween.tween_property(self, "scale", _base_scale * Vector2(0.99, 1.05), 0.04)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
@@ -342,8 +381,16 @@ func _recoil_scout() -> void:
 	_tween.tween_property(self, "rotation", _base_rot + 0.012, 0.04)
 	_tween.tween_property(self, "rotation", _base_rot - 0.008, 0.05).set_delay(0.04)
 	_tween.tween_property(self, "rotation", _base_rot, 0.06).set_delay(0.09)
-
 func flash_hit() -> void:
 	_flash_left = 0.12
 	modulate = Color(2.6, 2.6, 2.6)
-	
+func _hit_all_under(screen_pos: Vector2) -> void:
+	for e in get_tree().get_nodes_in_group("enemies"):
+		if not is_instance_valid(e):
+			continue
+		if not bool(e.get("_alive")):
+			continue
+		if not _hits(e, screen_pos):
+			continue
+		if e.has_method("receive_shot"):
+			e.receive_shot()

@@ -1,5 +1,4 @@
 extends TextureRect
-
 @export var max_hp: int = 1
 @export var contact_damage: int = 1
 @export var life_time := 2.5
@@ -8,14 +7,12 @@ extends TextureRect
 @export var wobble_move := 8.0
 @export var wobble_speed := 5.0
 @export var death_effect: PackedScene
-
 @export var travel_sound: AudioStream
 @export var hit_player_sound: AudioStream
 @export var death_sound: AudioStream
-
 @onready var hitbox: Control = get_node_or_null("Hitbox")
 @onready var glow: TextureRect = get_node_or_null("Glow")
-
+@onready var explosion: TextureRect = get_node_or_null("explosion")
 var hp: int = 1
 var _alive := true
 var _base := Vector2.ZERO
@@ -25,7 +22,6 @@ var _flash := 0.0
 var _spin_speed := 0.0
 var _sfx: AudioStreamPlayer
 var _travel: AudioStreamPlayer
-
 func _ready() -> void:
 	add_to_group("enemies")
 	add_to_group("projectiles")
@@ -41,11 +37,16 @@ func _ready() -> void:
 	scale = Vector2.ONE * start_scale
 	rotation = randf() * TAU
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	z_index = 50
 	if hitbox:
 		hitbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	if glow:
 		glow.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		glow.pivot_offset = glow.size * 0.5
+	if explosion:
+		explosion.visible = false
+		explosion.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		explosion.z_index = 60
 	_sfx = AudioStreamPlayer.new()
 	add_child(_sfx)
 	_travel = AudioStreamPlayer.new()
@@ -58,7 +59,11 @@ func _ready() -> void:
 			s.loop = true
 		_travel.stream = s
 		_travel.play()
-
+	call_deferred("_raise")
+func _raise() -> void:
+	var p := get_parent()
+	if p:
+		p.move_child(self, p.get_child_count() - 1)
 func _process(delta: float) -> void:
 	if not _alive:
 		return
@@ -79,14 +84,12 @@ func _process(delta: float) -> void:
 			modulate = Color.WHITE
 	if _t >= life_time:
 		_detonate()
-
 func contains_point(screen_pos: Vector2) -> bool:
 	var box: Control = hitbox if hitbox else self
 	if box == null:
 		return false
 	var local: Vector2 = box.get_global_transform().affine_inverse() * screen_pos
 	return Rect2(Vector2.ZERO, box.size).has_point(local)
-
 func receive_shot() -> void:
 	if not _alive:
 		return
@@ -95,11 +98,9 @@ func receive_shot() -> void:
 	modulate = Color(2.4, 2.4, 2.4)
 	if hp <= 0:
 		_pop()
-
 func _stop_travel() -> void:
 	if _travel and _travel.playing:
 		_travel.stop()
-
 func _detonate() -> void:
 	if not _alive:
 		return
@@ -111,8 +112,17 @@ func _detonate() -> void:
 	var hud := get_tree().current_scene
 	if hud != null and hud.has_method("apply_damage"):
 		hud.apply_damage(contact_damage)
+	_play_explosion()
 	get_tree().create_timer(0.15).timeout.connect(queue_free)
-
+func _play_explosion() -> void:
+	if explosion == null:
+		return
+	explosion.visible = true
+	explosion.modulate = Color(1.6, 1.6, 1.6, 1.0)
+	var tw := explosion.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(explosion, "modulate:a", 0.0, 0.18)
+	tw.tween_property(explosion, "scale", Vector2(1.35, 1.35), 0.18)
 func _pop() -> void:
 	_alive = false
 	_stop_travel()

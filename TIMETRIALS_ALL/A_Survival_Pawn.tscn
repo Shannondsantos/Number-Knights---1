@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://mdj3w1j2e5mc"]
+
+[ext_resource type="Texture2D" uid="uid://dn4cgjwy2hd47" path="res://SURVIVAL_ALL/Squid.png" id="1_lbygv"]
+[ext_resource type="Script" uid="uid://cd3fdmr5dddok" path="res://TIMETRIALS_ALL/time_trials_pawn.gd" id="2_ttjtg"]
+
+[node name="Enemy_Test" type="TextureRect"]
+offset_right = 120.0
+offset_bottom = 120.0
+pivot_offset = Vector2(63, 65)
+mouse_filter = 2
+texture = ExtResource("1_lbygv")
+script = ExtResource("2_ttjtg")
+light_off = ExtResource("1_lbygv")
+light_on = ExtResource("1_lbygv")

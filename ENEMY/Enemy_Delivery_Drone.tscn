@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ao0xom805uf"]
+
+[ext_resource type="Script" uid="uid://8fn2p0g32lo7" path="res://ENEMY/enemy_delivery_drone.gd" id="1_elumm"]
+[ext_resource type="PackedScene" uid="uid://dbnmpqqr26sqh" path="res://ENEMY/Enemy_Officer_Pawn.tscn" id="2_8ylg0"]
+[ext_resource type="Texture2D" uid="uid://c5a7cs2afdftv" path="res://Enemies Assets/Delivery_Drone_full.png" id="2_trd0n"]
+[ext_resource type="Texture2D" uid="uid://xinfmhm6up41" path="res://Enemies Assets/Delivery_Drone_empty.png" id="4_ypokq"]
+
+[node name="Delivery Drone" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(109, 133)
+script = ExtResource("1_elumm")
+officer_scene = ExtResource("2_8ylg0")
+full_texture = ExtResource("2_trd0n")
+empty_texture = ExtResource("4_ypokq")
+
+[node name="Body" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+pivot_offset = Vector2(110, 132)
+texture = ExtResource("2_trd0n")

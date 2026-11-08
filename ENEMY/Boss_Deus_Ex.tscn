@@ -1,0 +1,175 @@
+[gd_scene load_steps=19 format=3 uid="uid://l77jos41042p"]
+
+[ext_resource type="Script" uid="uid://dhglvhq0eg3dx" path="res://ENEMY/boss_deus_ex.gd" id="1_qksdu"]
+[ext_resource type="PackedScene" uid="uid://d1df78ylw5eqa" path="res://ENEMY/Enemy_Stormtrooper.tscn" id="2_0i4cj"]
+[ext_resource type="PackedScene" uid="uid://bbw8ugtkkg0os" path="res://ENEMY/enemy_tank_shell.tscn" id="3_s7bmb"]
+[ext_resource type="Texture2D" uid="uid://4h2p44jemfjg" path="res://Enemies Assets/Deus_Ex.png" id="4_1mshw"]
+[ext_resource type="Texture2D" uid="uid://bl2qh1ry8s1y7" path="res://Enemies Assets/Deus_Ex_50.png" id="5_4821i"]
+[ext_resource type="Texture2D" uid="uid://dolpj7gmswfq0" path="res://Enemies Assets/Deus_Ex_25.png" id="6_773n6"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="7_46f4d"]
+[ext_resource type="Texture2D" uid="uid://v77idmov7cxc" path="res://Enemies Assets/Deus_Ex_dead.png" id="7_hg4rl"]
+[ext_resource type="Texture2D" uid="uid://crd0vnwfnuf28" path="res://Enemies Assets/Attack_Indicator_boss.png" id="7_pn4dj"]
+[ext_resource type="AudioStream" uid="uid://c6a8qd0qgmpi8" path="res://SOUNDS/01_getout_foghorn.mp3" id="8_rqepo"]
+[ext_resource type="Texture2D" uid="uid://tll2bthfb622" path="res://Enemies Assets/deus ex propeller.png" id="9_bex2t"]
+[ext_resource type="AudioStream" uid="uid://ioansqnexlnq" path="res://SOUNDS/09_heal.mp3" id="9_q3y6h"]
+[ext_resource type="Texture2D" uid="uid://dbx7js40d5l7m" path="res://Enemies Assets/Command_Aura_3.png" id="11_61x2m"]
+[ext_resource type="AudioStream" uid="uid://c8cyk7oqj6et0" path="res://SOUNDS/AssaultShot.wav" id="11_hg4rl"]
+[ext_resource type="AudioStream" uid="uid://biphrf8c8cyn8" path="res://SOUNDS/01_enemy_windup_warning.mp3" id="12_bex2t"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="13_46f4d"]
+[ext_resource type="Texture2D" uid="uid://bkfxwjygtygkc" path="res://Enemies Assets/corvette Mini Boss_shield.png" id="13_spf3t"]
+[ext_resource type="Texture2D" uid="uid://cljkpbd7wlyv4" path="res://MENU/number holder.png" id="14_mqmcg"]
+
+[node name="Boss_Deus_Ex" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 294.0
+offset_top = 186.0
+offset_right = 694.0
+offset_bottom = 486.0
+script = ExtResource("1_qksdu")
+trooper_scene = ExtResource("2_0i4cj")
+shell_scene = ExtResource("3_s7bmb")
+trooper_interval = 12.0
+both_rocket_chance = 0.45
+hull_tex_100 = ExtResource("4_1mshw")
+hull_tex_50 = ExtResource("5_4821i")
+hull_tex_25 = ExtResource("6_773n6")
+dead_texture = ExtResource("7_hg4rl")
+death_effect = ExtResource("7_46f4d")
+arrive_sound = ExtResource("8_rqepo")
+correct_sound = ExtResource("9_q3y6h")
+wrong_sound = ExtResource("11_hg4rl")
+death_sound = ExtResource("8_rqepo")
+windup_sound = ExtResource("12_bex2t")
+fire_sound = ExtResource("13_46f4d")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -304.0
+offset_top = -97.0
+offset_right = 346.0
+offset_bottom = 203.0
+texture = ExtResource("4_1mshw")
+
+[node name="LED" type="Label" parent="."]
+layout_mode = 0
+offset_left = -191.0
+offset_top = -56.0
+offset_right = 195.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Propeller" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 150.0
+offset_right = 351.0
+offset_bottom = 254.0
+texture = ExtResource("9_bex2t")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 78.0
+offset_right = 400.0
+offset_bottom = 228.0
+texture = ExtResource("11_61x2m")
+
+[node name="Shield" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -310.0
+offset_top = -97.0
+offset_right = 340.0
+offset_bottom = 203.0
+mouse_filter = 2
+texture = ExtResource("13_spf3t")
+
+[node name="Health" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -326.0
+offset_top = -152.0
+offset_right = -286.0
+offset_bottom = -112.0
+scale = Vector2(17.120003, 1)
+color = Color(0.36347285, 0.003931777, 0.37205544, 1)
+
+[node name="Answers" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -190.0
+offset_top = 93.0
+offset_right = -150.0
+offset_bottom = 133.0
+
+[node name="Answer0" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = -127.0
+offset_top = 278.0
+offset_right = 123.0
+offset_bottom = 398.0
+texture_normal = ExtResource("14_mqmcg")
+
+[node name="Label" type="Label" parent="Answers/Answer0"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer1" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 278.0
+offset_right = 652.0
+offset_bottom = 398.0
+texture_normal = ExtResource("14_mqmcg")
+
+[node name="Label" type="Label" parent="Answers/Answer1"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer2" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 283.0
+offset_right = 384.0
+offset_bottom = 403.0
+texture_normal = ExtResource("14_mqmcg")
+
+[node name="Label" type="Label" parent="Answers/Answer2"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RocketIndictor1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -107.0
+offset_top = 50.0
+offset_right = 43.0
+offset_bottom = 100.0
+pivot_offset = Vector2(38, 40)
+texture = ExtResource("7_pn4dj")
+
+[node name="RocketIndictor2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 51.0
+offset_right = 176.0
+offset_bottom = 101.0
+pivot_offset = Vector2(36, 39)
+texture = ExtResource("7_pn4dj")

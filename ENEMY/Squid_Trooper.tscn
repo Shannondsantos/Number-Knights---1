@@ -1,0 +1,31 @@
+[gd_scene load_steps=9 format=3 uid="uid://j01sdak7oo4c"]
+
+[ext_resource type="Texture2D" uid="uid://oi6qkfbjood8" path="res://SURVIVAL_ALL/Squid_Trooper.png" id="1_whpyn"]
+[ext_resource type="Script" uid="uid://bhho78pnmbnu5" path="res://ENEMY/enemy_stormtrooper.gd" id="2_32o3a"]
+[ext_resource type="Texture2D" uid="uid://cq1kj1hxe46f6" path="res://SURVIVAL_ALL/Squid_Trooper_Dead.png" id="3_32o3a"]
+[ext_resource type="PackedScene" uid="uid://b1nwmic8gik1i" path="res://ENEMY/Squid_Death_Effect.tscn" id="4_whpyn"]
+[ext_resource type="AudioStream" uid="uid://biphrf8c8cyn8" path="res://SOUNDS/01_enemy_windup_warning.mp3" id="5_im7j1"]
+[ext_resource type="AudioStream" uid="uid://c8cyk7oqj6et0" path="res://SOUNDS/AssaultShot.wav" id="6_b47fy"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="7_i4kyu"]
+[ext_resource type="Texture2D" uid="uid://ci4sesvicivva" path="res://SURVIVAL_ALL/Attack_Indicator_Squid.png" id="8_q4ddk"]
+
+[node name="Enemy_Stormtrooper" type="TextureRect"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(35, 33)
+mouse_filter = 2
+texture = ExtResource("1_whpyn")
+script = ExtResource("2_32o3a")
+dead_texture = ExtResource("3_32o3a")
+death_effect = ExtResource("4_whpyn")
+windup_sound = ExtResource("5_im7j1")
+attack_sound = ExtResource("6_b47fy")
+death_sound = ExtResource("7_i4kyu")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -51.0
+offset_top = 55.0
+offset_right = 99.0
+offset_bottom = 105.0
+texture = ExtResource("8_q4ddk")

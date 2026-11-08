@@ -1,0 +1,80 @@
+[gd_scene load_steps=17 format=3 uid="uid://by4wiyj4kix0i"]
+
+[ext_resource type="Script" uid="uid://da5eh8n56vwx1" path="res://ENEMY/enemy_boat.gd" id="1_savat"]
+[ext_resource type="PackedScene" uid="uid://bbw8ugtkkg0os" path="res://ENEMY/enemy_tank_shell.tscn" id="2_2xy8k"]
+[ext_resource type="Texture2D" uid="uid://cdb7xiu1ntcjf" path="res://Enemies Assets/boat.png" id="2_jaqfn"]
+[ext_resource type="PackedScene" uid="uid://dvhxvkfuc4ik2" path="res://ENEMY/Enemy_Test.tscn" id="3_j746u"]
+[ext_resource type="Texture2D" uid="uid://bhqc1emkgtwbo" path="res://Enemies Assets/boat_50.png" id="3_xf2cr"]
+[ext_resource type="Texture2D" uid="uid://bkqmugc4h0vih" path="res://Enemies Assets/boat_25.png" id="4_15jim"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="4_w3n51"]
+[ext_resource type="Texture2D" uid="uid://bg0d5pnoqq3gn" path="res://Enemies Assets/boat_dead.png" id="5_w8i5o"]
+[ext_resource type="Texture2D" uid="uid://c8qifdlgbh4ni" path="res://Enemies Assets/wave1.png" id="6_o1s1j"]
+[ext_resource type="Texture2D" uid="uid://5nbk4mtak8od" path="res://Enemies Assets/wave2.png" id="7_2xy8k"]
+[ext_resource type="Texture2D" uid="uid://cp2dwejd2py43" path="res://Enemies Assets/wave3.png" id="8_j746u"]
+[ext_resource type="AudioStream" uid="uid://crmoo7bfyagox" path="res://SOUNDS/HeavyShot.wav" id="12_w3n51"]
+[ext_resource type="AudioStream" uid="uid://t6bci47rao8d" path="res://SOUNDS/01_tank_tracks_a.mp3" id="13_wrhpl"]
+[ext_resource type="AudioStream" uid="uid://biphrf8c8cyn8" path="res://SOUNDS/01_enemy_windup_warning.mp3" id="14_v5kbk"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="15_x8wr2"]
+[ext_resource type="Texture2D" uid="uid://cqw5ikqtbhdyj" path="res://Enemies Assets/officer_Indicator.png" id="16_w8i5o"]
+
+[node name="Enemy_Boat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 372.0
+offset_top = 281.0
+offset_right = 372.0
+offset_bottom = 281.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(273, -43)
+script = ExtResource("1_savat")
+points = 10
+shell_scene = ExtResource("2_2xy8k")
+heal_drone_scene = ExtResource("3_j746u")
+death_effect = ExtResource("4_w3n51")
+hull_tex_100 = ExtResource("2_jaqfn")
+hull_tex_50 = ExtResource("3_xf2cr")
+hull_tex_20 = ExtResource("4_15jim")
+hull_tex_dead = ExtResource("5_w8i5o")
+wave_frames = Array[Texture2D]([ExtResource("6_o1s1j"), ExtResource("7_2xy8k"), ExtResource("8_j746u")])
+water_loop = ExtResource("13_wrhpl")
+windup_sound = ExtResource("14_v5kbk")
+fire_sound = ExtResource("15_x8wr2")
+death_sound = ExtResource("12_w3n51")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -204.0
+offset_top = -200.0
+offset_right = 196.0
+offset_bottom = 100.0
+texture = ExtResource("2_jaqfn")
+
+[node name="Waves" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -194.0
+offset_top = 60.0
+offset_right = 181.0
+offset_bottom = 147.0
+scale = Vector2(1, 0.6)
+texture = ExtResource("6_o1s1j")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -176.0
+offset_top = -132.0
+offset_right = -26.0
+offset_bottom = -82.0
+pivot_offset = Vector2(73, 28)
+texture = ExtResource("16_w8i5o")
+
+[node name="Attack_Indicator2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = -133.0
+offset_right = 183.0
+offset_bottom = -83.0
+pivot_offset = Vector2(73, 22)
+texture = ExtResource("16_w8i5o")

@@ -11,6 +11,7 @@ pivot_offset = Vector2(50, 67)
 mouse_filter = 2
 texture = ExtResource("1_tw2iq")
 script = ExtResource("2_pqsrn")
+stay_time = 1.0
 
 [node name="ChefHook" type="TextureRect" parent="."]
 layout_mode = 0

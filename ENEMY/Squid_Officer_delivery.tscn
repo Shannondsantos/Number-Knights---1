@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://u7jg4vmcxxe7"]
+
+[ext_resource type="Script" uid="uid://8fn2p0g32lo7" path="res://ENEMY/enemy_delivery_drone.gd" id="1_daqhe"]
+[ext_resource type="Texture2D" uid="uid://dd4osu34of622" path="res://SURVIVAL_ALL/Delivery_Officer.png" id="2_46oyf"]
+[ext_resource type="PackedScene" uid="uid://yy3e0i1c6mbj" path="res://ENEMY/Squid_Officer.tscn" id="2_daqhe"]
+[ext_resource type="Texture2D" uid="uid://d2xs56ipwypef" path="res://SURVIVAL_ALL/Delivery_Officer_Delivered.png" id="3_daqhe"]
+
+[node name="Delivery Drone" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(109, 133)
+script = ExtResource("1_daqhe")
+officer_scene = ExtResource("2_daqhe")
+full_texture = ExtResource("2_46oyf")
+empty_texture = ExtResource("3_daqhe")
+
+[node name="Body" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+pivot_offset = Vector2(110, 132)
+texture = ExtResource("2_46oyf")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnbcjnahg5hbr"]
+
+[ext_resource type="Texture2D" uid="uid://c0pws3d06ijnh" path="res://Enemies Assets/death_beam.png" id="1_xxxf4"]
+[ext_resource type="Script" uid="uid://chg7s2hxwicip" path="res://tank_shell.gd" id="2_ogae8"]
+[ext_resource type="PackedScene" uid="uid://b1nwmic8gik1i" path="res://ENEMY/Squid_Death_Effect.tscn" id="3_fiuxa"]
+[ext_resource type="AudioStream" uid="uid://banbv6onjixbb" path="res://SOUNDS/06_missile_travel_b.mp3" id="4_806xh"]
+[ext_resource type="AudioStream" uid="uid://dll14e42la7f" path="res://SOUNDS/drone_attack.mp3" id="5_hkv2r"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="6_pty50"]
+[ext_resource type="Texture2D" uid="uid://bhatd2ncd8umb" path="res://Enemies Assets/death_beam_exploded.png" id="7_xxxf4"]
+[ext_resource type="Texture2D" uid="uid://c45huqs8yaq8" path="res://Enemies Assets/Command_Aura.png" id="8_ogae8"]
+
+[node name="death beam" type="TextureRect"]
+offset_left = -46.0
+offset_top = -49.0
+offset_right = 154.0
+offset_bottom = 151.0
+pivot_offset = Vector2(103, 98)
+texture = ExtResource("1_xxxf4")
+script = ExtResource("2_ogae8")
+contact_damage = 500
+life_time = 5.0
+death_effect = ExtResource("3_fiuxa")
+travel_sound = ExtResource("4_806xh")
+hit_player_sound = ExtResource("5_hkv2r")
+death_sound = ExtResource("6_pty50")
+
+[node name="Hitbox" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 31.999998
+offset_top = 33.0
+offset_right = 72.0
+offset_bottom = 73.0
+scale = Vector2(2.5122805, 2.6799998)
+pivot_offset = Vector2(20.656075, 20.37202)
+
+[node name="explosion" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -3.0
+offset_right = 206.0
+offset_bottom = 197.0
+texture = ExtResource("7_xxxf4")
+
+[node name="Glow" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 166.0
+offset_bottom = 158.0
+scale = Vector2(1.1766666, 1.1766666)
+texture = ExtResource("8_ogae8")

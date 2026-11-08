@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://c1qpwj7xue4gh"]
 
 [ext_resource type="Script" uid="uid://cwx0bhrm0rcvp" path="res://PlayerData.gd" id="1_a8rfn"]
-[ext_resource type="Texture2D" uid="uid://drogu0cyc5u55" path="res://MENU/menubackground.png" id="2_j4w58"]
+[ext_resource type="Texture2D" uid="uid://b1dyf3wx2lvq5" path="res://MENU/midmenubackground2.png" id="2_g7to6"]
 [ext_resource type="Script" uid="uid://dvpamb2fjnxm1" path="res://background.gd" id="3_320ax"]
-[ext_resource type="Texture2D" uid="uid://bcp661vo0lsv" path="res://MENU/menustatic1.png" id="4_pj4tk"]
+[ext_resource type="Texture2D" uid="uid://b4hojuy3g4ewk" path="res://Level_Assets/biome3mid-1.png" id="4_g7to6"]
 [ext_resource type="Texture2D" uid="uid://lpboy5d4a7hr" path="res://MENU/menuplay.png" id="5_i8fpq"]
 [ext_resource type="Texture2D" uid="uid://56lu71v1sudj" path="res://MENU/menuplay_clicked.png" id="6_ibo8s"]
 [ext_resource type="Script" uid="uid://w8cabsot8m0x" path="res://MENUS/play_button.gd" id="7_fypkw"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://b5e4r2fhsnye" path="res://settings_button.gd" id="10_kajcf"]
 [ext_resource type="Texture2D" uid="uid://7xg8biv1c7rg" path="res://MENU/settingspressed.png" id="11_nggpp"]
 [ext_resource type="Script" uid="uid://blwrvcmeggm62" path="res://texture_rect.gd" id="12_v5ouy"]
-[ext_resource type="Texture2D" uid="uid://btrk67ng1hq6g" path="res://MENU/logo700x700.png" id="13_g7to6"]
+[ext_resource type="Texture2D" uid="uid://7bnc6dkngmq" path="res://MENU/logo.png" id="13_g7to6"]
 
 [sub_resource type="GDScript" id="GDScript_jix8l"]
 
@@ -52,7 +52,7 @@ material = SubResource("ShaderMaterial_nlkkf")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_j4w58")
+texture = ExtResource("2_g7to6")
 stretch_mode = 1
 script = ExtResource("3_320ax")
 
@@ -62,15 +62,18 @@ layout_mode = 0
 offset_top = 1280.0
 offset_right = 720.0
 offset_bottom = 2560.0
-texture = ExtResource("2_j4w58")
+texture = ExtResource("2_g7to6")
 stretch_mode = 1
 script = ExtResource("3_320ax")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 720.0
-offset_bottom = 1280.0
-texture = ExtResource("4_pj4tk")
+offset_left = -88.00001
+offset_top = 303.0
+offset_right = 992.0
+offset_bottom = 1703.0
+scale = Vector2(0.79999936, 0.79999936)
+texture = ExtResource("4_g7to6")
 
 [node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 0
@@ -123,10 +126,11 @@ rotation = 1.1796355
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 65.0
-offset_right = 704.0
-offset_bottom = 765.0
-pivot_offset = Vector2(367, 354)
+offset_left = -153.0
+offset_top = -56.000008
+offset_right = 847.0
+offset_bottom = 944.0
+scale = Vector2(0.6800006, 0.6800006)
+pivot_offset = Vector2(541.9999, 502.5293)
 texture = ExtResource("13_g7to6")
 script = ExtResource("12_v5ouy")

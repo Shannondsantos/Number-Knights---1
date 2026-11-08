@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1nwmic8gik1i"]
+
+[ext_resource type="Script" uid="uid://0wy1500k4n82" path="res://ENEMY/enemy_death_effect.gd" id="1_mky4b"]
+[ext_resource type="Texture2D" uid="uid://crcofjxj5y037" path="res://SURVIVAL_ALL/alienbit1.png" id="2_mky4b"]
+[ext_resource type="Texture2D" uid="uid://8lyxbgn0v46o" path="res://SURVIVAL_ALL/alienbit2.png" id="3_s75fb"]
+[ext_resource type="Texture2D" uid="uid://d3q0g8doj634j" path="res://SURVIVAL_ALL/alienbit3.png" id="4_mdkk8"]
+
+[node name="Enemy_Death_Effect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mky4b")
+piece_1 = ExtResource("2_mky4b")
+piece_2 = ExtResource("3_s75fb")
+piece_3 = ExtResource("4_mdkk8")

@@ -1,0 +1,221 @@
+[gd_scene load_steps=19 format=3 uid="uid://bts50yxg7knqu"]
+
+[ext_resource type="Script" uid="uid://dd78yy7i3u2yf" path="res://MENUS/store_menu.gd" id="1_1mwml"]
+[ext_resource type="AudioStream" uid="uid://ioansqnexlnq" path="res://SOUNDS/09_heal.mp3" id="2_snm3p"]
+[ext_resource type="Texture2D" uid="uid://c4sieeek1pitg" path="res://SURVIVAL_ALL/Survival1Far.png" id="5_naux7"]
+[ext_resource type="Script" uid="uid://b5kdky2v8ed71" path="res://MENUS/generic_background_wobble.gd" id="5_ogar1"]
+[ext_resource type="Texture2D" uid="uid://c7lu480heq5hl" path="res://SKINS/closet.png" id="6_ogar1"]
+[ext_resource type="Texture2D" uid="uid://b4hojuy3g4ewk" path="res://Level_Assets/biome3mid-1.png" id="7_agjwy"]
+[ext_resource type="Texture2D" uid="uid://jva4n7gucq12" path="res://SKINS/nurse_button.png" id="9_3fl0o"]
+[ext_resource type="Texture2D" uid="uid://jg6auxf4th56" path="res://SKINS/armored_button.png" id="10_q6l5t"]
+[ext_resource type="Texture2D" uid="uid://csfttndng4wee" path="res://SKINS/hunter_button.png" id="11_qwxmw"]
+[ext_resource type="Texture2D" uid="uid://7uauym5y7r78" path="res://MENU/A_costumes.png" id="16_naux7"]
+[ext_resource type="Texture2D" uid="uid://deo5yyp4swj7f" path="res://MENU/clothes1.png" id="18_helrb"]
+[ext_resource type="Texture2D" uid="uid://b1dyf3wx2lvq5" path="res://MENU/midmenubackground2.png" id="32_i0aw0"]
+[ext_resource type="Script" uid="uid://vp1qa5l4yedn" path="res://background_1.gd" id="33_j6vtu"]
+[ext_resource type="Texture2D" uid="uid://b5xkjs0g6vomi" path="res://MENU/back.png" id="35_f1si5"]
+[ext_resource type="Texture2D" uid="uid://4iokg6iqpfal" path="res://MENU/back_pressed.png" id="36_ieta0"]
+[ext_resource type="Script" uid="uid://c3x77nnre60gm" path="res://MENUS/upgrades_back_button.gd" id="37_8vybo"]
+[ext_resource type="Texture2D" uid="uid://bipngikrhd4y8" path="res://MENU/PointsBox.png" id="38_5tcg4"]
+[ext_resource type="Script" uid="uid://b82xxk2bk2yno" path="res://points_label.gd" id="39_xkn31"]
+
+[node name="StoreMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1mwml")
+buy_sound = ExtResource("2_snm3p")
+equip_sound = ExtResource("2_snm3p")
+
+[node name="Background1" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("32_i0aw0")
+script = ExtResource("33_j6vtu")
+
+[node name="Background2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 1280.0
+offset_right = 720.0
+offset_bottom = 2560.0
+texture = ExtResource("32_i0aw0")
+script = ExtResource("33_j6vtu")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -42.0
+offset_right = 756.0
+offset_bottom = 1338.0
+scale = Vector2(1.000001, 1.000001)
+texture = ExtResource("5_naux7")
+expand_mode = 1
+script = ExtResource("5_ogar1")
+
+[node name="Background3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 87.0
+offset_right = 756.0
+offset_bottom = 1467.0
+scale = Vector2(1.000001, 1.000001)
+texture = ExtResource("7_agjwy")
+expand_mode = 1
+script = ExtResource("5_ogar1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -26.999998
+offset_top = 127.0
+offset_right = 973.0
+offset_bottom = 1407.0
+scale = Vector2(0.78681874, 0.78681874)
+texture = ExtResource("6_ogar1")
+
+[node name="Background4" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 490.00003
+offset_right = 756.0
+offset_bottom = 1870.0
+scale = Vector2(0.99437046, 0.99437046)
+pivot_offset = Vector2(437.85663, 613.5707)
+mouse_filter = 2
+texture = ExtResource("7_agjwy")
+expand_mode = 1
+script = ExtResource("5_ogar1")
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 1120.0
+offset_right = 692.0
+offset_bottom = 1240.0
+texture_normal = ExtResource("35_f1si5")
+texture_pressed = ExtResource("36_ieta0")
+script = ExtResource("37_8vybo")
+
+[node name="PointsBox" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 1125.0
+offset_right = 284.0
+offset_bottom = 1245.0
+texture = ExtResource("38_5tcg4")
+
+[node name="PointsLabel" type="Label" parent="PointsBox"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 23.0
+offset_right = 238.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.38431373, 0.32941177, 0.30588236, 1)
+theme_override_font_sizes/font_size = 40
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("39_xkn31")
+
+[node name="NurseButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 266.0
+offset_right = 447.0
+offset_bottom = 386.0
+scale = Vector2(1.1199994, 1.1519996)
+texture_normal = ExtResource("9_3fl0o")
+
+[node name="SkinEquip" type="TextureButton" parent="NurseButton"]
+layout_mode = 0
+offset_left = 403.57162
+offset_top = 25.173622
+offset_right = 653.57166
+offset_bottom = 145.17361
+scale = Vector2(0.6285709, 0.6285709)
+texture_normal = ExtResource("38_5tcg4")
+
+[node name="Label" type="Label" parent="NurseButton/SkinEquip"]
+layout_mode = 0
+offset_right = 250.00024
+offset_bottom = 120.42313
+theme_override_colors/font_color = Color(0.34901962, 0.2784314, 0.16862746, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArmoredButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 47.000008
+offset_top = 429.0
+offset_right = 447.0
+offset_bottom = 549.0
+scale = Vector2(1.1199994, 1.1519996)
+texture_normal = ExtResource("10_q6l5t")
+
+[node name="SkinEquip" type="TextureButton" parent="ArmoredButton"]
+layout_mode = 0
+offset_left = 403.57162
+offset_top = 27.777794
+offset_right = 653.57166
+offset_bottom = 147.7778
+scale = Vector2(0.6285709, 0.6285709)
+texture_normal = ExtResource("38_5tcg4")
+
+[node name="Label" type="Label" parent="ArmoredButton/SkinEquip"]
+layout_mode = 0
+offset_right = 250.00024
+offset_bottom = 120.42313
+theme_override_colors/font_color = Color(0.34901962, 0.2784314, 0.16862746, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HunterButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 595.0
+offset_right = 447.0
+offset_bottom = 715.00006
+scale = Vector2(1.1199994, 1.1519996)
+texture_normal = ExtResource("11_qwxmw")
+
+[node name="SkinEquip" type="TextureButton" parent="HunterButton"]
+layout_mode = 0
+offset_left = 400.0002
+offset_top = 25.173622
+offset_right = 650.00024
+offset_bottom = 145.17361
+scale = Vector2(0.6285709, 0.6285709)
+texture_normal = ExtResource("38_5tcg4")
+
+[node name="Label" type="Label" parent="HunterButton/SkinEquip"]
+layout_mode = 0
+offset_right = 250.00024
+offset_bottom = 120.42313
+theme_override_colors/font_color = Color(0.34901962, 0.2784314, 0.16862746, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 26.0
+offset_right = 615.0
+offset_bottom = 226.0
+texture = ExtResource("16_naux7")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 760.0
+offset_right = 615.0
+offset_bottom = 960.0
+mouse_filter = 0
+texture = ExtResource("18_helrb")

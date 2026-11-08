@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbw8ugtkkg0os"]
+[gd_scene load_steps=9 format=3 uid="uid://bbw8ugtkkg0os"]
 
 [ext_resource type="Texture2D" uid="uid://dylkbd2oc2460" path="res://Enemies Assets/tank_shell.png" id="1_enplb"]
 [ext_resource type="Script" uid="uid://chg7s2hxwicip" path="res://tank_shell.gd" id="1_x3g2r"]
 [ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="3_a1qwb"]
+[ext_resource type="Texture2D" uid="uid://cypu3b7p76oxv" path="res://Enemies Assets/tank_shell_Explosion.png" id="4_ptk0r"]
 [ext_resource type="AudioStream" uid="uid://banbv6onjixbb" path="res://SOUNDS/06_missile_travel_b.mp3" id="4_rcgis"]
 [ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="5_1y81u"]
 [ext_resource type="AudioStream" uid="uid://dll14e42la7f" path="res://SOUNDS/drone_attack.mp3" id="5_kpvtj"]
-[ext_resource type="Texture2D" uid="uid://c36krjr2usbvs" path="res://Enemies Assets/Command_Aura_2.png" id="5_ylynk"]
+[ext_resource type="Texture2D" uid="uid://c45huqs8yaq8" path="res://Enemies Assets/Command_Aura.png" id="7_kuuoc"]
 
 [node name="Enemy_Tank_Shell" type="TextureRect"]
 offset_right = 100.0
@@ -25,7 +26,7 @@ offset_left = -26.0
 offset_top = -26.0
 offset_right = 124.0
 offset_bottom = 124.0
-texture = ExtResource("5_ylynk")
+texture = ExtResource("7_kuuoc")
 
 [node name="Hitbox" type="Control" parent="."]
 anchors_preset = 0
@@ -35,3 +36,11 @@ offset_right = 72.0
 offset_bottom = 73.0
 scale = Vector2(2.5122805, 2.6799998)
 pivot_offset = Vector2(20.656075, 20.37202)
+
+[node name="explosion" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -52.0
+offset_top = -45.0
+offset_right = 148.0
+offset_bottom = 155.0
+texture = ExtResource("4_ptk0r")

@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://do5u5x814tshp"]
+
+[ext_resource type="Script" uid="uid://kqovln2hr8sx" path="res://LEVELS_ACTUAL/level_7_comic.gd" id="1_307fl"]
+[ext_resource type="Texture2D" uid="uid://ctqwyy2v1a7jx" path="res://LEVELS_ACTUAL/comics/biome3comic1.png" id="2_7vsnn"]
+[ext_resource type="Texture2D" uid="uid://dw4rthq87wen3" path="res://LEVELS_ACTUAL/comics/biome3comic2.png" id="3_pp4so"]
+[ext_resource type="AudioStream" uid="uid://bfsk6ck6llj38" path="res://Music_/Music_sergequadrado-mafia-13004.mp3" id="6_r1v1w"]
+[ext_resource type="Texture2D" uid="uid://csq7hqub7g1q8" path="res://LEVELS_ACTUAL/comics/biome1comic0.png" id="7_ir686"]
+[ext_resource type="Texture2D" uid="uid://dttkinjdoccbb" path="res://MENU/continue.png" id="8_q7rhn"]
+[ext_resource type="Texture2D" uid="uid://dpftybht82y1k" path="res://MENU/continuepressed.png" id="9_rr2s8"]
+[ext_resource type="Texture2D" uid="uid://bp2p6ml5uyv8i" path="res://MENU/LEVELS BUTTON GENERIC PRESSED.png" id="10_7pske"]
+[ext_resource type="Texture2D" uid="uid://i5cwkt5rod1s" path="res://MENU/LEVELS BUTTON GENERIC.png" id="11_vxsss"]
+
+[node name="Comic" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_307fl")
+pages = Array[Texture2D]([ExtResource("2_7vsnn"), ExtResource("3_pp4so")])
+next_level = "res://LEVELS_ACTUAL/Level_7.tscn"
+level_track = ExtResource("6_r1v1w")
+
+[node name="Page" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_ir686")
+
+[node name="NextButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 5.0
+offset_right = 715.0
+offset_bottom = 105.0
+texture_normal = ExtResource("8_q7rhn")
+texture_pressed = ExtResource("9_rr2s8")
+
+[node name="SkipButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 256.0
+offset_bottom = 127.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("10_7pske")
+texture_pressed = ExtResource("11_vxsss")
+
+[node name="Label" type="Label" parent="SkipButton"]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 138.74998
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 50
+text = "SKIP"
+horizontal_alignment = 1
+vertical_alignment = 1

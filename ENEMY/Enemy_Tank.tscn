@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://d4kh3q1eu6n7k" path="res://Enemies Assets/tank_tracks.png" id="2_hxaw6"]
 [ext_resource type="PackedScene" uid="uid://bbw8ugtkkg0os" path="res://ENEMY/enemy_tank_shell.tscn" id="2_qfvq4"]
 [ext_resource type="PackedScene" uid="uid://dvhxvkfuc4ik2" path="res://ENEMY/Enemy_Test.tscn" id="3_6q81e"]
-[ext_resource type="Texture2D" uid="uid://dcj7wjl4hucy2" path="res://Enemies Assets/Attack_Indicator.png" id="3_hxaw6"]
 [ext_resource type="AudioStream" uid="uid://t6bci47rao8d" path="res://SOUNDS/01_tank_tracks_a.mp3" id="3_r7ti8"]
 [ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="4_b23ir"]
 [ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="4_r7ti8"]
@@ -17,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dh3v3pnie47cj" path="res://Enemies Assets/tank_tracks_dead_20.png" id="11_73esq"]
 [ext_resource type="Texture2D" uid="uid://civk8pjfttkka" path="res://Enemies Assets/tank_tracks_dead.png" id="12_2iga3"]
 [ext_resource type="AudioStream" uid="uid://co6lifya0cdli" path="res://SOUNDS/HeavyShot (2).wav" id="16_txt5i"]
+[ext_resource type="Texture2D" uid="uid://cqw5ikqtbhdyj" path="res://Enemies Assets/officer_Indicator.png" id="17_txt5i"]
 
 [node name="Enemy_Tank" type="Control"]
 layout_mode = 3
@@ -31,6 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(273, -43)
 script = ExtResource("1_cn7tg")
+points = 10
 shell_scene = ExtResource("2_qfvq4")
 heal_drone_scene = ExtResource("3_6q81e")
 death_effect = ExtResource("4_b23ir")
@@ -72,7 +73,7 @@ offset_top = -179.0
 offset_right = -23.0
 offset_bottom = -129.0
 pivot_offset = Vector2(39, 50)
-texture = ExtResource("3_hxaw6")
+texture = ExtResource("17_txt5i")
 
 [node name="Attack_Indicator2" type="TextureRect" parent="."]
 layout_mode = 0
@@ -81,4 +82,4 @@ offset_top = -91.0
 offset_right = 98.0
 offset_bottom = -41.0
 pivot_offset = Vector2(46, 50)
-texture = ExtResource("3_hxaw6")
+texture = ExtResource("17_txt5i")

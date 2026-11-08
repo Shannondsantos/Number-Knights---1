@@ -1,0 +1,286 @@
+[gd_scene load_steps=26 format=3 uid="uid://dp3wofeb5aqqp"]
+
+[ext_resource type="Script" uid="uid://dvmnsxr02fhlx" path="res://MENUS/story_mode_menu.gd" id="1_yrqdb"]
+[ext_resource type="Texture2D" uid="uid://kiremb1tixg4" path="res://MENU/survivalmenubackground.png" id="2_k0n5b"]
+[ext_resource type="Script" uid="uid://vp1qa5l4yedn" path="res://background_1.gd" id="3_kujld"]
+[ext_resource type="Texture2D" uid="uid://dd0ihvmea7i2s" path="res://MENU/container level.png" id="4_3k66l"]
+[ext_resource type="Texture2D" uid="uid://crtpqchk3plkj" path="res://SURVIVAL_ALL/portal.png" id="4_aamwl"]
+[ext_resource type="Script" uid="uid://bqh8lvo0pmf86" path="res://MENU/cog2.gd" id="5_yrqdb"]
+[ext_resource type="Texture2D" uid="uid://bnc3fcl68q8ye" path="res://SURVIVAL_ALL/Survival_Easy.png" id="13_evfq3"]
+[ext_resource type="Script" uid="uid://b43ahmk8e1eyv" path="res://MENUS/survival_easy_button.gd" id="14_evfq3"]
+[ext_resource type="Texture2D" uid="uid://cp6csfja1mqdk" path="res://TIMETRIALS_ALL/medal_bronze.png" id="15_83lhr"]
+[ext_resource type="Texture2D" uid="uid://bvyhtx2xebqsx" path="res://TIMETRIALS_ALL/medal_blank.png" id="15_evfq3"]
+[ext_resource type="Texture2D" uid="uid://bjw5nnlyqmeh4" path="res://TIMETRIALS_ALL/medal_iron.png" id="16_8phvy"]
+[ext_resource type="Texture2D" uid="uid://cwdlnh57tf68" path="res://TIMETRIALS_ALL/medal_gold.png" id="17_4p2sh"]
+[ext_resource type="Texture2D" uid="uid://bvua0dwrc14ji" path="res://TIMETRIALS_ALL/medal_diamond.png" id="18_k0n5b"]
+[ext_resource type="Texture2D" uid="uid://b5xkjs0g6vomi" path="res://MENU/back.png" id="19_o4hlj"]
+[ext_resource type="Texture2D" uid="uid://cfoxshlpkhujk" path="res://SURVIVAL_ALL/Survival_Normal.png" id="20_8phvy"]
+[ext_resource type="Script" uid="uid://ceaxm22w7mwne" path="res://MENUS/survival_normal_button.gd" id="20_83lhr"]
+[ext_resource type="Texture2D" uid="uid://4iokg6iqpfal" path="res://MENU/back_pressed.png" id="20_q3bh4"]
+[ext_resource type="Script" uid="uid://bpvx1gp18csq6" path="res://MENUS/back_button_minigames_menu.gd" id="21_tguqi"]
+[ext_resource type="Script" uid="uid://diw1gp7i5txxd" path="res://MENUS/knight_button.gd" id="22_4p2sh"]
+[ext_resource type="Texture2D" uid="uid://cjh8jikr4alu3" path="res://SURVIVAL_ALL/Survival_Knight.png" id="22_k0n5b"]
+[ext_resource type="PackedScene" uid="uid://bdm5oktrfc7nd" path="res://MENU/cog.tscn" id="22_s5e6l"]
+[ext_resource type="PackedScene" uid="uid://c4oou5s0otjg6" path="res://MENU/cog2.tscn" id="23_7u60h"]
+[ext_resource type="Texture2D" uid="uid://46epi188atxy" path="res://MENU/button_generic.png" id="24_l2qfx"]
+[ext_resource type="Texture2D" uid="uid://boad1gxaci3ur" path="res://MENU/button_generic_pressed.png" id="25_x1v17"]
+[ext_resource type="Script" uid="uid://bgb53kltl17ss" path="res://MENUS/story_mode_upgrades.gd" id="26_dh214"]
+
+[node name="Survival" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yrqdb")
+
+[node name="Background1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("2_k0n5b")
+script = ExtResource("3_kujld")
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 1280.0
+offset_right = 720.0
+offset_bottom = 2560.0
+texture = ExtResource("2_k0n5b")
+script = ExtResource("3_kujld")
+
+[node name="portal" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -351.0
+offset_top = -318.0
+offset_right = 1058.5402
+offset_bottom = 1049.1768
+scale = Vector2(0.6000043, 0.6000043)
+pivot_offset = Vector2(698.1804, 698.99854)
+mouse_filter = 2
+texture = ExtResource("4_aamwl")
+script = ExtResource("5_yrqdb")
+
+[node name="LevelButtonsContainer" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 4.0
+offset_top = -39.0
+offset_right = 636.0
+offset_bottom = 1230.8105
+scale = Vector2(1.1245216, 1.3610706)
+texture = ExtResource("4_3k66l")
+stretch_mode = 3
+
+[node name="BackButton_MidMenu" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 1141.0
+offset_right = 708.0
+offset_bottom = 1261.0
+texture_normal = ExtResource("19_o4hlj")
+texture_pressed = ExtResource("20_q3bh4")
+script = ExtResource("21_tguqi")
+
+[node name="Cog" parent="BackButton_MidMenu" instance=ExtResource("22_s5e6l")]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -25.0
+offset_right = 56.0
+offset_bottom = 25.0
+
+[node name="Cog2" parent="BackButton_MidMenu" instance=ExtResource("23_7u60h")]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 8.0
+offset_right = 30.0
+offset_bottom = 58.0
+
+[node name="Upgrades" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 15.0
+offset_top = 1150.0
+offset_right = 265.0
+offset_bottom = 1270.0
+texture_normal = ExtResource("24_l2qfx")
+texture_pressed = ExtResource("25_x1v17")
+script = ExtResource("26_dh214")
+
+[node name="Cog" parent="Upgrades" instance=ExtResource("22_s5e6l")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -18.0
+offset_right = 66.0
+offset_bottom = 32.0
+
+[node name="Cog2" parent="Upgrades" instance=ExtResource("23_7u60h")]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 15.0
+offset_right = 40.0
+offset_bottom = 65.0
+
+[node name="Label" type="Label" parent="Upgrades"]
+layout_mode = 0
+offset_right = 249.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 30
+text = "Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EasyButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 128.0
+offset_right = 481.0
+offset_bottom = 254.49438
+scale = Vector2(1.1999996, 1.428928)
+texture_normal = ExtResource("13_evfq3")
+script = ExtResource("14_evfq3")
+next_scene = "res://SURVIVAL_ALL/Survival_Comic.tscn"
+iron_at = 25
+
+[node name="blank" type="TextureRect" parent="EasyButton"]
+layout_mode = 0
+offset_left = 425.78152
+offset_top = 26.664398
+offset_right = 520.93304
+offset_bottom = 102.6644
+texture = ExtResource("15_evfq3")
+
+[node name="Bronze" type="TextureRect" parent="EasyButton"]
+layout_mode = 0
+offset_left = 425.7815
+offset_top = 26.664406
+offset_right = 520.93304
+offset_bottom = 102.664406
+texture = ExtResource("15_83lhr")
+
+[node name="Iron" type="TextureRect" parent="EasyButton"]
+layout_mode = 0
+offset_left = 426.67078
+offset_top = 26.593365
+offset_right = 521.8223
+offset_bottom = 102.59337
+texture = ExtResource("16_8phvy")
+
+[node name="Gold" type="TextureRect" parent="EasyButton"]
+layout_mode = 0
+offset_left = 426.67075
+offset_top = 27.39912
+offset_right = 521.8223
+offset_bottom = 103.399124
+texture = ExtResource("17_4p2sh")
+
+[node name="Diamond" type="TextureRect" parent="EasyButton"]
+layout_mode = 0
+offset_left = 426.67075
+offset_top = 27.39912
+offset_right = 521.8223
+offset_bottom = 103.399124
+texture = ExtResource("18_k0n5b")
+
+[node name="NormalButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 371.0
+offset_right = 481.0
+offset_bottom = 497.4944
+scale = Vector2(1.1999996, 1.428928)
+texture_normal = ExtResource("20_8phvy")
+script = ExtResource("20_83lhr")
+next_scene = "res://SURVIVAL_ALL/Survival_Normal.tscn"
+
+[node name="blank" type="TextureRect" parent="NormalButton"]
+layout_mode = 0
+offset_left = 425.78152
+offset_top = 26.664398
+offset_right = 520.93304
+offset_bottom = 102.6644
+texture = ExtResource("15_evfq3")
+
+[node name="Bronze" type="TextureRect" parent="NormalButton"]
+layout_mode = 0
+offset_left = 425.7815
+offset_top = 26.664406
+offset_right = 520.93304
+offset_bottom = 102.664406
+texture = ExtResource("15_83lhr")
+
+[node name="Iron" type="TextureRect" parent="NormalButton"]
+layout_mode = 0
+offset_left = 426.67078
+offset_top = 26.593365
+offset_right = 521.8223
+offset_bottom = 102.59337
+texture = ExtResource("16_8phvy")
+
+[node name="Gold" type="TextureRect" parent="NormalButton"]
+layout_mode = 0
+offset_left = 426.67075
+offset_top = 27.39912
+offset_right = 521.8223
+offset_bottom = 103.399124
+texture = ExtResource("17_4p2sh")
+
+[node name="Diamond" type="TextureRect" parent="NormalButton"]
+layout_mode = 0
+offset_left = 426.67075
+offset_top = 27.39912
+offset_right = 521.8223
+offset_bottom = 103.399124
+texture = ExtResource("18_k0n5b")
+
+[node name="KnightButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 584.0
+offset_right = 481.0
+offset_bottom = 710.4944
+scale = Vector2(1.1999996, 1.428928)
+texture_normal = ExtResource("22_k0n5b")
+script = ExtResource("22_4p2sh")
+next_scene = "res://SURVIVAL_ALL/Survival_Knight.tscn"
+
+[node name="blank" type="TextureRect" parent="KnightButton"]
+layout_mode = 0
+offset_left = 425.78152
+offset_top = 26.664398
+offset_right = 520.93304
+offset_bottom = 102.6644
+texture = ExtResource("15_evfq3")
+
+[node name="Bronze" type="TextureRect" parent="KnightButton"]
+layout_mode = 0
+offset_left = 425.7815
+offset_top = 26.664406
+offset_right = 520.93304
+offset_bottom = 102.664406
+texture = ExtResource("15_83lhr")
+
+[node name="Iron" type="TextureRect" parent="KnightButton"]
+layout_mode = 0
+offset_left = 426.67078
+offset_top = 26.593365
+offset_right = 521.8223
+offset_bottom = 102.59337
+texture = ExtResource("16_8phvy")
+
+[node name="Gold" type="TextureRect" parent="KnightButton"]
+layout_mode = 0
+offset_left = 426.67075
+offset_top = 27.39912
+offset_right = 521.8223
+offset_bottom = 103.399124
+texture = ExtResource("17_4p2sh")
+
+[node name="Diamond" type="TextureRect" parent="KnightButton"]
+layout_mode = 0
+offset_left = 426.67075
+offset_top = 27.39912
+offset_right = 521.8223
+offset_bottom = 103.399124
+texture = ExtResource("18_k0n5b")

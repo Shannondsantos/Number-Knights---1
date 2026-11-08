@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://cut3gmrdn0prj"]
+
+[ext_resource type="Script" uid="uid://o61icoa277bw" path="res://ENEMY/enemy_apc.gd" id="1_jpsm2"]
+[ext_resource type="PackedScene" uid="uid://bbw8ugtkkg0os" path="res://ENEMY/enemy_tank_shell.tscn" id="2_jlikd"]
+[ext_resource type="Texture2D" uid="uid://cu1tic768iqrt" path="res://Enemies Assets/APC.png" id="2_jpsm2"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="4_vdbq8"]
+[ext_resource type="Texture2D" uid="uid://ud58ny0emg0q" path="res://Enemies Assets/apc_wheel.png" id="4_yr17x"]
+[ext_resource type="Texture2D" uid="uid://w5cqkwdlev1b" path="res://Enemies Assets/APC_50.png" id="5_reck1"]
+[ext_resource type="Texture2D" uid="uid://dfuihja14a2a8" path="res://Enemies Assets/APC_25.png" id="6_f1d23"]
+[ext_resource type="Texture2D" uid="uid://g1pa8qbilwfi" path="res://Enemies Assets/APC_dead.png" id="7_3cmpy"]
+[ext_resource type="AudioStream" uid="uid://c8cyk7oqj6et0" path="res://SOUNDS/AssaultShot.wav" id="10_xifqh"]
+[ext_resource type="AudioStream" uid="uid://t6bci47rao8d" path="res://SOUNDS/01_tank_tracks_a.mp3" id="13_otehi"]
+[ext_resource type="AudioStream" uid="uid://biphrf8c8cyn8" path="res://SOUNDS/01_enemy_windup_warning.mp3" id="14_1n36m"]
+[ext_resource type="Texture2D" uid="uid://cqw5ikqtbhdyj" path="res://Enemies Assets/officer_Indicator.png" id="17_3ehtt"]
+
+[node name="Enemy_APC" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 372.0
+offset_top = 281.0
+offset_right = 372.0
+offset_bottom = 281.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(273, -43)
+script = ExtResource("1_jpsm2")
+max_hp = 25
+points = 20
+fly_time = 2.0
+shell_scene = ExtResource("2_jlikd")
+death_effect = ExtResource("4_vdbq8")
+hull_tex_100 = ExtResource("2_jpsm2")
+hull_tex_50 = ExtResource("5_reck1")
+hull_tex_25 = ExtResource("6_f1d23")
+hull_tex_dead = ExtResource("7_3cmpy")
+tracks_loop = ExtResource("13_otehi")
+windup_sound = ExtResource("14_1n36m")
+fire_sound = ExtResource("10_xifqh")
+death_sound = ExtResource("10_xifqh")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -204.0
+offset_top = -200.0
+offset_right = 196.0
+offset_bottom = 100.0
+texture = ExtResource("2_jpsm2")
+
+[node name="RocketIndicator1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -54.0
+offset_top = -163.0
+offset_right = 96.0
+offset_bottom = -113.0
+pivot_offset = Vector2(40, 47)
+texture = ExtResource("17_3ehtt")
+
+[node name="Wheel1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -19.0
+offset_right = 152.0
+offset_bottom = 99.0
+pivot_offset = Vector2(57, 61)
+texture = ExtResource("4_yr17x")
+
+[node name="Wheel2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -166.0
+offset_top = -15.0
+offset_right = -49.0
+offset_bottom = 103.0
+pivot_offset = Vector2(57, 61)
+texture = ExtResource("4_yr17x")

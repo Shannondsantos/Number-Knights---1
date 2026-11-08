@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc5moomhffuf4"
-path="res://.godot/imported/InfiniteAmmo.png-2b98d4700f2952b9e417d9d63e0e6fbc.ctex"
+uid="uid://yasymker4qmi"
+path="res://.godot/imported/infiniteammo.png-9ed8633ef2fafb5e6729a7d196faedbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PLAYER UI/InfiniteAmmo.png"
-dest_files=["res://.godot/imported/InfiniteAmmo.png-2b98d4700f2952b9e417d9d63e0e6fbc.ctex"]
+source_file="res://PLAYER UI/infiniteammo.png"
+dest_files=["res://.godot/imported/infiniteammo.png-9ed8633ef2fafb5e6729a7d196faedbf.ctex"]
 
 [params]
 

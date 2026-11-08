@@ -1,56 +1,53 @@
 extends Node
 
-# Per-level brain. Copy this file, rename it, change ONLY _run().
-# Markers live in the scene: Spawn1, SpawnOfficer1, SpawnTank1, SpawnMiniBoss1
-# Packed scenes are assigned on this node in the Inspector.
-
 @export var fodder: PackedScene
 @export var officer: PackedScene
 @export var tank: PackedScene
 @export var mini_boss: PackedScene
 @export var heal: PackedScene
 @export var far_fade_time := 2.5
+@export var finger_idle: Texture2D
+@export var finger_press: Texture2D
+
+var _finger: TextureRect
+var _tut_on := false
+
 func _ready() -> void:
+	_finger = _find("TutorialFinger")
+	if _finger:
+		_finger.visible = false
 	_run()
 
 func _alive_dir() -> bool:
-	# False after win/lose/retry so awaits don't run on a dead scene
 	return is_inside_tree() and get_tree() != null
 
-# ---------------------------------------------------------------------------
-# LEVEL BEAT SHEET — this is what you rewrite per level
-# await timer          = wait seconds
-# _spawn(scene, name)  = instance that enemy on that marker
-# await _cleared()     = wait until no living "enemies"
-# await _boss_dead()   = wait until no minibosses/bosses
-# _fade_under(...)     = fade one TextureRect under Far/Mid/Near
-# ---------------------------------------------------------------------------
 func _run() -> void:
-	if not _alive_dir():
-		return
-	# chef is already in the scene. _cleared waits until he flies off.
 	await get_tree().create_timer(0.4).timeout
 	await _cleared()
 	if not _alive_dir():
 		return
-
-	# beat 1 — one pawn
-	_spawn(fodder, "Spawn1")
+	await get_tree().create_timer(1.0).timeout
+	if not _alive_dir():
+		return
+	var first := _spawn(fodder, "Spawn1")
+	await _point_at(first)
 	await _cleared()
 	if not _alive_dir():
 		return
-
-	# beat 2 — one on Spawn1, one on Spawn2
+	await get_tree().create_timer(3.0).timeout
+	if not _alive_dir():
+		return
 	_spawn(fodder, "Spawn2")
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.5).timeout
 	if not _alive_dir():
 		return
 	_spawn(fodder, "Spawn3")
 	await _cleared()
 	if not _alive_dir():
 		return
-
-	# beat 3 — one each on Spawn1, Spawn2, Spawn3
+	await get_tree().create_timer(1.0).timeout
+	if not _alive_dir():
+		return
 	_spawn(fodder, "Spawn1")
 	await get_tree().create_timer(0.5).timeout
 	if not _alive_dir():
@@ -63,19 +60,55 @@ func _run() -> void:
 	await _cleared()
 	if not _alive_dir():
 		return
-	await get_tree().create_timer(2.0).timeout
+	_spawn(officer, "SpawnOfficer1")
+	await get_tree().create_timer(0.5).timeout
+	if not _alive_dir():
+		return
+	_spawn(fodder, "Spawn2")
+	await get_tree().create_timer(0.5).timeout
+	if not _alive_dir():
+		return
+	_spawn(fodder, "Spawn3")
+	await _cleared()
+	if not _alive_dir():
+		return
+	await get_tree().create_timer(3.0).timeout
 	if not _alive_dir():
 		return
 	var go := get_tree().current_scene.get_node_or_null("GameOverLayer")
 	if go and go.has_method("show_win"):
 		go.show_win()
 
+func _point_at(drone: Node) -> void:
+	if drone == null or not _alive_dir():
+		return
+	var start_hp := int(drone.get("hp"))
+	if "attack_start_delay" in drone:
+		drone.set("attack_start_delay", 99.0)
+	await get_tree().create_timer(0.5).timeout
+	if not _alive_dir() or not is_instance_valid(drone):
+		return
+	if not bool(drone.get("_alive")) or int(drone.get("hp")) < start_hp:
+		return
+	if _finger == null:
+		_finger = _find("TutorialFinger")
+	if _finger:
+		_finger.visible = true
+		if finger_idle:
+			_finger.texture = finger_idle
+	_tut_on = true
+	var press := false
+	while _alive_dir() and is_instance_valid(drone) and bool(drone.get("_alive")) and int(drone.get("hp")) >= start_hp:
+		press = not press
+		if _finger:
+			_finger.texture = finger_press if press and finger_press else finger_idle
+		await get_tree().create_timer(0.35).timeout
+	_tut_on = false
+	if _finger:
+		_finger.visible = false
+	if is_instance_valid(drone) and "attack_start_delay" in drone:
+		drone.set("attack_start_delay", 2.0)
 
-
-# Fade one child under a shake layer. Example:
-#   _fade_under("Far", "Background", 0.0, 2.5)   hide the normal sky
-#   _fade_under("Far", "Background2", 1.0, 1.0)  bring the boss plate in
-#   _fade_under("Mid", "Smoke", 0.4, 1.0)
 func _fade_under(layer_name: String, child_name: String, to_alpha: float, t: float = 1.5) -> void:
 	var layer := _find(layer_name)
 	if layer == null:
@@ -109,7 +142,6 @@ func _find(named: String) -> Node:
 		return root
 	return root.find_child(named, true, false)
 
-# Drop a packed scene on a marker. Marker can sit under Mid or Director.
 func _spawn(packed: PackedScene, at: String) -> Node:
 	if not _alive_dir():
 		return null
@@ -127,7 +159,6 @@ func _spawn(packed: PackedScene, at: String) -> Node:
 	host.add_child(n)
 	if n is Node2D or n is Control:
 		n.global_position = mark.global_position
-	# Enemy scripts stash home pos in _ready BEFORE we move them — fix that
 	if "_base_pos" in n:
 		n.set("_base_pos", n.position)
 	if n.has_method("finish_travel"):
@@ -160,7 +191,6 @@ func _fade_in_deferred(n: Node, t: float = 0.7) -> void:
 	, 0.0, 1.0, t).set_trans(Tween.TRANS_SINE)
 
 func _paint_alpha(n: Node, a: float) -> void:
-	# Don't touch the blimp invuln shield
 	if String(n.name) == "Shield":
 		return
 	if n is CanvasItem:
@@ -170,7 +200,6 @@ func _paint_alpha(n: Node, a: float) -> void:
 	for c in n.get_children():
 		_paint_alpha(c, a)
 
-# How many clickable living enemies are on screen (includes blimp if it's in "enemies")
 func _living() -> int:
 	if not _alive_dir():
 		return 0
@@ -180,7 +209,6 @@ func _living() -> int:
 			n += 1
 	return n
 
-# Wait until every living enemy is gone (timeout heal copters count as gone)
 func _cleared() -> void:
 	if not _alive_dir():
 		return
@@ -188,7 +216,6 @@ func _cleared() -> void:
 	while _alive_dir() and _living() > 0:
 		await get_tree().process_frame
 
-# Wait until no miniboss/boss nodes exist
 func _boss_dead() -> void:
 	if not _alive_dir():
 		return

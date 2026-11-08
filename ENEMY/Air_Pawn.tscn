@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://bo5bas4vijgi2"]
+
+[ext_resource type="Texture2D" uid="uid://dj38cuu57585p" path="res://Enemies Assets/Air_Pawn.png" id="1_n3x47"]
+[ext_resource type="Script" uid="uid://chlsjh8lsks6c" path="res://ENEMY/enemy_pawn.gd" id="2_n3x47"]
+[ext_resource type="Texture2D" uid="uid://bekqf6lcw4263" path="res://Enemies Assets/Air_Pawn_dead.png" id="3_cdbgm"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="4_gatu2"]
+[ext_resource type="AudioStream" uid="uid://biphrf8c8cyn8" path="res://SOUNDS/01_enemy_windup_warning.mp3" id="9_5v3py"]
+[ext_resource type="AudioStream" uid="uid://ccqyqh5bdjfcu" path="res://SOUNDS/02_enemy_mech_attack.mp3" id="10_cwgbd"]
+[ext_resource type="AudioStream" uid="uid://c10j1bj642sy8" path="res://SOUNDS/03_enemy_mech_explosion.mp3" id="11_stia5"]
+[ext_resource type="Texture2D" uid="uid://dcj7wjl4hucy2" path="res://Enemies Assets/Attack_Indicator.png" id="12_0r2mk"]
+
+[node name="pawwn" type="TextureRect"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(52, 43)
+mouse_filter = 2
+texture = ExtResource("1_n3x47")
+script = ExtResource("2_n3x47")
+max_hp = 16
+points = 2
+dead_texture = ExtResource("3_cdbgm")
+death_effect = ExtResource("4_gatu2")
+base_texture = ExtResource("1_n3x47")
+windup_sound = ExtResource("9_5v3py")
+attack_sound = ExtResource("10_cwgbd")
+death_sound = ExtResource("11_stia5")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 27.0
+offset_right = 146.0
+offset_bottom = 77.0
+texture = ExtResource("12_0r2mk")

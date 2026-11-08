@@ -1,23 +1,24 @@
 extends TextureButton
-
 @export var shield_cooldown := 20.0
 @export var ammo_cooldown := 20.0
 @export var beacon_cooldown := 15.0
 @export var prompt: Control
 @export var max_factor := 5
-@export var locked_alpha := 0.2
+@export var locked_alpha := 0.5
 @export var shield_icon: Texture2D
 @export var ammo_icon: Texture2D
 @export var beacon_icon: Texture2D
-
+@export var nag_every := 2.2
 var _cd := 0.0
 var _cd_max := 20.0
 var _correct := 0
 var _prompting := false
 var _was_ready := true
 var _flash_tw: Tween
-
+var _nag_t := 0.8
+var _base_rot := 0.0
 func _ready() -> void:
+	_base_rot = rotation
 	pressed.connect(_on_pressed)
 	_cd = 0.0
 	_apply_icon()
@@ -28,18 +29,23 @@ func _ready() -> void:
 			if btn:
 				var idx := i
 				btn.pressed.connect(func() -> void: _pick(idx))
+	_set_question_box(false)
 	_refresh()
-
 func _process(delta: float) -> void:
-	if PlayerData.ability_busy() or _prompting:
+	if PlayerData.ability_busy():
+		_nag_t = nag_every
 		_refresh()
 		return
 	if _cd > 0.0:
 		_cd = maxf(0.0, _cd - delta)
 		if _cd <= 0.0 and not _was_ready:
 			_flash_ready()
+	elif _can_use():
+		_nag_t -= delta
+		if _nag_t <= 0.0:
+			_nag_t = nag_every
+			_flash_ready()
 	_refresh()
-
 func _apply_icon() -> void:
 	var tex: Texture2D = shield_icon
 	match PlayerData.selected_ability:
@@ -54,7 +60,12 @@ func _apply_icon() -> void:
 		texture_pressed = tex
 		texture_hover = tex
 		texture_disabled = tex
-
+func _set_question_box(on: bool) -> void:
+	if prompt == null:
+		return
+	var box := prompt.get_node_or_null("QuestionBox")
+	if box:
+		box.visible = on
 func _cooldown_for(id: String) -> float:
 	match id:
 		"ammo":
@@ -63,15 +74,21 @@ func _cooldown_for(id: String) -> float:
 			return beacon_cooldown
 		_:
 			return shield_cooldown
-
 func _can_use() -> bool:
 	return _cd <= 0.0 and not PlayerData.ability_busy() and not _prompting
-
 func _on_pressed() -> void:
+	if _prompting:
+		_cancel_prompt()
+		return
 	if not _can_use():
 		return
 	_open_prompt()
-
+func _cancel_prompt() -> void:
+	if prompt:
+		prompt.visible = false
+	_set_question_box(false)
+	_prompting = false
+	_fail()
 func _open_prompt() -> void:
 	_prompting = true
 	_refresh()
@@ -100,7 +117,7 @@ func _open_prompt() -> void:
 			lbl.text = str(opts[i])
 		btn.set_meta("value", opts[i])
 	prompt.visible = true
-
+	_set_question_box(true)
 func _pick(i: int) -> void:
 	if not _prompting:
 		return
@@ -109,12 +126,12 @@ func _pick(i: int) -> void:
 		return
 	var val := int(btn.get_meta("value"))
 	prompt.visible = false
+	_set_question_box(false)
 	_prompting = false
 	if val == _correct:
 		_success()
 	else:
 		_fail()
-
 func _success() -> void:
 	print("deploy ", PlayerData.selected_ability)
 	match PlayerData.selected_ability:
@@ -125,16 +142,26 @@ func _success() -> void:
 		"ammo":
 			PlayerData.spawn_ammo()
 	_start_cooldown()
-
 func _fail() -> void:
+	_wrong_fx()
 	_start_cooldown()
-
+func _wrong_fx() -> void:
+	if _flash_tw:
+		_flash_tw.kill()
+	rotation = _base_rot
+	modulate = Color(1.0, 0.25, 0.25)
+	_flash_tw = create_tween()
+	_flash_tw.tween_property(self, "rotation", _base_rot + 0.08, 0.05)
+	_flash_tw.tween_property(self, "rotation", _base_rot - 0.08, 0.06)
+	_flash_tw.tween_property(self, "rotation", _base_rot + 0.05, 0.05)
+	_flash_tw.tween_property(self, "rotation", _base_rot, 0.06)
+	_flash_tw.parallel().tween_property(self, "modulate", Color(1, 1, 1, locked_alpha), 0.22)
 func _start_cooldown() -> void:
 	_cd_max = _cooldown_for(PlayerData.selected_ability)
 	_cd = _cd_max
 	_was_ready = false
+	_nag_t = nag_every
 	_refresh()
-
 func _flash_ready() -> void:
 	_was_ready = true
 	if _flash_tw:
@@ -145,19 +172,19 @@ func _flash_ready() -> void:
 	_flash_tw.tween_property(self, "modulate", Color.WHITE, 0.10)
 	_flash_tw.tween_property(self, "modulate", Color(2.4, 2.4, 2.4), 0.08)
 	_flash_tw.tween_property(self, "modulate", Color.WHITE, 0.12)
-
 func _refresh() -> void:
 	_apply_icon()
 	var is_ready := _can_use()
-	disabled = not is_ready
-	if is_ready:
-		if _flash_tw == null or not _flash_tw.is_running():
-			modulate = Color.WHITE
+	disabled = not is_ready and not _prompting
+	if _flash_tw and _flash_tw.is_running():
+		return
+	if is_ready or _prompting:
+		modulate = Color.WHITE
 		return
 	var u := 0.0
 	if _cd_max > 0.0:
 		u = 1.0 - clampf(_cd / _cd_max, 0.0, 1.0)
 	var a := lerpf(locked_alpha, 1.0, u)
-	if PlayerData.ability_busy() or _prompting:
+	if PlayerData.ability_busy():
 		a = locked_alpha
 	modulate = Color(1, 1, 1, a)

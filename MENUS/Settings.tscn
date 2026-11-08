@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtf6ohsaotrqy"]
+[gd_scene load_steps=19 format=3 uid="uid://dtf6ohsaotrqy"]
 
-[ext_resource type="Texture2D" uid="uid://dyoys6idrl8x8" path="res://MENU/midmenubackground.png" id="1_2fv1l"]
 [ext_resource type="Script" uid="uid://dwd0a34nl5a86" path="res://MENUS/settings.gd" id="1_blqn1"]
+[ext_resource type="Texture2D" uid="uid://b1dyf3wx2lvq5" path="res://MENU/midmenubackground2.png" id="2_7ol6t"]
 [ext_resource type="Script" uid="uid://vp1qa5l4yedn" path="res://background_1.gd" id="2_mx4kw"]
 [ext_resource type="Texture2D" uid="uid://b5xkjs0g6vomi" path="res://MENU/back.png" id="4_blqn1"]
+[ext_resource type="Texture2D" uid="uid://0xrbg76yo8mq" path="res://MENU/generic 1.png" id="4_psidt"]
 [ext_resource type="Texture2D" uid="uid://4iokg6iqpfal" path="res://MENU/back_pressed.png" id="5_j7x76"]
 [ext_resource type="Script" uid="uid://cpxcw3htvu3lk" path="res://MENUS/midmenu_back_button.gd" id="6_8uskx"]
 [ext_resource type="Texture2D" uid="uid://46epi188atxy" path="res://MENU/button_generic.png" id="7_x5sme"]
@@ -11,6 +12,12 @@
 [ext_resource type="Script" uid="uid://xc4mcskhyi4v" path="res://MENUS/data_reset_button.gd" id="9_lo14l"]
 [ext_resource type="Script" uid="uid://cc2uk382q3dlj" path="res://MENUS/data_delete_continue_button.gd" id="10_cuefh"]
 [ext_resource type="Script" uid="uid://bganq2crq2mp6" path="res://MENUS/data_delete_cancel_button.gd" id="11_cik5g"]
+[ext_resource type="Texture2D" uid="uid://dscfaiqd2wpcq" path="res://Enemies Assets/Officer_Pawn.png" id="12_trovu"]
+[ext_resource type="Script" uid="uid://b2h6v2ppo4h2b" path="res://MENUS/level_bypass.gd" id="13_dlium"]
+[ext_resource type="Script" uid="uid://c0fgsq3vuhhaa" path="res://MENUS/level_bypass_2.gd" id="14_dlium"]
+[ext_resource type="Texture2D" uid="uid://dgcgjrhcclf2r" path="res://Music_/music.png" id="15_7ol6t"]
+[ext_resource type="Texture2D" uid="uid://bee6ytjmqovps" path="res://Music_/volume.png" id="16_psidt"]
+[ext_resource type="Script" uid="uid://dvs6qb15uchpu" path="res://MENUS/music_credits_button.gd" id="18_mgw4k"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -25,7 +32,7 @@ script = ExtResource("1_blqn1")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_2fv1l")
+texture = ExtResource("2_7ol6t")
 script = ExtResource("2_mx4kw")
 
 [node name="Background2" type="TextureRect" parent="."]
@@ -33,15 +40,25 @@ layout_mode = 0
 offset_top = 1280.0
 offset_right = 720.0
 offset_bottom = 2560.0
-texture = ExtResource("1_2fv1l")
+texture = ExtResource("2_7ol6t")
 script = ExtResource("2_mx4kw")
+
+[node name="PlayerClassDisplay" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 114.0
+offset_top = 269.0
+offset_right = 779.7895
+offset_bottom = 389.0
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("4_psidt")
 
 [node name="MusicSlider" type="HSlider" parent="."]
 layout_mode = 0
-offset_left = 130.0
-offset_top = 436.0
-offset_right = 568.0
-offset_bottom = 684.0
+offset_left = 154.0
+offset_top = 451.0
+offset_right = 592.0
+offset_bottom = 529.0
 tick_count = 4
 
 [node name="BackButton" type="TextureButton" parent="."]
@@ -97,7 +114,7 @@ offset_bottom = 115.0
 theme_override_colors/font_color = Color(0.33333334, 0.27450982, 0.2509804, 1)
 theme_override_font_sizes/font_size = 30
 text = "[CONFIRM
-DATA]"
+RESET]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -120,3 +137,99 @@ theme_override_font_sizes/font_size = 30
 text = "[CANCEL]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LevelBypass" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("12_trovu")
+script = ExtResource("13_dlium")
+
+[node name="LevelBypass2" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 620.0
+offset_right = 720.0
+offset_bottom = 100.0
+texture_normal = ExtResource("12_trovu")
+script = ExtResource("14_dlium")
+
+[node name="VolumeSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 269.0
+offset_right = 592.0
+offset_bottom = 347.0
+tick_count = 4
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 435.0
+offset_right = 132.0
+offset_bottom = 535.0
+texture = ExtResource("15_7ol6t")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 269.0
+offset_right = 132.0
+offset_bottom = 369.0
+texture = ExtResource("16_psidt")
+
+[node name="MusicCreditsButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 15.0
+offset_right = 708.0
+offset_bottom = 135.0
+texture_normal = ExtResource("7_x5sme")
+texture_pressed = ExtResource("8_lo14l")
+script = ExtResource("18_mgw4k")
+
+[node name="Label" type="Label" parent="MusicCreditsButton"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 249.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.33333334, 0.27450982, 0.2509804, 1)
+theme_override_font_sizes/font_size = 30
+text = "Music Credits."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="ColorRect" parent="MusicCreditsButton"]
+layout_mode = 0
+offset_left = -418.0
+offset_top = 204.0
+offset_right = 226.0
+offset_bottom = 1117.0
+color = Color(0.7411765, 0.6509804, 0.80784315, 1)
+
+[node name="Label" type="Label" parent="MusicCreditsButton/Credits"]
+layout_mode = 0
+offset_right = 652.0
+offset_bottom = 823.0
+text = "https://pixabay.com/music/action-action-440170/
+Action - NastelBom
+
+https://pixabay.com/music/main-title-risk-136788/
+Risk - StudioKolomna
+
+https://pixabay.com/music/main-title-trailer-cinematic-604199/
+Trailer Cinematic - SigmaMusicArt
+
+https://pixabay.com/music/solo-piano-mafia-13004/
+Mafia - SergeQuadrado
+
+https://pixabay.com/music/solo-piano-faded-letter-127022/
+Faded Letter - HarumachiMusic
+
+https://pixabay.com/music/electronic-alien-electro-1982-471156/
+Alien Electro 1982 - SlimeyFox
+
+https://pixabay.com/music/happy-childrens-tunes-life-of-a-wandering-wizard-15549/
+Life of a Wandering Wizard - SergeQuadrado"

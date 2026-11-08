@@ -1,0 +1,31 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1df78ylw5eqa"]
+
+[ext_resource type="Texture2D" uid="uid://xq5q56lp4p6u" path="res://Enemies Assets/Stormtrooper.png" id="1_dhslr"]
+[ext_resource type="Script" uid="uid://bhho78pnmbnu5" path="res://ENEMY/enemy_stormtrooper.gd" id="2_vuhdw"]
+[ext_resource type="Texture2D" uid="uid://cpqee4nh1mbvu" path="res://Enemies Assets/Stormtrooper_dead.png" id="3_ay3fa"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="4_4u5qb"]
+[ext_resource type="AudioStream" uid="uid://c8cyk7oqj6et0" path="res://SOUNDS/AssaultShot.wav" id="6_bxho1"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="7_idaww"]
+[ext_resource type="AudioStream" uid="uid://biphrf8c8cyn8" path="res://SOUNDS/01_enemy_windup_warning.mp3" id="9_lfd4x"]
+[ext_resource type="Texture2D" uid="uid://dcj7wjl4hucy2" path="res://Enemies Assets/Attack_Indicator.png" id="12_5axq2"]
+
+[node name="Enemy_Stormtrooper" type="TextureRect"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(35, 33)
+mouse_filter = 2
+texture = ExtResource("1_dhslr")
+script = ExtResource("2_vuhdw")
+dead_texture = ExtResource("3_ay3fa")
+death_effect = ExtResource("4_4u5qb")
+windup_sound = ExtResource("9_lfd4x")
+attack_sound = ExtResource("6_bxho1")
+death_sound = ExtResource("7_idaww")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 27.0
+offset_right = 146.0
+offset_bottom = 77.0
+texture = ExtResource("12_5axq2")

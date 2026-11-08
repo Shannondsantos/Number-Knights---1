@@ -1,0 +1,188 @@
+[gd_scene load_steps=20 format=3 uid="uid://de1hjojqh5u6b"]
+
+[ext_resource type="Script" uid="uid://cb0sho01t375o" path="res://TIMETRIALS_ALL/time_trials_hard.gd" id="1_2ywd1"]
+[ext_resource type="PackedScene" uid="uid://bbw8ugtkkg0os" path="res://ENEMY/enemy_tank_shell.tscn" id="2_qmtqm"]
+[ext_resource type="PackedScene" uid="uid://dvhxvkfuc4ik2" path="res://ENEMY/Enemy_Test.tscn" id="3_gscsg"]
+[ext_resource type="Texture2D" uid="uid://bt2ugkf2pftpd" path="res://TIMETRIALS_ALL/Time_Trial_Hard.png" id="4_7m5ac"]
+[ext_resource type="Texture2D" uid="uid://c5borjb0uj53o" path="res://TIMETRIALS_ALL/dulahan_roto_main.png" id="4_kei5m"]
+[ext_resource type="Texture2D" uid="uid://bht0ivyfrpo5b" path="res://TIMETRIALS_ALL/dulahan_roto_main_2.png" id="5_y8dkd"]
+[ext_resource type="Texture2D" uid="uid://bpg3bglssse6w" path="res://TIMETRIALS_ALL/dulahan_roto_main_3.png" id="6_af0t1"]
+[ext_resource type="Texture2D" uid="uid://mari3hh2na5w" path="res://TIMETRIALS_ALL/dulahan_roto_main_4.png" id="7_y3xmb"]
+[ext_resource type="AudioStream" uid="uid://ioansqnexlnq" path="res://SOUNDS/09_heal.mp3" id="9_51t2q"]
+[ext_resource type="AudioStream" uid="uid://wplnxctvnlps" path="res://SOUNDS/03_transform_heavy.mp3" id="9_tmh1s"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="11_qmtqm"]
+[ext_resource type="AudioStream" uid="uid://c8cyk7oqj6et0" path="res://SOUNDS/AssaultShot.wav" id="12_k50wr"]
+[ext_resource type="AudioStream" uid="uid://crmoo7bfyagox" path="res://SOUNDS/HeavyShot.wav" id="12_yjal8"]
+[ext_resource type="AudioStream" uid="uid://c47omi7urvb5p" path="res://SOUNDS/helicopter_blades_slow.mp3" id="13_03ro3"]
+[ext_resource type="Texture2D" uid="uid://cljkpbd7wlyv4" path="res://MENU/number holder.png" id="14_tv23n"]
+[ext_resource type="Texture2D" uid="uid://bjabv6fitndes" path="res://TIMETRIALS_ALL/Command_Aura_4.png" id="15_hxaer"]
+[ext_resource type="Texture2D" uid="uid://q6nbn8i2gk58" path="res://Enemies Assets/dulahan_roto_main.png" id="16_a1526"]
+[ext_resource type="Texture2D" uid="uid://bgob0ou3jw1kx" path="res://TIMETRIALS_ALL/Attack_Indicator_3.png" id="17_h7ohn"]
+[ext_resource type="Texture2D" uid="uid://bc6jq10yq0hhh" path="res://TIMETRIALS_ALL/Time_Trial_Shield.png" id="18_5u2nt"]
+
+[node name="Time_Trials_Hard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 334.0
+offset_top = 255.0
+offset_right = 734.0
+offset_bottom = 555.0
+pivot_offset = Vector2(-30, 3)
+script = ExtResource("1_2ywd1")
+time_bonus = 5
+fire_interval = 8.0
+triple_wait = 8.0
+shell_scene = ExtResource("2_qmtqm")
+pawn_scene = ExtResource("3_gscsg")
+pawn_flank = 285.0
+hull_tex = ExtResource("4_7m5ac")
+main_frames = Array[Texture2D]([ExtResource("4_kei5m"), ExtResource("5_y8dkd"), ExtResource("6_af0t1"), ExtResource("7_y3xmb")])
+arrive_sound = ExtResource("9_tmh1s")
+correct_sound = ExtResource("9_51t2q")
+wrong_sound = ExtResource("12_k50wr")
+windup_sound = ExtResource("11_qmtqm")
+fire_sound = ExtResource("12_yjal8")
+heli_loop = ExtResource("13_03ro3")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -224.0
+offset_top = -97.0
+offset_right = 276.0
+offset_bottom = 203.0
+texture = ExtResource("4_7m5ac")
+
+[node name="LED" type="Label" parent="."]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -22.0
+offset_right = 136.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answers" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -180.0
+offset_top = -13.0
+offset_right = -140.0
+offset_bottom = 27.0
+
+[node name="Answer0" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = 278.0
+offset_right = 122.0
+offset_bottom = 398.0
+texture_normal = ExtResource("14_tv23n")
+
+[node name="Label" type="Label" parent="Answers/Answer0"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer2" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 278.0
+offset_right = 651.0
+offset_bottom = 398.0
+texture_normal = ExtResource("14_tv23n")
+
+[node name="Label" type="Label" parent="Answers/Answer2"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer1" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 283.0
+offset_right = 383.0
+offset_bottom = 403.0
+texture_normal = ExtResource("14_tv23n")
+
+[node name="Label" type="Label" parent="Answers/Answer1"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 74.0
+offset_right = 330.0
+offset_bottom = 224.0
+texture = ExtResource("15_hxaer")
+
+[node name="MainRotor" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -58.0
+offset_top = -106.0
+offset_right = 336.0
+offset_bottom = -66.0
+rotation = 0.0014802935
+scale = Vector2(1, 0.7200006)
+texture = ExtResource("16_a1526")
+
+[node name="MainRotor2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -351.0
+offset_top = -120.0
+offset_right = 43.0
+offset_bottom = -80.0
+rotation = -0.013999209
+scale = Vector2(1, 0.7200006)
+texture = ExtResource("16_a1526")
+
+[node name="RocketIndicator1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -36.0
+offset_top = 93.0
+offset_right = 114.0
+offset_bottom = 143.0
+pivot_offset = Vector2(73, 66)
+texture = ExtResource("17_h7ohn")
+
+[node name="Shield" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -224.0
+offset_top = -94.0
+offset_right = 226.0
+offset_bottom = 206.0
+mouse_filter = 2
+texture = ExtResource("18_5u2nt")
+
+[node name="RocketIndicator2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 93.0
+offset_right = 176.0
+offset_bottom = 143.0
+pivot_offset = Vector2(73, 66)
+texture = ExtResource("17_h7ohn")
+
+[node name="RocketIndicator3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 91.0
+offset_right = 237.0
+offset_bottom = 141.0
+pivot_offset = Vector2(73, 66)
+texture = ExtResource("17_h7ohn")

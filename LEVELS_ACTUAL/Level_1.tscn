@@ -1,8 +1,11 @@
-[gd_scene load_steps=67 format=3 uid="uid://baprnpl1ueqo1"]
+[gd_scene load_steps=70 format=3 uid="uid://baprnpl1ueqo1"]
 
 [ext_resource type="Script" uid="uid://cr3y6rwpevpnd" path="res://combat_hud.gd" id="1_wvvvq"]
 [ext_resource type="Script" uid="uid://r88nq477pyp5" path="res://LEVELS_ACTUAL/level_1_director.gd" id="2_w0yia"]
 [ext_resource type="PackedScene" uid="uid://dvhxvkfuc4ik2" path="res://ENEMY/Enemy_Test.tscn" id="3_pou12"]
+[ext_resource type="PackedScene" uid="uid://dbnmpqqr26sqh" path="res://ENEMY/Enemy_Officer_Pawn.tscn" id="4_ayfhp"]
+[ext_resource type="Texture2D" uid="uid://b2sn4lwna67bt" path="res://MENU/point.png" id="5_efco6"]
+[ext_resource type="Texture2D" uid="uid://6ssvknxjyltr" path="res://MENU/point-2.png" id="6_wvvvq"]
 [ext_resource type="PackedScene" uid="uid://7ebp1kntgwre" path="res://LevelMusic.tscn" id="8_ekdi6"]
 [ext_resource type="Script" uid="uid://hnlxynnpuglr" path="res://pause.gd" id="9_kscnv"]
 [ext_resource type="Texture2D" uid="uid://cf4c2ea2rgmsg" path="res://MENU/game pause.png" id="10_2yldo"]
@@ -50,13 +53,14 @@
 [ext_resource type="Texture2D" uid="uid://iibvdc5ojsn1" path="res://PLAYER UI/COUNTER.png" id="53_m3e6i"]
 [ext_resource type="PackedScene" uid="uid://bdm5oktrfc7nd" path="res://MENU/cog.tscn" id="54_ph8g1"]
 [ext_resource type="PackedScene" uid="uid://c4oou5s0otjg6" path="res://MENU/cog2.tscn" id="55_xugnu"]
+[ext_resource type="Script" uid="uid://cagde0uy78jnh" path="res://LEVELS_ACTUAL/ability_prompt.gd" id="56_6iejo"]
 [ext_resource type="Texture2D" uid="uid://bj85grnttpnsk" path="res://MENU/InfiniteAmmoLogo.png" id="56_d80yd"]
 [ext_resource type="Texture2D" uid="uid://dsxujy5wssu74" path="res://PLAYER UI/reloading.png" id="57_507pk"]
+[ext_resource type="Texture2D" uid="uid://gi1gfx25tpqt" path="res://MENU/shield.png" id="57_covl7"]
 [ext_resource type="Texture2D" uid="uid://bih8lkmbiwmfy" path="res://PLAYER UI/abilities.png" id="58_gi51h"]
-[ext_resource type="Script" uid="uid://cbbyw08ksrtff" path="res://ability_button.gd" id="59_blyt6"]
-[ext_resource type="Texture2D" uid="uid://cipd7a3mq61la" path="res://PLAYER UI/shield.png" id="60_i3x7y"]
+[ext_resource type="Texture2D" uid="uid://djdrdc4dm2c8l" path="res://MENU/beacon.png" id="59_efco6"]
+[ext_resource type="Texture2D" uid="uid://boad1gxaci3ur" path="res://MENU/button_generic_pressed.png" id="59_y8crp"]
 [ext_resource type="Texture2D" uid="uid://dchf055ya3cq3" path="res://MENU/infiniteammo.png" id="61_aw77s"]
-[ext_resource type="Texture2D" uid="uid://ckub1b377w5wf" path="res://PLAYER UI/beacon.png" id="62_ihm6w"]
 [ext_resource type="Texture2D" uid="uid://bm7h5x25gaahj" path="res://PLAYER UI/genericbutton.png" id="63_ltsuo"]
 [ext_resource type="Texture2D" uid="uid://n7tr7ym7wban" path="res://PLAYER UI/genericbuttonpressed.png" id="64_1oktm"]
 [ext_resource type="Texture2D" uid="uid://dwiual8urhr0m" path="res://MENU/paused.png" id="65_e61sl"]
@@ -64,7 +68,6 @@
 [ext_resource type="Script" uid="uid://t4mip4radjpx" path="res://level_pause.gd" id="67_7vxb4"]
 [ext_resource type="Texture2D" uid="uid://ccjrba14eys1t" path="res://PLAYER UI/reload.png" id="68_g8fr4"]
 [ext_resource type="Texture2D" uid="uid://0f0f5bednsmq" path="res://PLAYER UI/reloadpressed.png" id="69_0wbhh"]
-[ext_resource type="Script" uid="uid://dlyc6t41jsgo2" path="res://level_reload.gd" id="70_eu2lb"]
 
 [sub_resource type="GDScript" id="GDScript_jopgt"]
 script/source = "extends TextureRect
@@ -193,10 +196,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 77.0
-offset_top = -56.0
-offset_right = 77.0
-offset_bottom = -56.0
+offset_left = 69.0
+offset_top = -58.0
+offset_right = 69.0
+offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wvvvq")
@@ -204,6 +207,9 @@ script = ExtResource("1_wvvvq")
 [node name="Director" type="Node" parent="."]
 script = ExtResource("2_w0yia")
 fodder = ExtResource("3_pou12")
+officer = ExtResource("4_ayfhp")
+finger_idle = ExtResource("5_efco6")
+finger_press = ExtResource("6_wvvvq")
 
 [node name="LevelMusic" parent="." instance=ExtResource("8_ekdi6")]
 
@@ -289,13 +295,13 @@ offset_bottom = 817.0
 texture = ExtResource("25_tsstb")
 
 [node name="PointsLabel" type="Label" parent="GameOverLayer"]
-offset_left = 216.0
-offset_top = 687.0
-offset_right = 362.0
-offset_bottom = 750.0
+offset_left = 261.0
+offset_top = 704.0
+offset_right = 368.0
+offset_bottom = 752.5526
 scale = Vector2(2.1897602, 2.2243898)
 theme_override_colors/font_color = Color(0.33333334, 0.2784314, 0.25490198, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -321,9 +327,8 @@ texture = ExtResource("27_efco6")
 [node name="Background" type="TextureRect" parent="ShakeRig/Far"]
 layout_mode = 0
 offset_left = -236.0
-offset_top = 56.0
-offset_right = 764.0
-offset_bottom = 1336.0
+offset_right = 844.0
+offset_bottom = 1400.0
 texture = ExtResource("27_efco6")
 
 [node name="Mid" type="Control" parent="ShakeRig"]
@@ -333,21 +338,25 @@ offset_bottom = 40.0
 
 [node name="ground" type="TextureRect" parent="ShakeRig/Mid"]
 layout_mode = 0
-offset_left = -156.0
-offset_top = 102.0
-offset_right = 924.0
-offset_bottom = 1502.0
+offset_left = -159.0
+offset_top = 203.0
+offset_right = 993.49805
+offset_bottom = 1719.7517
 scale = Vector2(0.8000014, 0.7100701)
 texture = ExtResource("28_wvvvq")
 
 [node name="Spawn1" type="Marker2D" parent="ShakeRig/Mid"]
-position = Vector2(284, 587)
+position = Vector2(271, 400)
 
 [node name="Spawn2" type="Marker2D" parent="ShakeRig/Mid"]
-position = Vector2(491, 425)
+position = Vector2(471, 425)
 
 [node name="Spawn3" type="Marker2D" parent="ShakeRig/Mid"]
-position = Vector2(46, 413)
+position = Vector2(26, 413)
+
+[node name="SpawnOfficer1" type="Marker2D" parent="ShakeRig/Mid"]
+position = Vector2(260, 416)
+scale = Vector2(0.8000014, 0.7100701)
 
 [node name="Enemy_chef" parent="ShakeRig/Mid" instance=ExtResource("30_bi5wl")]
 layout_mode = 0
@@ -375,20 +384,20 @@ stream = ExtResource("34_b74b7")
 
 [node name="Rubble" type="TextureRect" parent="ShakeRig/Near"]
 layout_mode = 0
-offset_left = -197.0
-offset_top = 56.000015
-offset_right = 803.0
-offset_bottom = 1336.0
+offset_left = -236.00002
+offset_top = 103.00001
+offset_right = 833.0001
+offset_bottom = 1383.0002
 scale = Vector2(0.9999998, 0.9999998)
 texture = ExtResource("34_eqy4w")
 
 [node name="Shield" type="TextureRect" parent="ShakeRig/Near"]
 visible = false
 layout_mode = 0
-offset_left = -53.0
-offset_top = 729.0
-offset_right = 397.0
-offset_bottom = 1179.0
+offset_left = -92.0
+offset_top = 789.0
+offset_right = 358.0
+offset_bottom = 1239.0
 texture = ExtResource("36_h03n5")
 script = SubResource("GDScript_jopgt")
 tex_100 = ExtResource("36_h03n5")
@@ -399,20 +408,20 @@ tex_0 = ExtResource("40_of5x5")
 
 [node name="Player" parent="ShakeRig/Near" instance=ExtResource("41_vu5c6")]
 layout_mode = 0
-offset_left = -109.0
-offset_top = 739.0
-offset_right = 341.0
-offset_bottom = 1189.0
+offset_left = -92.0
+offset_top = 766.0
+offset_right = 358.0
+offset_bottom = 1216.0
 assault_shots = Array[AudioStream]([ExtResource("42_3r4bi"), ExtResource("43_jtueo"), ExtResource("44_iysfi")])
 heavy_shots = Array[AudioStream]([ExtResource("45_rx2vm"), ExtResource("46_mxjxn"), ExtResource("47_blueh")])
 
 [node name="Beacon" type="TextureRect" parent="ShakeRig/Near"]
 visible = false
 layout_mode = 0
-offset_left = -67.0
-offset_top = 761.0
-offset_right = 383.0
-offset_bottom = 1211.0
+offset_left = -141.0
+offset_top = 839.0
+offset_right = 309.0
+offset_bottom = 1289.0
 texture = ExtResource("48_xklpa")
 script = ExtResource("49_v6wm5")
 light_off = ExtResource("48_xklpa")
@@ -421,10 +430,10 @@ light_on = ExtResource("50_30wa4")
 [node name="Ammo" type="TextureRect" parent="ShakeRig/Near"]
 visible = false
 layout_mode = 0
-offset_left = -159.0
-offset_top = 846.0
-offset_right = 291.0
-offset_bottom = 1296.0
+offset_left = -183.0
+offset_top = 875.0
+offset_right = 267.0
+offset_bottom = 1325.0
 texture = ExtResource("51_21ho7")
 script = ExtResource("52_pgx8b")
 
@@ -508,33 +517,14 @@ offset_right = 322.0
 offset_bottom = 686.0
 texture = ExtResource("57_507pk")
 
-[node name="AbilityButton" type="TextureButton" parent="." node_paths=PackedStringArray("prompt")]
-layout_mode = 0
-offset_left = 517.0
-offset_top = 983.0
-offset_right = 617.0
-offset_bottom = 1103.0
-texture_normal = ExtResource("58_gi51h")
-script = ExtResource("59_blyt6")
-prompt = NodePath("../AbilityPrompt")
-shield_icon = ExtResource("60_i3x7y")
-ammo_icon = ExtResource("61_aw77s")
-beacon_icon = ExtResource("62_ihm6w")
-
 [node name="AbilityPrompt" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Question" type="Label" parent="AbilityPrompt"]
-layout_mode = 0
-offset_left = 300.0
-offset_top = 793.0
-offset_right = 340.0
-offset_bottom = 816.0
-theme_override_font_sizes/font_size = 25
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("56_6iejo")
+shield_icon = ExtResource("57_covl7")
+ammo_icon = ExtResource("61_aw77s")
+beacon_icon = ExtResource("59_efco6")
 
 [node name="Answer0" type="TextureButton" parent="AbilityPrompt"]
 layout_mode = 0
@@ -547,11 +537,13 @@ texture_pressed = ExtResource("64_1oktm")
 
 [node name="Label" type="Label" parent="AbilityPrompt/Answer0"]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 11.999999
-offset_right = 35.176468
-offset_bottom = 35.0
-scale = Vector2(3.5933664, 3.0488021)
+offset_left = 4.0
+offset_top = -10.0
+offset_right = 63.12372
+offset_bottom = 58.908447
+scale = Vector2(1.6913687, 1.6512033)
+theme_override_font_sizes/font_size = 20
+text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -566,13 +558,51 @@ texture_pressed = ExtResource("64_1oktm")
 
 [node name="Label" type="Label" parent="AbilityPrompt/Answer1"]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 11.999999
-offset_right = 35.176468
-offset_bottom = 35.0
-scale = Vector2(3.5933664, 3.0488021)
+offset_left = 4.0
+offset_top = -10.0
+offset_right = 63.12372
+offset_bottom = 58.908447
+scale = Vector2(1.6913687, 1.6512033)
+theme_override_font_sizes/font_size = 20
+text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="QuestionBox" type="TextureRect" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 396.00003
+offset_top = 766.0
+offset_right = 646.0
+offset_bottom = 886.0
+scale = Vector2(0.7852579, 0.6454814)
+texture = ExtResource("59_y8crp")
+
+[node name="Question" type="Label" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 398.0
+offset_top = 765.0
+offset_right = 592.0
+offset_bottom = 842.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReloadButton" type="TextureButton" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 983.0
+offset_right = 480.0
+offset_bottom = 1083.0
+texture_normal = ExtResource("68_g8fr4")
+texture_pressed = ExtResource("69_0wbhh")
+
+[node name="AbilityButton" type="TextureButton" parent="AbilityPrompt"]
+layout_mode = 0
+offset_left = 517.0
+offset_top = 983.0
+offset_right = 617.0
+offset_bottom = 1103.0
+texture_normal = ExtResource("58_gi51h")
 
 [node name="PauseButton" type="TextureButton" parent="."]
 layout_mode = 0
@@ -584,12 +614,11 @@ texture_normal = ExtResource("65_e61sl")
 texture_pressed = ExtResource("66_wdmuw")
 script = ExtResource("67_7vxb4")
 
-[node name="ReloadButton" type="TextureButton" parent="."]
+[node name="TutorialFinger" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 380.0
-offset_top = 983.0
-offset_right = 480.0
-offset_bottom = 1083.0
-texture_normal = ExtResource("68_g8fr4")
-texture_pressed = ExtResource("69_0wbhh")
-script = ExtResource("70_eu2lb")
+offset_left = 294.0
+offset_top = 427.0
+offset_right = 594.0
+offset_bottom = 727.0
+pivot_offset = Vector2(163, 166)
+texture = ExtResource("5_efco6")

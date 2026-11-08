@@ -1,0 +1,184 @@
+[gd_scene load_steps=17 format=3 uid="uid://8pa5xvdckl6o"]
+
+[ext_resource type="Script" uid="uid://b0ce1vubjg4cq" path="res://SURVIVAL_ALL/nemesis_knight.gd" id="1_eluqy"]
+[ext_resource type="PackedScene" uid="uid://j01sdak7oo4c" path="res://ENEMY/Squid_Trooper.tscn" id="2_pguuu"]
+[ext_resource type="PackedScene" uid="uid://wvsgqcntxsuw" path="res://ENEMY/Squid_shell.tscn" id="3_d2wrc"]
+[ext_resource type="Texture2D" uid="uid://co7ioh46nmv0e" path="res://SURVIVAL_ALL/Nemesis_Knight.png" id="3_dchu5"]
+[ext_resource type="AudioStream" uid="uid://2h6a2snaf14l" path="res://SOUNDS/ufo_wotw_entrance.mp3" id="4_267qu"]
+[ext_resource type="AudioStream" uid="uid://ioansqnexlnq" path="res://SOUNDS/09_heal.mp3" id="5_4aux0"]
+[ext_resource type="Texture2D" uid="uid://d25wq31sdsvj1" path="res://SURVIVAL_ALL/Nemesis_Knight_Shield.png" id="5_gmjdo"]
+[ext_resource type="AudioStream" uid="uid://28bgnrgxcjmg" path="res://SOUNDS/ufo_fire_zap.mp3" id="6_8ktq7"]
+[ext_resource type="AudioStream" uid="uid://swbuvaevimcx" path="res://SOUNDS/ufo_wotw_retreat.mp3" id="7_qlpjw"]
+[ext_resource type="AudioStream" uid="uid://c3jjk1kjjhon8" path="res://SOUNDS/ufo_wotw_powerup.mp3" id="8_3o5lk"]
+[ext_resource type="AudioStream" uid="uid://dfcdolbad4hlc" path="res://SOUNDS/ufo_fire_shot.mp3" id="9_mq8yi"]
+[ext_resource type="Texture2D" uid="uid://qqgk37aiprin" path="res://SURVIVAL_ALL/nemesis_tentacle_1.png" id="10_5lwar"]
+[ext_resource type="Texture2D" uid="uid://b2ww2dtybs71t" path="res://SURVIVAL_ALL/nemesis_tentacle_2.png" id="11_lgho1"]
+[ext_resource type="Texture2D" uid="uid://dsbo07np5lhjm" path="res://SURVIVAL_ALL/nemesis_tentacle_3.png" id="12_a03g6"]
+[ext_resource type="Texture2D" uid="uid://c45huqs8yaq8" path="res://Enemies Assets/Command_Aura.png" id="14_481sv"]
+[ext_resource type="Texture2D" uid="uid://du5ipue03ygmk" path="res://MENU/SquidBox.png" id="16_b5p61"]
+
+[node name="Nemesis_Knight" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 346.0
+offset_top = 255.0
+offset_right = 746.0
+offset_bottom = 555.0
+script = ExtResource("1_eluqy")
+max_hp = 5
+drone_scene = ExtResource("2_pguuu")
+shell_scene = ExtResource("3_d2wrc")
+drone_interval = 10.0
+fire_interval = 5.0
+arrive_sound = ExtResource("4_267qu")
+correct_sound = ExtResource("5_4aux0")
+wrong_sound = ExtResource("6_8ktq7")
+leave_sound = ExtResource("7_qlpjw")
+windup_sound = ExtResource("8_3o5lk")
+fire_sound = ExtResource("9_mq8yi")
+tentacle_frames = Array[Texture2D]([ExtResource("10_5lwar"), ExtResource("11_lgho1"), ExtResource("12_a03g6")])
+tentacle_fps = 8.0
+pulse_color = Color(0.7617086, 0, 0.15955266, 1)
+
+[node name="Tentacles1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -251.00003
+offset_top = 62.0
+offset_right = -155.00003
+offset_bottom = 176.0
+rotation = 0.3754787
+texture = ExtResource("10_5lwar")
+
+[node name="Tentacles2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -231.0
+offset_top = 172.0
+offset_right = -135.0
+offset_bottom = 286.0
+rotation = -0.10929634
+texture = ExtResource("10_5lwar")
+
+[node name="Tentacles3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 178.0
+offset_right = 336.0
+offset_bottom = 292.0
+rotation = -2.0055315
+texture = ExtResource("10_5lwar")
+
+[node name="Tentacles4" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 254.0
+offset_right = 274.0
+offset_bottom = 368.0
+rotation = -1.682675
+texture = ExtResource("10_5lwar")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -244.0
+offset_top = -148.0
+offset_right = 256.0
+offset_bottom = 452.0
+texture = ExtResource("3_dchu5")
+
+[node name="LED" type="Label" parent="."]
+layout_mode = 0
+offset_left = -110.0
+offset_top = 47.0
+offset_right = 126.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -108.0
+offset_top = -53.0
+offset_right = 130.0
+offset_bottom = 189.0
+texture = ExtResource("14_481sv")
+
+[node name="Shield" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -244.0
+offset_top = -145.0
+offset_right = 256.0
+offset_bottom = 455.0
+mouse_filter = 2
+texture = ExtResource("5_gmjdo")
+
+[node name="Answers" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -190.0
+offset_top = -69.0
+offset_right = -150.0
+offset_bottom = -29.0
+
+[node name="Answer0" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = -127.0
+offset_top = 278.0
+offset_right = 123.0
+offset_bottom = 398.0
+texture_normal = ExtResource("16_b5p61")
+
+[node name="Label" type="Label" parent="Answers/Answer0"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer1" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 278.0
+offset_right = 652.0
+offset_bottom = 398.0
+texture_normal = ExtResource("16_b5p61")
+
+[node name="Label" type="Label" parent="Answers/Answer1"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer2" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 483.0
+offset_right = 384.0
+offset_bottom = 603.0
+texture_normal = ExtResource("16_b5p61")
+
+[node name="Label" type="Label" parent="Answers/Answer2"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RocketIndicator1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -67.0
+offset_top = -63.0
+offset_right = 83.0
+offset_bottom = 87.0
+pivot_offset = Vector2(75, 77)
+texture = ExtResource("14_481sv")

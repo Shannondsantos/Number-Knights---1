@@ -1,0 +1,61 @@
+[gd_scene load_steps=13 format=3 uid="uid://tfaqq17y7u7h"]
+
+[ext_resource type="Script" uid="uid://br6i3v8sq188i" path="res://LEVELS_ACTUAL/level_10_final_comic.gd" id="1_tvgpx"]
+[ext_resource type="Texture2D" uid="uid://bl2v3a1p4pfcn" path="res://Level_Assets/biome3comic6.png" id="2_uu11c"]
+[ext_resource type="Texture2D" uid="uid://b1ln6bfmuvjb4" path="res://Level_Assets/biome3comic7.png" id="3_5i32m"]
+[ext_resource type="Texture2D" uid="uid://5lro57ex428o" path="res://Level_Assets/biome3comic8.png" id="4_wldeb"]
+[ext_resource type="Texture2D" uid="uid://csq7hqub7g1q8" path="res://LEVELS_ACTUAL/comics/biome1comic0.png" id="5_5i32m"]
+[ext_resource type="Texture2D" uid="uid://b42c2defh71p1" path="res://Level_Assets/biome3comic9.png" id="5_dom78"]
+[ext_resource type="Texture2D" uid="uid://efkbx4j5o1a1" path="res://Level_Assets/biome3comic10.png" id="6_iefrw"]
+[ext_resource type="Texture2D" uid="uid://dttkinjdoccbb" path="res://MENU/continue.png" id="6_wldeb"]
+[ext_resource type="AudioStream" uid="uid://dwwxuo6583qxk" path="res://Music_/Music_harumachimusic-faded-letter-127022.mp3" id="7_62kwr"]
+[ext_resource type="Texture2D" uid="uid://dpftybht82y1k" path="res://MENU/continuepressed.png" id="7_dom78"]
+[ext_resource type="Texture2D" uid="uid://bp2p6ml5uyv8i" path="res://MENU/LEVELS BUTTON GENERIC PRESSED.png" id="8_iefrw"]
+[ext_resource type="Texture2D" uid="uid://i5cwkt5rod1s" path="res://MENU/LEVELS BUTTON GENERIC.png" id="9_62kwr"]
+
+[node name="Comic" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tvgpx")
+pages = Array[Texture2D]([ExtResource("2_uu11c"), ExtResource("3_5i32m"), ExtResource("4_wldeb"), ExtResource("5_dom78"), ExtResource("6_iefrw")])
+next_level = "res://MENUS/StoryModeMenu.tscn"
+level_track = ExtResource("7_62kwr")
+
+[node name="Page" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_5i32m")
+
+[node name="NextButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 5.0
+offset_right = 715.0
+offset_bottom = 105.0
+texture_normal = ExtResource("6_wldeb")
+texture_pressed = ExtResource("7_dom78")
+
+[node name="SkipButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 256.0
+offset_bottom = 127.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("8_iefrw")
+texture_pressed = ExtResource("9_62kwr")
+
+[node name="Label" type="Label" parent="SkipButton"]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 131.24998
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 50
+text = "SKIP"
+horizontal_alignment = 1
+vertical_alignment = 1

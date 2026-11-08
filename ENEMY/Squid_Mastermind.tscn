@@ -1,0 +1,153 @@
+[gd_scene load_steps=16 format=3 uid="uid://bw5lkgw2kgg1y"]
+
+[ext_resource type="Script" uid="uid://1mtstxqx7adb" path="res://ENEMY/squid_mastermind.gd" id="1_qlg1d"]
+[ext_resource type="Texture2D" uid="uid://2av0qylcv2ve" path="res://SURVIVAL_ALL/MasterMind.png" id="1_vv8h3"]
+[ext_resource type="PackedScene" uid="uid://wvsgqcntxsuw" path="res://ENEMY/Squid_shell.tscn" id="2_a76nt"]
+[ext_resource type="Texture2D" uid="uid://ci4sesvicivva" path="res://SURVIVAL_ALL/Attack_Indicator_Squid.png" id="2_lpt3f"]
+[ext_resource type="Texture2D" uid="uid://bfov8nl3rsny6" path="res://SURVIVAL_ALL/MasterMind_Orb.png" id="3_d32bs"]
+[ext_resource type="PackedScene" uid="uid://trt7iyw8l1xl" path="res://ENEMY/Squid.tscn" id="3_pq6h0"]
+[ext_resource type="PackedScene" uid="uid://b1nwmic8gik1i" path="res://ENEMY/Squid_Death_Effect.tscn" id="4_v0fil"]
+[ext_resource type="Texture2D" uid="uid://ne084g7vplux" path="res://SURVIVAL_ALL/MasterMind_50.png" id="6_j4bcf"]
+[ext_resource type="Texture2D" uid="uid://bt7he5omxl570" path="res://SURVIVAL_ALL/MasterMind_25.png" id="7_xdjx5"]
+[ext_resource type="Texture2D" uid="uid://dbuxnpdvja8hl" path="res://SURVIVAL_ALL/MasterMind_dead.png" id="8_i58e8"]
+[ext_resource type="AudioStream" uid="uid://dxqtkxmpxnk2n" path="res://SOUNDS/Reloading.wav" id="9_62e6q"]
+[ext_resource type="AudioStream" uid="uid://28bgnrgxcjmg" path="res://SOUNDS/ufo_fire_zap.mp3" id="10_qv7yq"]
+[ext_resource type="AudioStream" uid="uid://cpqnihvkstj6q" path="res://SOUNDS/ufo_announce_chirp.mp3" id="11_8nofs"]
+[ext_resource type="Texture2D" uid="uid://bna0tlk7yr8mj" path="res://SURVIVAL_ALL/MasterMind_Shield.png" id="13_v0fil"]
+[ext_resource type="Script" uid="uid://c2ouis1p1rwgj" path="res://ENEMY/Squid_Mastermind_Ball.gd" id="14_pq6h0"]
+
+[node name="Mastermind" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(191, 136)
+script = ExtResource("1_qlg1d")
+fly_time = 1.0
+shell_scene = ExtResource("2_a76nt")
+fodder_scene = ExtResource("3_pq6h0")
+death_effect = ExtResource("4_v0fil")
+ball_spin = 1.0
+hull_tex_100 = ExtResource("1_vv8h3")
+hull_tex_50 = ExtResource("6_j4bcf")
+hull_tex_25 = ExtResource("7_xdjx5")
+hull_tex_dead = ExtResource("8_i58e8")
+windup_sound = ExtResource("9_62e6q")
+fire_sound = ExtResource("10_qv7yq")
+death_sound = ExtResource("11_8nofs")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 300.0
+pivot_offset = Vector2(192, 136)
+texture = ExtResource("1_vv8h3")
+
+[node name="Attack_Indicator1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 213.0
+offset_right = 142.0
+offset_bottom = 263.0
+pivot_offset = Vector2(72, 27)
+texture = ExtResource("2_lpt3f")
+
+[node name="Attack_Indicator2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 211.0
+offset_right = 397.0
+offset_bottom = 261.0
+pivot_offset = Vector2(70, 29)
+texture = ExtResource("2_lpt3f")
+
+[node name="MastermindShield" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("13_v0fil")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(186, 140)
+
+[node name="Ball1" type="TextureRect" parent="Marker2D"]
+offset_left = -57.0
+offset_top = -328.0
+offset_right = 59.0
+offset_bottom = -218.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("3_d32bs")
+script = ExtResource("14_pq6h0")
+death_effect = ExtResource("4_v0fil")
+
+[node name="Ball2" type="TextureRect" parent="Marker2D"]
+offset_left = 245.0
+offset_top = -70.0
+offset_right = 361.0
+offset_bottom = 40.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("3_d32bs")
+script = ExtResource("14_pq6h0")
+death_effect = ExtResource("4_v0fil")
+
+[node name="Ball3" type="TextureRect" parent="Marker2D"]
+offset_left = -51.0
+offset_top = 252.0
+offset_right = 65.0
+offset_bottom = 362.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("3_d32bs")
+script = ExtResource("14_pq6h0")
+death_effect = ExtResource("4_v0fil")
+
+[node name="Ball4" type="TextureRect" parent="Marker2D"]
+offset_left = -365.0
+offset_top = -57.0
+offset_right = -249.0
+offset_bottom = 53.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("3_d32bs")
+script = ExtResource("14_pq6h0")
+death_effect = ExtResource("4_v0fil")
+
+[node name="Ball5" type="TextureRect" parent="Marker2D"]
+offset_left = 170.0
+offset_top = -239.0
+offset_right = 286.0
+offset_bottom = -129.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("3_d32bs")
+script = ExtResource("14_pq6h0")
+death_effect = ExtResource("4_v0fil")
+
+[node name="Ball6" type="TextureRect" parent="Marker2D"]
+offset_left = 144.0
+offset_top = 135.0
+offset_right = 260.0
+offset_bottom = 245.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("3_d32bs")
+script = ExtResource("14_pq6h0")
+death_effect = ExtResource("4_v0fil")
+
+[node name="Ball7" type="TextureRect" parent="Marker2D"]
+offset_left = -284.0
+offset_top = -245.0
+offset_right = -168.0
+offset_bottom = -135.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("3_d32bs")
+script = ExtResource("14_pq6h0")
+death_effect = ExtResource("4_v0fil")
+
+[node name="Ball8" type="TextureRect" parent="Marker2D"]
+offset_left = -254.0
+offset_top = 185.0
+offset_right = -138.0
+offset_bottom = 295.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("3_d32bs")
+script = ExtResource("14_pq6h0")
+death_effect = ExtResource("4_v0fil")

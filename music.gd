@@ -62,6 +62,7 @@ func _play(stream: AudioStream) -> void:
 		return
 	_player.stream = stream
 	_player.play()
+	_player.bus = "Music"
 
 func stop() -> void:
 	_ensure_player()

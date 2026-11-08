@@ -1,0 +1,163 @@
+[gd_scene load_steps=16 format=3 uid="uid://8m5m3j6fdoo8"]
+
+[ext_resource type="Script" uid="uid://glpcewuvk0ga" path="res://ENEMY/mini_boss_navy.gd" id="1_wvloe"]
+[ext_resource type="PackedScene" uid="uid://dbnmpqqr26sqh" path="res://ENEMY/Enemy_Officer_Pawn.tscn" id="2_kyc58"]
+[ext_resource type="PackedScene" uid="uid://dvhxvkfuc4ik2" path="res://ENEMY/Enemy_Test.tscn" id="2_y8ipn"]
+[ext_resource type="Texture2D" uid="uid://cusm446wt7ntg" path="res://Enemies Assets/miniboss_navy.png" id="4_w40hx"]
+[ext_resource type="Texture2D" uid="uid://b65brphkkqf80" path="res://Enemies Assets/miniboss_navy_50.png" id="5_y54yn"]
+[ext_resource type="Texture2D" uid="uid://cwgsa6uuocxyf" path="res://Enemies Assets/miniboss_navy_25.png" id="6_3ixbn"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="6_cso0v"]
+[ext_resource type="Texture2D" uid="uid://rt8xtjasy80d" path="res://Enemies Assets/miniboss_navy_dead.png" id="8_c61pj"]
+[ext_resource type="AudioStream" uid="uid://c6a8qd0qgmpi8" path="res://SOUNDS/01_getout_foghorn.mp3" id="8_p0t0q"]
+[ext_resource type="AudioStream" uid="uid://ioansqnexlnq" path="res://SOUNDS/09_heal.mp3" id="9_c61pj"]
+[ext_resource type="AudioStream" uid="uid://ccqyqh5bdjfcu" path="res://SOUNDS/02_enemy_mech_attack.mp3" id="10_lgoye"]
+[ext_resource type="Texture2D" uid="uid://cljkpbd7wlyv4" path="res://MENU/number holder.png" id="11_130y8"]
+[ext_resource type="Texture2D" uid="uid://dbx7js40d5l7m" path="res://Enemies Assets/Command_Aura_3.png" id="12_t0gc0"]
+[ext_resource type="Texture2D" uid="uid://e40k0aucfe0x" path="res://Enemies Assets/miniboss_propeller1.png" id="13_k0ar7"]
+[ext_resource type="Texture2D" uid="uid://b34fnqug3ccn2" path="res://Enemies Assets/miniboss_shield.png" id="14_usdyh"]
+
+[node name="Mini_Boss_Navy" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 346.0
+offset_top = 255.0
+offset_right = 746.0
+offset_bottom = 555.0
+script = ExtResource("1_wvloe")
+max_hp = 7
+points = 50
+officer_scene = ExtResource("2_kyc58")
+drone_scene = ExtResource("2_y8ipn")
+drone_interval_min = 5.0
+drone_interval_max = 15.0
+hull_tex_100 = ExtResource("4_w40hx")
+hull_tex_50 = ExtResource("5_y54yn")
+hull_tex_25 = ExtResource("6_3ixbn")
+death_effect = ExtResource("6_cso0v")
+dead_texture = ExtResource("8_c61pj")
+arrive_sound = ExtResource("8_p0t0q")
+correct_sound = ExtResource("9_c61pj")
+wrong_sound = ExtResource("10_lgoye")
+death_sound = ExtResource("8_p0t0q")
+hit_sound = ExtResource("10_lgoye")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -203.0
+offset_top = -97.0
+offset_right = 197.0
+offset_bottom = 203.0
+texture = ExtResource("4_w40hx")
+
+[node name="LED" type="Label" parent="."]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -21.0
+offset_right = 116.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answers" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -190.0
+offset_top = -13.0
+offset_right = -150.0
+offset_bottom = 27.0
+
+[node name="Answer0" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = -127.0
+offset_top = 278.0
+offset_right = 123.0
+offset_bottom = 398.0
+texture_normal = ExtResource("11_130y8")
+
+[node name="Label" type="Label" parent="Answers/Answer0"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer1" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 278.0
+offset_right = 652.0
+offset_bottom = 398.0
+texture_normal = ExtResource("11_130y8")
+
+[node name="Label" type="Label" parent="Answers/Answer1"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer2" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 283.0
+offset_right = 384.0
+offset_bottom = 403.0
+texture_normal = ExtResource("11_130y8")
+
+[node name="Label" type="Label" parent="Answers/Answer2"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 71.0
+offset_right = 207.0
+offset_bottom = 221.0
+texture = ExtResource("12_t0gc0")
+
+[node name="Propeller" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -202.0
+offset_top = 12.0
+offset_right = -133.0
+offset_bottom = 67.0
+texture = ExtResource("13_k0ar7")
+
+[node name="Propeller2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 9.0
+offset_right = 197.0
+offset_bottom = 64.0
+texture = ExtResource("13_k0ar7")
+
+[node name="Shield" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -221.0
+offset_top = -94.0
+offset_right = 229.0
+offset_bottom = 206.0
+mouse_filter = 2
+texture = ExtResource("14_usdyh")
+
+[node name="Health" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -182.0
+offset_top = -152.0
+offset_right = -142.0
+offset_bottom = -112.0
+scale = Vector2(8.840002, 1)
+color = Color(0.36347285, 0.003931777, 0.37205544, 1)

@@ -1,0 +1,181 @@
+[gd_scene load_steps=17 format=3 uid="uid://cyn2d17u211p1"]
+
+[ext_resource type="Script" uid="uid://bprf6y1pt60xa" path="res://SURVIVAL_ALL/nemesis_normal.gd" id="1_dmkvb"]
+[ext_resource type="PackedScene" uid="uid://j01sdak7oo4c" path="res://ENEMY/Squid_Trooper.tscn" id="2_uc7nx"]
+[ext_resource type="Texture2D" uid="uid://dwx1gtkmv0db3" path="res://SURVIVAL_ALL/Nemesis_Normal.png" id="3_68n78"]
+[ext_resource type="PackedScene" uid="uid://wvsgqcntxsuw" path="res://ENEMY/Squid_shell.tscn" id="3_uc4mo"]
+[ext_resource type="AudioStream" uid="uid://2h6a2snaf14l" path="res://SOUNDS/ufo_wotw_entrance.mp3" id="4_ta45w"]
+[ext_resource type="AudioStream" uid="uid://ioansqnexlnq" path="res://SOUNDS/09_heal.mp3" id="5_enqca"]
+[ext_resource type="Texture2D" uid="uid://iqf05b486wph" path="res://SURVIVAL_ALL/Nemesis_Normal_Shield.png" id="5_xaw70"]
+[ext_resource type="AudioStream" uid="uid://28bgnrgxcjmg" path="res://SOUNDS/ufo_fire_zap.mp3" id="6_mjxdn"]
+[ext_resource type="AudioStream" uid="uid://cpqnihvkstj6q" path="res://SOUNDS/ufo_announce_chirp.mp3" id="7_oebgs"]
+[ext_resource type="AudioStream" uid="uid://c3jjk1kjjhon8" path="res://SOUNDS/ufo_wotw_powerup.mp3" id="8_4m5jw"]
+[ext_resource type="AudioStream" uid="uid://dfcdolbad4hlc" path="res://SOUNDS/ufo_fire_shot.mp3" id="9_te8w5"]
+[ext_resource type="Texture2D" uid="uid://qqgk37aiprin" path="res://SURVIVAL_ALL/nemesis_tentacle_1.png" id="9_vwoe2"]
+[ext_resource type="Texture2D" uid="uid://b2ww2dtybs71t" path="res://SURVIVAL_ALL/nemesis_tentacle_2.png" id="10_cav0r"]
+[ext_resource type="Texture2D" uid="uid://dsbo07np5lhjm" path="res://SURVIVAL_ALL/nemesis_tentacle_3.png" id="11_ll5l5"]
+[ext_resource type="Texture2D" uid="uid://dbx7js40d5l7m" path="res://Enemies Assets/Command_Aura_3.png" id="13_wdv8y"]
+[ext_resource type="Texture2D" uid="uid://du5ipue03ygmk" path="res://MENU/SquidBox.png" id="15_b1y4b"]
+
+[node name="Nemesis_normal" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 346.0
+offset_top = 255.0
+offset_right = 746.0
+offset_bottom = 555.0
+script = ExtResource("1_dmkvb")
+max_hp = 5
+points = 100
+drone_scene = ExtResource("2_uc7nx")
+shell_scene = ExtResource("3_uc4mo")
+fire_interval = 4.0
+arrive_sound = ExtResource("4_ta45w")
+correct_sound = ExtResource("5_enqca")
+wrong_sound = ExtResource("6_mjxdn")
+leave_sound = ExtResource("7_oebgs")
+windup_sound = ExtResource("8_4m5jw")
+fire_sound = ExtResource("9_te8w5")
+tentacle_frames = Array[Texture2D]([ExtResource("9_vwoe2"), ExtResource("10_cav0r"), ExtResource("11_ll5l5")])
+
+[node name="Tentacles1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -251.00003
+offset_top = 62.0
+offset_right = -155.00003
+offset_bottom = 176.0
+rotation = 0.3754787
+texture = ExtResource("9_vwoe2")
+
+[node name="Tentacles2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -231.0
+offset_top = 172.0
+offset_right = -135.0
+offset_bottom = 286.0
+rotation = -0.10929634
+texture = ExtResource("9_vwoe2")
+
+[node name="Tentacles3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 178.0
+offset_right = 336.0
+offset_bottom = 292.0
+rotation = -2.0055315
+texture = ExtResource("9_vwoe2")
+
+[node name="Tentacles4" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 254.0
+offset_right = 274.0
+offset_bottom = 368.0
+rotation = -1.682675
+texture = ExtResource("9_vwoe2")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -244.0
+offset_top = -148.0
+offset_right = 256.0
+offset_bottom = 452.0
+texture = ExtResource("3_68n78")
+
+[node name="LED" type="Label" parent="."]
+layout_mode = 0
+offset_left = -110.0
+offset_top = 47.0
+offset_right = 126.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -108.0
+offset_top = -53.0
+offset_right = 130.0
+offset_bottom = 189.0
+texture = ExtResource("13_wdv8y")
+
+[node name="Shield" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -244.0
+offset_top = -145.0
+offset_right = 256.0
+offset_bottom = 455.0
+mouse_filter = 2
+texture = ExtResource("5_xaw70")
+
+[node name="Answers" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -190.0
+offset_top = -69.0
+offset_right = -150.0
+offset_bottom = -29.0
+
+[node name="Answer0" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = -127.0
+offset_top = 278.0
+offset_right = 123.0
+offset_bottom = 398.0
+texture_normal = ExtResource("15_b1y4b")
+
+[node name="Label" type="Label" parent="Answers/Answer0"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer1" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 278.0
+offset_right = 652.0
+offset_bottom = 398.0
+texture_normal = ExtResource("15_b1y4b")
+
+[node name="Label" type="Label" parent="Answers/Answer1"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer2" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 483.0
+offset_right = 384.0
+offset_bottom = 603.0
+texture_normal = ExtResource("15_b1y4b")
+
+[node name="Label" type="Label" parent="Answers/Answer2"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RocketIndicator1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -67.0
+offset_top = -63.0
+offset_right = 83.0
+offset_bottom = 87.0
+pivot_offset = Vector2(75, 77)
+texture = ExtResource("13_wdv8y")

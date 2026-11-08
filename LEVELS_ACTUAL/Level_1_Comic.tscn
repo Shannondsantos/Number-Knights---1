@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwtfly473gyni"]
+
+[ext_resource type="Script" uid="uid://bdht5jnjuyif" path="res://LEVELS_ACTUAL/level_1_comic.gd" id="1_tn7o6"]
+[ext_resource type="Texture2D" uid="uid://csq7hqub7g1q8" path="res://LEVELS_ACTUAL/comics/biome1comic0.png" id="2_ulck3"]
+[ext_resource type="Texture2D" uid="uid://brd35d5fwekiu" path="res://LEVELS_ACTUAL/comics/biome1comic1.png" id="3_kpbnh"]
+[ext_resource type="Texture2D" uid="uid://crq5em5qtvuc7" path="res://LEVELS_ACTUAL/comics/biome1comic2.png" id="4_h5mbs"]
+[ext_resource type="Texture2D" uid="uid://sc5fjrx7e4u2" path="res://LEVELS_ACTUAL/comics/biome1comic3.png" id="5_5fnfn"]
+[ext_resource type="Texture2D" uid="uid://c6m74lcr8nlts" path="res://LEVELS_ACTUAL/comics/biome1comic4.png" id="5_h5mbs"]
+[ext_resource type="AudioStream" uid="uid://bfsk6ck6llj38" path="res://Music_/Music_sergequadrado-mafia-13004.mp3" id="5_kpbnh"]
+[ext_resource type="Texture2D" uid="uid://dttkinjdoccbb" path="res://MENU/continue.png" id="6_bddkh"]
+[ext_resource type="Texture2D" uid="uid://dpftybht82y1k" path="res://MENU/continuepressed.png" id="7_q7pn6"]
+[ext_resource type="Texture2D" uid="uid://bp2p6ml5uyv8i" path="res://MENU/LEVELS BUTTON GENERIC PRESSED.png" id="8_jb8vg"]
+[ext_resource type="Texture2D" uid="uid://i5cwkt5rod1s" path="res://MENU/LEVELS BUTTON GENERIC.png" id="9_fojms"]
+
+[node name="Comic" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tn7o6")
+pages = Array[Texture2D]([ExtResource("3_kpbnh"), ExtResource("4_h5mbs"), ExtResource("5_5fnfn"), ExtResource("5_h5mbs")])
+next_level = "res://LEVELS_ACTUAL/Level_1.tscn"
+level_track = ExtResource("5_kpbnh")
+
+[node name="Page" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ulck3")
+
+[node name="NextButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 5.0
+offset_right = 715.0
+offset_bottom = 105.0
+texture_normal = ExtResource("6_bddkh")
+texture_pressed = ExtResource("7_q7pn6")
+
+[node name="SkipButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 256.0
+offset_bottom = 127.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("8_jb8vg")
+texture_pressed = ExtResource("9_fojms")
+
+[node name="Label" type="Label" parent="SkipButton"]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 139.99998
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 50
+text = "SKIP"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7hxyhge03iu4"]
+
+[ext_resource type="Script" uid="uid://euhhbnejv4b1" path="res://SURVIVAL_ALL/survival_comic.gd" id="1_v0uql"]
+[ext_resource type="Texture2D" uid="uid://cmn1s38odlsij" path="res://SURVIVAL_ALL/comic1.png" id="2_gkopd"]
+[ext_resource type="Texture2D" uid="uid://ddpjd83fpt0cn" path="res://SURVIVAL_ALL/comic2.png" id="3_jeyqd"]
+[ext_resource type="AudioStream" uid="uid://crlwo8evmsgiw" path="res://Music_/slimeyfox-alien-electro-1982-471156.mp3" id="4_jeyqd"]
+[ext_resource type="Texture2D" uid="uid://csq7hqub7g1q8" path="res://LEVELS_ACTUAL/comics/biome1comic0.png" id="7_spqyn"]
+[ext_resource type="Texture2D" uid="uid://dttkinjdoccbb" path="res://MENU/continue.png" id="8_ewrj4"]
+[ext_resource type="Texture2D" uid="uid://dpftybht82y1k" path="res://MENU/continuepressed.png" id="9_ns7kj"]
+[ext_resource type="Texture2D" uid="uid://bp2p6ml5uyv8i" path="res://MENU/LEVELS BUTTON GENERIC PRESSED.png" id="10_cacn0"]
+[ext_resource type="Texture2D" uid="uid://i5cwkt5rod1s" path="res://MENU/LEVELS BUTTON GENERIC.png" id="11_svo2g"]
+
+[node name="Comic" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v0uql")
+pages = Array[Texture2D]([ExtResource("2_gkopd"), ExtResource("3_jeyqd")])
+next_level = "res://SURVIVAL_ALL/Survival_Easy.tscn"
+level_track = ExtResource("4_jeyqd")
+
+[node name="Page" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_spqyn")
+
+[node name="NextButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 5.0
+offset_right = 715.0
+offset_bottom = 105.0
+texture_normal = ExtResource("8_ewrj4")
+texture_pressed = ExtResource("9_ns7kj")
+
+[node name="SkipButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 256.0
+offset_bottom = 127.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("10_cacn0")
+texture_pressed = ExtResource("11_svo2g")
+
+[node name="Label" type="Label" parent="SkipButton"]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 139.99998
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 50
+text = "SKIP"
+horizontal_alignment = 1
+vertical_alignment = 1

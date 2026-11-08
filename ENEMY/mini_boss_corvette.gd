@@ -1,10 +1,8 @@
 extends Control
-
 signal parked
 signal defeated
 signal failed_answer
-
-@export var max_hp: int = 5
+@export var max_hp: int = 25
 @export var points: int = 55
 @export var contact_damage: int = 1
 @export var fly_time := 8.0
@@ -17,34 +15,25 @@ signal failed_answer
 @export var drone_fast_min := 3.2
 @export var drone_fast_max := 4.2
 @export var rush_time := 50.0
-
 @export var hull_tex_100: Texture2D
 @export var hull_tex_50: Texture2D
 @export var hull_tex_25: Texture2D
 @export var dead_texture: Texture2D
 @export var death_effect: PackedScene
-
-@export var easy_max := 9
-@export var hard_min := 10
-@export var hard_max := 12
-
 @export var prop_wiggle := 0.08
 @export var prop_wiggle_speed := 1.6
 @export var lumber_move := 12.0
 @export var lumber_rot := 0.025
-
 @export var arrive_sound: AudioStream
 @export var correct_sound: AudioStream
 @export var wrong_sound: AudioStream
 @export var death_sound: AudioStream
-
 @onready var hull: TextureRect = get_node_or_null("Hull")
 @onready var led: Label = get_node_or_null("LED")
 @onready var answers: Control = get_node_or_null("Answers")
 @onready var nav_light: TextureRect = get_node_or_null("Attack_Indicator")
 @onready var shield: TextureRect = get_node_or_null("Shield")
 @onready var health_bar: Control = get_node_or_null("Health")
-
 var hp: int = 8
 var _alive := true
 var _parked := false
@@ -68,10 +57,11 @@ var _prop: TextureRect
 var _prop_base := 0.0
 var _prop_park := 0.0
 var _prop_home := Vector2.ZERO
-
+var _seen: Array[String] = []
 func _ready() -> void:
 	add_to_group("minibosses")
 	add_to_group("enemies")
+	add_to_group("elites")
 	hp = max_hp
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	modulate.a = 0.0
@@ -104,7 +94,6 @@ func _ready() -> void:
 	_sfx = AudioStreamPlayer.new()
 	add_child(_sfx)
 	call_deferred("_begin_approach")
-
 func _begin_approach() -> void:
 	if not _alive:
 		return
@@ -114,7 +103,6 @@ func _begin_approach() -> void:
 	global_position = _park_global - Vector2(travel_distance, 0.0)
 	modulate.a = 1.0
 	_fly_in()
-
 func _setup_health_bar() -> void:
 	if health_bar == null:
 		return
@@ -123,7 +111,6 @@ func _setup_health_bar() -> void:
 	_hp_fill = fill if fill is Control else health_bar
 	_hp_fill_w = _hp_fill.size.x
 	_refresh_health_bar(false)
-
 func _refresh_health_bar(animate: bool = true) -> void:
 	if _hp_fill == null:
 		return
@@ -136,7 +123,6 @@ func _refresh_health_bar(animate: bool = true) -> void:
 		_hp_tw.kill()
 	_hp_tw = _hp_fill.create_tween()
 	_hp_tw.tween_property(_hp_fill, "size", target, 0.15).set_trans(Tween.TRANS_SINE)
-
 func _hide_shield() -> void:
 	if shield == null:
 		return
@@ -144,15 +130,12 @@ func _hide_shield() -> void:
 	shield.visible = false
 	shield.modulate.a = 0.0
 	_shield_up = false
-
 func contains_point(screen_pos: Vector2) -> bool:
 	if hull and hull.get_global_rect().has_point(screen_pos):
 		return true
 	return false
-
 func receive_shot() -> void:
 	_pulse_shield()
-
 func _pulse_shield() -> void:
 	if shield == null:
 		return
@@ -165,7 +148,6 @@ func _pulse_shield() -> void:
 	_shield_tw.tween_property(shield, "modulate:a", 0.55, 0.08)
 	_shield_tw.tween_property(shield, "modulate:a", 0.0, 0.35)
 	_shield_tw.finished.connect(_hide_shield)
-
 func _fly_in() -> void:
 	_parked = false
 	_hide_shield()
@@ -179,7 +161,6 @@ func _fly_in() -> void:
 		_prop.rotation = _prop_base
 		tw.tween_property(_prop, "rotation", _prop_park, fly_time).set_trans(Tween.TRANS_SINE)
 	tw.chain().tween_callback(_on_parked)
-
 func _on_parked() -> void:
 	if not _alive:
 		return
@@ -203,37 +184,66 @@ func _on_parked() -> void:
 				btn.mouse_filter = Control.MOUSE_FILTER_STOP
 	_new_question()
 	parked.emit()
-
-func _hard() -> bool:
-	return hp * 2 <= max_hp
-
+func _diff() -> float:
+	return 1.0 - clampf(float(hp) / float(maxi(max_hp, 1)), 0.0, 1.0)
 func _new_question() -> void:
-	if randf() < 0.5:
-		_question_missing()
+	if randf() < 0.45:
+		_q_div()
 	else:
-		_question_product()
-
-func _question_product() -> void:
-	var a := _factor()
-	var b := _factor()
+		_q_mul()
+func _q_mul() -> void:
+	var d := _diff()
+	var hi := int(lerpf(5, 12, d))
+	var a := 0
+	var b := 0
+	var key := ""
+	var found := false
+	for _try in 40:
+		a = randi_range(2, hi)
+		b = randi_range(2, hi)
+		key = "%d*%d" % [a, b]
+		if _seen.has(key):
+			continue
+		found = true
+		break
+	if not found:
+		_seen.clear()
+		a = randi_range(2, hi)
+		b = randi_range(2, hi)
+		key = "%d*%d" % [a, b]
+	_seen.append(key)
 	_correct = a * b
 	if led:
 		led.text = "%d × %d = ?" % [a, b]
 	_fill_answers(_correct)
-
-func _question_missing() -> void:
-	var a := _factor()
-	var b := _factor()
-	_correct = b
+func _q_div() -> void:
+	var d := _diff()
+	var hi := int(lerpf(5, 12, d))
+	var b := 0
+	var quot := 0
+	var a := 0
+	var key := ""
+	var found := false
+	for _try in 40:
+		b = randi_range(2, hi)
+		quot = randi_range(2, hi)
+		a = b * quot
+		key = "%d/%d" % [a, b]
+		if _seen.has(key):
+			continue
+		found = true
+		break
+	if not found:
+		_seen.clear()
+		b = randi_range(2, hi)
+		quot = randi_range(2, hi)
+		a = b * quot
+		key = "%d/%d" % [a, b]
+	_seen.append(key)
+	_correct = quot
 	if led:
-		led.text = "%d × _ = %d" % [a, a * b]
+		led.text = "%d ÷ %d = ?" % [a, b]
 	_fill_answers(_correct)
-
-func _factor() -> int:
-	if _hard():
-		return randi_range(hard_min, hard_max)
-	return randi_range(2, easy_max)
-
 func _fill_answers(right: int) -> void:
 	if answers == null:
 		return
@@ -252,7 +262,6 @@ func _fill_answers(right: int) -> void:
 		if lbl:
 			lbl.text = str(opts[i])
 		btn.set_meta("value", opts[i])
-
 func _pick(i: int) -> void:
 	if not _alive or not _parked or answers == null:
 		return
@@ -271,7 +280,6 @@ func _pick(i: int) -> void:
 		if hud != null and hud.has_method("apply_damage"):
 			hud.apply_damage(contact_damage)
 		_new_question()
-
 func _process(delta: float) -> void:
 	if shield and not _shield_up:
 		_hide_shield()
@@ -303,7 +311,6 @@ func _process(delta: float) -> void:
 			_drone_cd = randf_range(drone_fast_min, drone_fast_max)
 		else:
 			_drone_cd = randf_range(drone_interval_min, drone_interval_max)
-
 func _spawn_wave() -> void:
 	if drone_scene == null:
 		return
@@ -312,7 +319,6 @@ func _spawn_wave() -> void:
 		var x := (_drone_slot - 1) * drone_spread
 		_launch(drone_scene, _park_global, _park_global + Vector2(x, drone_drop), 0.7)
 		_drone_slot = (_drone_slot + 1) % 3
-
 func _launch(packed: PackedScene, from_global: Vector2, dest_global: Vector2, t: float) -> void:
 	var n := packed.instantiate()
 	var host := get_parent()
@@ -335,7 +341,6 @@ func _launch(packed: PackedScene, from_global: Vector2, dest_global: Vector2, t:
 		else:
 			n.set("_base_pos", n.position)
 	)
-
 func _apply_hull_tex() -> void:
 	if hull == null:
 		return
@@ -347,7 +352,6 @@ func _apply_hull_tex() -> void:
 		tex = hull_tex_50
 	if tex:
 		hull.texture = tex
-
 func take_hit() -> void:
 	if not _alive:
 		return
@@ -360,7 +364,6 @@ func take_hit() -> void:
 	_boom()
 	if hp <= 0:
 		_die()
-
 func _die() -> void:
 	if not _alive:
 		return
@@ -387,7 +390,6 @@ func _die() -> void:
 	tw.tween_property(self, "rotation", rotation + 0.25, 5.0)
 	tw.tween_property(self, "modulate:a", 0.0, 5.0)
 	tw.chain().tween_callback(queue_free)
-
 func _boom() -> void:
 	if death_effect == null:
 		return
@@ -401,13 +403,11 @@ func _boom() -> void:
 		fx.setup(mid)
 	else:
 		fx.global_position = mid
-
 func _play(stream: AudioStream) -> void:
 	if _sfx == null or stream == null:
 		return
 	_sfx.stream = stream
 	_sfx.play()
-
 func _hud() -> Node:
 	var n := get_tree().current_scene
 	if n != null and n.has_method("apply_damage"):

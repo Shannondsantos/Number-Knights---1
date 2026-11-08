@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy57gv5m26dno"]
+
+[ext_resource type="Texture2D" uid="uid://hxommb10lagm" path="res://TIMETRIALS_ALL/void_prop.png" id="1_elwxg"]
+[ext_resource type="Script" uid="uid://brs3xr07jsq6i" path="res://TIMETRIALS_ALL/blimp_prop.gd" id="2_mdhd3"]
+
+[node name="BlimpProp" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_elwxg")
+script = ExtResource("2_mdhd3")

@@ -1,7 +1,7 @@
 extends TextureButton
 
 
-@export var next_scene: String = "res://MENUS/MidMenu.tscn"
+@export var next_scene: String = "res://MENUS/StoryModeMenu.tscn"
 
 var start_rotation := 2.0
 

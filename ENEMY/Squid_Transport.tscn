@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0y3klvaphpdl"]
+
+[ext_resource type="Script" uid="uid://bu4vmos26jc8a" path="res://ENEMY/enemy_delivery_stormtrooper.gd" id="1_oyd1e"]
+[ext_resource type="PackedScene" uid="uid://j01sdak7oo4c" path="res://ENEMY/Squid_Trooper.tscn" id="2_oyd1e"]
+[ext_resource type="Texture2D" uid="uid://ceyv2g88bhmk5" path="res://SURVIVAL_ALL/Delivery_UFO.png" id="3_oyd1e"]
+[ext_resource type="Texture2D" uid="uid://rlffpwh4xnf0" path="res://SURVIVAL_ALL/Delivery_UFO_delivered.png" id="4_pxhr8"]
+
+[node name="Stormtrooper Delivery" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(143, 114)
+script = ExtResource("1_oyd1e")
+stormtrooper_scene = ExtResource("2_oyd1e")
+full_texture = ExtResource("3_oyd1e")
+empty_texture = ExtResource("4_pxhr8")
+
+[node name="Body" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+pivot_offset = Vector2(110, 132)
+texture = ExtResource("3_oyd1e")

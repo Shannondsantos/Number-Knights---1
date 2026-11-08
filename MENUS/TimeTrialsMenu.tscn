@@ -1,0 +1,384 @@
+[gd_scene load_steps=29 format=3 uid="uid://dbxlq75n6j7kf"]
+
+[ext_resource type="Script" uid="uid://dvmnsxr02fhlx" path="res://MENUS/story_mode_menu.gd" id="1_srs08"]
+[ext_resource type="Texture2D" uid="uid://cca26oqw0jds8" path="res://MENU/midmenubackgroundplayers_1.png" id="2_sjk30"]
+[ext_resource type="Script" uid="uid://vp1qa5l4yedn" path="res://background_1.gd" id="3_bkeug"]
+[ext_resource type="Texture2D" uid="uid://dd0ihvmea7i2s" path="res://MENU/container level.png" id="4_dji6o"]
+[ext_resource type="Texture2D" uid="uid://b5xkjs0g6vomi" path="res://MENU/back.png" id="5_qc237"]
+[ext_resource type="Texture2D" uid="uid://khkeduwiwc2x" path="res://TIMETRIALS_ALL/Easy.png" id="5_xx2bv"]
+[ext_resource type="Script" uid="uid://ci1g7ivmlo630" path="res://MENUS/button_timetrials_easy.gd" id="6_c025f"]
+[ext_resource type="Texture2D" uid="uid://4iokg6iqpfal" path="res://MENU/back_pressed.png" id="6_qukf2"]
+[ext_resource type="Texture2D" uid="uid://cp6csfja1mqdk" path="res://TIMETRIALS_ALL/medal_bronze.png" id="7_nq25c"]
+[ext_resource type="Texture2D" uid="uid://bvyhtx2xebqsx" path="res://TIMETRIALS_ALL/medal_blank.png" id="7_srs08"]
+[ext_resource type="Texture2D" uid="uid://bjw5nnlyqmeh4" path="res://TIMETRIALS_ALL/medal_iron.png" id="8_36fgj"]
+[ext_resource type="PackedScene" uid="uid://bdm5oktrfc7nd" path="res://MENU/cog.tscn" id="8_ocm76"]
+[ext_resource type="PackedScene" uid="uid://c4oou5s0otjg6" path="res://MENU/cog2.tscn" id="9_3r87l"]
+[ext_resource type="Texture2D" uid="uid://cwdlnh57tf68" path="res://TIMETRIALS_ALL/medal_gold.png" id="9_vy35a"]
+[ext_resource type="Texture2D" uid="uid://46epi188atxy" path="res://MENU/button_generic.png" id="10_oqrty"]
+[ext_resource type="Texture2D" uid="uid://bvua0dwrc14ji" path="res://TIMETRIALS_ALL/medal_diamond.png" id="10_txcpg"]
+[ext_resource type="Texture2D" uid="uid://b7biula0t002l" path="res://TIMETRIALS_ALL/Normal.png" id="11_36fgj"]
+[ext_resource type="Texture2D" uid="uid://boad1gxaci3ur" path="res://MENU/button_generic_pressed.png" id="11_n7l2n"]
+[ext_resource type="Script" uid="uid://bgb53kltl17ss" path="res://MENUS/story_mode_upgrades.gd" id="12_r5pgc"]
+[ext_resource type="Script" uid="uid://44gkllq2utrk" path="res://MENUS/normal_button.gd" id="12_vy35a"]
+[ext_resource type="Texture2D" uid="uid://jtuhrg4pdy3n" path="res://TIMETRIALS_ALL/Hard.png" id="13_txcpg"]
+[ext_resource type="Script" uid="uid://i5bnr43pc0s7" path="res://MENUS/hard_button.gd" id="14_eb65y"]
+[ext_resource type="Texture2D" uid="uid://cygkbxs5gtk5t" path="res://TIMETRIALS_ALL/Expert.png" id="15_n0x22"]
+[ext_resource type="Script" uid="uid://bbb5s20oicwno" path="res://MENUS/expert_button.gd" id="16_earu6"]
+[ext_resource type="Texture2D" uid="uid://da3xb5l8jwwdo" path="res://TIMETRIALS_ALL/Knight.png" id="17_earu6"]
+[ext_resource type="Script" uid="uid://c8bf4w6bithd8" path="res://MENUS/knight.gd" id="18_sjk30"]
+[ext_resource type="Script" uid="uid://bpvx1gp18csq6" path="res://MENUS/back_button_minigames_menu.gd" id="21_sjk30"]
+[ext_resource type="PackedScene" uid="uid://dl4iouu12pty0" path="res://TIMETRIALS_ALL/Time_Trials_Pawn.tscn" id="28_bkeug"]
+
+[node name="TimeTrials" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_srs08")
+
+[node name="Background1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("2_sjk30")
+script = ExtResource("3_bkeug")
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 1280.0
+offset_right = 720.0
+offset_bottom = 2560.0
+texture = ExtResource("2_sjk30")
+script = ExtResource("3_bkeug")
+
+[node name="LevelButtonsContainer" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -39.0
+offset_right = 636.0
+offset_bottom = 1230.8105
+scale = Vector2(1.1245216, 1.3610706)
+texture = ExtResource("4_dji6o")
+stretch_mode = 3
+
+[node name="EasyButton" type="TextureButton" parent="LevelButtonsContainer"]
+layout_mode = 0
+offset_left = 46.241886
+offset_top = 102.8602
+offset_right = 446.24188
+offset_bottom = 222.8602
+scale = Vector2(1.0000011, 0.9816723)
+texture_normal = ExtResource("5_xx2bv")
+script = ExtResource("6_c025f")
+next_scene = "res://LEVELS_ACTUAL/time_trial_comic.tscn"
+
+[node name="blank" type="TextureRect" parent="LevelButtonsContainer/EasyButton"]
+layout_mode = 0
+offset_left = 453.5262
+offset_top = 22.632202
+offset_right = 548.67773
+offset_bottom = 98.6322
+texture = ExtResource("7_srs08")
+
+[node name="Bronze" type="TextureRect" parent="LevelButtonsContainer/EasyButton"]
+layout_mode = 0
+offset_left = 453.52618
+offset_top = 22.632208
+offset_right = 548.67773
+offset_bottom = 98.63221
+texture = ExtResource("7_nq25c")
+
+[node name="Iron" type="TextureRect" parent="LevelButtonsContainer/EasyButton"]
+layout_mode = 0
+offset_left = 454.41547
+offset_top = 22.561167
+offset_right = 549.567
+offset_bottom = 98.561165
+texture = ExtResource("8_36fgj")
+
+[node name="Gold" type="TextureRect" parent="LevelButtonsContainer/EasyButton"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366924
+offset_right = 549.567
+offset_bottom = 99.36693
+texture = ExtResource("9_vy35a")
+
+[node name="Diamond" type="TextureRect" parent="LevelButtonsContainer/EasyButton"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366922
+offset_right = 549.567
+offset_bottom = 99.36692
+texture = ExtResource("10_txcpg")
+
+[node name="NormalButton" type="TextureButton" parent="LevelButtonsContainer"]
+layout_mode = 0
+offset_left = 46.241886
+offset_top = 246.86446
+offset_right = 446.24188
+offset_bottom = 366.8645
+scale = Vector2(1.0000011, 0.9816723)
+texture_normal = ExtResource("11_36fgj")
+script = ExtResource("12_vy35a")
+next_scene = "res://LEVELS_ACTUAL/Time_Trials_Normal.tscn"
+
+[node name="blank" type="TextureRect" parent="LevelButtonsContainer/NormalButton"]
+layout_mode = 0
+offset_left = 453.5262
+offset_top = 22.632217
+offset_right = 548.67773
+offset_bottom = 98.63222
+texture = ExtResource("7_srs08")
+
+[node name="Bronze" type="TextureRect" parent="LevelButtonsContainer/NormalButton"]
+layout_mode = 0
+offset_left = 453.52618
+offset_top = 22.632208
+offset_right = 548.67773
+offset_bottom = 98.63221
+texture = ExtResource("7_nq25c")
+
+[node name="Iron" type="TextureRect" parent="LevelButtonsContainer/NormalButton"]
+layout_mode = 0
+offset_left = 454.41547
+offset_top = 22.561167
+offset_right = 549.567
+offset_bottom = 98.561165
+texture = ExtResource("8_36fgj")
+
+[node name="Gold" type="TextureRect" parent="LevelButtonsContainer/NormalButton"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366924
+offset_right = 549.567
+offset_bottom = 99.36693
+texture = ExtResource("9_vy35a")
+
+[node name="Diamond" type="TextureRect" parent="LevelButtonsContainer/NormalButton"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366922
+offset_right = 549.567
+offset_bottom = 99.36692
+texture = ExtResource("10_txcpg")
+
+[node name="HardButton" type="TextureButton" parent="LevelButtonsContainer"]
+layout_mode = 0
+offset_left = 47.131153
+offset_top = 384.25635
+offset_right = 447.13116
+offset_bottom = 504.25635
+scale = Vector2(1.0000011, 0.9816723)
+texture_normal = ExtResource("13_txcpg")
+script = ExtResource("14_eb65y")
+next_scene = "res://LEVELS_ACTUAL/Time_Trials_Hard.tscn"
+
+[node name="blank" type="TextureRect" parent="LevelButtonsContainer/HardButton"]
+layout_mode = 0
+offset_left = 453.5262
+offset_top = 22.632172
+offset_right = 548.67773
+offset_bottom = 98.63217
+texture = ExtResource("7_srs08")
+
+[node name="Bronze" type="TextureRect" parent="LevelButtonsContainer/HardButton"]
+layout_mode = 0
+offset_left = 453.52618
+offset_top = 22.632208
+offset_right = 548.67773
+offset_bottom = 98.63221
+texture = ExtResource("7_nq25c")
+
+[node name="Iron" type="TextureRect" parent="LevelButtonsContainer/HardButton"]
+layout_mode = 0
+offset_left = 454.41547
+offset_top = 22.561167
+offset_right = 549.567
+offset_bottom = 98.561165
+texture = ExtResource("8_36fgj")
+
+[node name="Gold" type="TextureRect" parent="LevelButtonsContainer/HardButton"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366924
+offset_right = 549.567
+offset_bottom = 99.36693
+texture = ExtResource("9_vy35a")
+
+[node name="Diamond" type="TextureRect" parent="LevelButtonsContainer/HardButton"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366922
+offset_right = 549.567
+offset_bottom = 99.36692
+texture = ExtResource("10_txcpg")
+
+[node name="ExpertButton" type="TextureButton" parent="LevelButtonsContainer"]
+layout_mode = 0
+offset_left = 47.131153
+offset_top = 518.7093
+offset_right = 447.13116
+offset_bottom = 638.7093
+scale = Vector2(1.0000011, 0.9816723)
+texture_normal = ExtResource("15_n0x22")
+script = ExtResource("16_earu6")
+next_scene = "res://LEVELS_ACTUAL/Time_Trials_Expert.tscn"
+
+[node name="blank" type="TextureRect" parent="LevelButtonsContainer/ExpertButton"]
+layout_mode = 0
+offset_left = 453.52625
+offset_top = 22.632202
+offset_right = 548.67773
+offset_bottom = 98.6322
+texture = ExtResource("7_srs08")
+
+[node name="Bronze" type="TextureRect" parent="LevelButtonsContainer/ExpertButton"]
+layout_mode = 0
+offset_left = 453.52618
+offset_top = 22.632208
+offset_right = 548.67773
+offset_bottom = 98.63221
+texture = ExtResource("7_nq25c")
+
+[node name="Iron" type="TextureRect" parent="LevelButtonsContainer/ExpertButton"]
+layout_mode = 0
+offset_left = 454.41547
+offset_top = 22.561167
+offset_right = 549.567
+offset_bottom = 98.561165
+texture = ExtResource("8_36fgj")
+
+[node name="Gold" type="TextureRect" parent="LevelButtonsContainer/ExpertButton"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366924
+offset_right = 549.567
+offset_bottom = 99.36693
+texture = ExtResource("9_vy35a")
+
+[node name="Diamond" type="TextureRect" parent="LevelButtonsContainer/ExpertButton"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366922
+offset_right = 549.567
+offset_bottom = 99.36692
+texture = ExtResource("10_txcpg")
+
+[node name="Knight" type="TextureButton" parent="LevelButtonsContainer"]
+layout_mode = 0
+offset_left = 45.35262
+offset_top = 654.6317
+offset_right = 445.35263
+offset_bottom = 774.6317
+scale = Vector2(1.0000011, 0.9816723)
+texture_normal = ExtResource("17_earu6")
+script = ExtResource("18_sjk30")
+next_scene = "res://LEVELS_ACTUAL/Time_Trials_Knight.tscn"
+
+[node name="blank" type="TextureRect" parent="LevelButtonsContainer/Knight"]
+layout_mode = 0
+offset_left = 453.5262
+offset_top = 22.632202
+offset_right = 548.67773
+offset_bottom = 98.6322
+texture = ExtResource("7_srs08")
+
+[node name="Bronze" type="TextureRect" parent="LevelButtonsContainer/Knight"]
+layout_mode = 0
+offset_left = 453.52618
+offset_top = 22.632208
+offset_right = 548.67773
+offset_bottom = 98.63221
+texture = ExtResource("7_nq25c")
+
+[node name="Iron" type="TextureRect" parent="LevelButtonsContainer/Knight"]
+layout_mode = 0
+offset_left = 454.41547
+offset_top = 22.561167
+offset_right = 549.567
+offset_bottom = 98.561165
+texture = ExtResource("8_36fgj")
+
+[node name="Gold" type="TextureRect" parent="LevelButtonsContainer/Knight"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366924
+offset_right = 549.567
+offset_bottom = 99.36693
+texture = ExtResource("9_vy35a")
+
+[node name="Diamond" type="TextureRect" parent="LevelButtonsContainer/Knight"]
+layout_mode = 0
+offset_left = 454.41544
+offset_top = 23.366922
+offset_right = 549.567
+offset_bottom = 99.36692
+texture = ExtResource("10_txcpg")
+
+[node name="BackButton_MidMenu" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 1141.0
+offset_right = 708.0
+offset_bottom = 1261.0
+texture_normal = ExtResource("5_qc237")
+texture_pressed = ExtResource("6_qukf2")
+script = ExtResource("21_sjk30")
+
+[node name="Cog" parent="BackButton_MidMenu" instance=ExtResource("8_ocm76")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -25.0
+offset_right = 59.0
+offset_bottom = 25.0
+
+[node name="Cog2" parent="BackButton_MidMenu" instance=ExtResource("9_3r87l")]
+layout_mode = 0
+offset_left = -17.0
+offset_top = 8.0
+offset_right = 33.0
+offset_bottom = 58.0
+
+[node name="Upgrades" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 15.0
+offset_top = 1150.0
+offset_right = 265.0
+offset_bottom = 1270.0
+texture_normal = ExtResource("10_oqrty")
+texture_pressed = ExtResource("11_n7l2n")
+script = ExtResource("12_r5pgc")
+
+[node name="Cog" parent="Upgrades" instance=ExtResource("8_ocm76")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -18.0
+offset_right = 66.0
+offset_bottom = 32.0
+
+[node name="Cog2" parent="Upgrades" instance=ExtResource("9_3r87l")]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 15.0
+offset_right = 40.0
+offset_bottom = 65.0
+
+[node name="Label" type="Label" parent="Upgrades"]
+layout_mode = 0
+offset_right = 249.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 30
+text = "Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy_Test" parent="." instance=ExtResource("28_bkeug")]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 1012.0
+offset_right = 151.0
+offset_bottom = 1132.0

@@ -1,0 +1,81 @@
+[gd_scene load_steps=16 format=3 uid="uid://byx3pjety44l1"]
+
+[ext_resource type="Script" uid="uid://dsg0qnrlwpoi0" path="res://ENEMY/squid_boat.gd" id="1_1gfq6"]
+[ext_resource type="PackedScene" uid="uid://wvsgqcntxsuw" path="res://ENEMY/Squid_shell.tscn" id="2_oo7go"]
+[ext_resource type="PackedScene" uid="uid://bfxq8fv3tqhs2" path="res://ENEMY/Elite_Squid.tscn" id="3_1gfq6"]
+[ext_resource type="PackedScene" uid="uid://b1nwmic8gik1i" path="res://ENEMY/Squid_Death_Effect.tscn" id="4_nd5hc"]
+[ext_resource type="Texture2D" uid="uid://dhb1ubpmwlx6h" path="res://SURVIVAL_ALL/Elite_Barrage.png" id="5_1gfq6"]
+[ext_resource type="Texture2D" uid="uid://bv5o41xv25cix" path="res://SURVIVAL_ALL/Elite_Barrage_50.png" id="6_oo7go"]
+[ext_resource type="Texture2D" uid="uid://cwgb0cf5f7fua" path="res://SURVIVAL_ALL/Elite_Barrage_25.png" id="7_k4pje"]
+[ext_resource type="Texture2D" uid="uid://ctheoibsrjvat" path="res://SURVIVAL_ALL/Elite_Barrage_dead.png" id="8_nd5hc"]
+[ext_resource type="Texture2D" uid="uid://bw3fxug4wedn6" path="res://SURVIVAL_ALL/air1.png" id="9_82mwq"]
+[ext_resource type="Texture2D" uid="uid://cgqnnlqvel85v" path="res://SURVIVAL_ALL/air2.png" id="10_gjkd2"]
+[ext_resource type="Texture2D" uid="uid://d3rwv3uswvu5h" path="res://SURVIVAL_ALL/air3.png" id="11_harar"]
+[ext_resource type="AudioStream" uid="uid://biphrf8c8cyn8" path="res://SOUNDS/01_enemy_windup_warning.mp3" id="12_27770"]
+[ext_resource type="AudioStream" uid="uid://28bgnrgxcjmg" path="res://SOUNDS/ufo_fire_zap.mp3" id="13_wlmnn"]
+[ext_resource type="AudioStream" uid="uid://cc2pqpa5tce5m" path="res://SOUNDS/drone_death.mp3" id="14_uwuy5"]
+[ext_resource type="Texture2D" uid="uid://ci4sesvicivva" path="res://SURVIVAL_ALL/Attack_Indicator_Squid.png" id="15_gf7ob"]
+
+[node name="Enemy_Boat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 371.0
+offset_top = 281.0
+offset_right = 371.0
+offset_bottom = 281.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(273, -43)
+script = ExtResource("1_1gfq6")
+max_hp = 90
+points = 15
+fly_time = 3.0
+fire_interval = 1.0
+shell_scene = ExtResource("2_oo7go")
+heal_drone_scene = ExtResource("3_1gfq6")
+death_effect = ExtResource("4_nd5hc")
+hull_tex_100 = ExtResource("5_1gfq6")
+hull_tex_50 = ExtResource("6_oo7go")
+hull_tex_20 = ExtResource("7_k4pje")
+hull_tex_dead = ExtResource("8_nd5hc")
+wave_frames = Array[Texture2D]([ExtResource("9_82mwq"), ExtResource("10_gjkd2"), ExtResource("11_harar")])
+windup_sound = ExtResource("12_27770")
+fire_sound = ExtResource("13_wlmnn")
+death_sound = ExtResource("14_uwuy5")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -204.0
+offset_top = -200.0
+offset_right = 196.0
+offset_bottom = 100.0
+texture = ExtResource("5_1gfq6")
+
+[node name="Waves" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -194.0
+offset_top = 60.0
+offset_right = 181.0
+offset_bottom = 147.0
+scale = Vector2(1, 0.6)
+texture = ExtResource("9_82mwq")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -168.0
+offset_top = -106.0
+offset_right = -18.0
+offset_bottom = -56.0
+pivot_offset = Vector2(73, 28)
+texture = ExtResource("15_gf7ob")
+
+[node name="Attack_Indicator2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = -111.0
+offset_right = 176.0
+offset_bottom = -61.0
+pivot_offset = Vector2(73, 22)
+texture = ExtResource("15_gf7ob")

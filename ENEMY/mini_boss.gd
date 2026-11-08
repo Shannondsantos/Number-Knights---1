@@ -4,7 +4,7 @@ signal parked
 signal defeated
 signal failed_answer
 
-@export var max_hp: int = 5
+@export var max_hp: int = 10
 @export var points: int = 30
 @export var contact_damage: int = 1
 @export var max_addend := 9
@@ -63,7 +63,7 @@ var _shield_up := false
 var _hp_fill: Control
 var _hp_fill_w := 0.0
 var _hp_tw: Tween
-
+var _seen: Array[String] = []
 var _props: Array[TextureRect] = []
 var _prop_base_rot: Array[float] = []
 var _prop_park_rot: Array[float] = []
@@ -332,21 +332,41 @@ func _spawn_fodder_wave() -> void:
 		_drone_slot += 1
 
 func _new_question() -> void:
+	var hard := hp * 2 <= maxi(max_hp, 1)
 	var lo := 1
-	var hi := maxi(max_addend, 1)
-	var a := randi_range(lo, hi)
-	var b := randi_range(lo, hi)
+	var hi := 9
+	if hard:
+		lo = 10
+		hi = 19
+	var a := 1
+	var b := 1
+	var key := ""
+	var found := false
+	for _try in 50:
+		a = randi_range(lo, hi)
+		b = randi_range(lo, hi)
+		if a == b:
+			continue
+		key = "%d+%d" % [a, b]
+		if _seen.has(key):
+			continue
+		found = true
+		break
+	if not found:
+		_seen.clear()
+		a = randi_range(lo, hi)
+		b = randi_range(lo, hi)
+		if a == b:
+			b = mini(hi, b + 1)
+		key = "%d+%d" % [a, b]
+	_seen.append(key)
 	_correct = a + b
 	if led:
 		led.text = "%d + %d = ?" % [a, b]
 	var opts: Array[int] = [_correct]
 	while opts.size() < 3:
-		var fake: int = _correct + randi_range(-4, 4)
-		if fake < 1:
-			continue
-		if fake == _correct:
-			continue
-		if opts.has(fake):
+		var fake: int = _correct + randi_range(-6, 6)
+		if fake < 2 or fake == _correct or opts.has(fake):
 			continue
 		opts.append(fake)
 	opts.shuffle()

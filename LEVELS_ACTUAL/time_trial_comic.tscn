@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8hc1tkyjlepp"]
+
+[ext_resource type="Script" uid="uid://bx6ukhmv51n57" path="res://LEVELS_ACTUAL/time_trial_comic.gd" id="1_pgo67"]
+[ext_resource type="Texture2D" uid="uid://cojshsjm5dbxt" path="res://LEVELS_ACTUAL/comics/page1.png" id="2_185fx"]
+[ext_resource type="Texture2D" uid="uid://cbhn4lww811l8" path="res://LEVELS_ACTUAL/comics/page2.png" id="3_baue3"]
+[ext_resource type="AudioStream" uid="uid://dwwxuo6583qxk" path="res://Music_/Music_harumachimusic-faded-letter-127022.mp3" id="4_1l01j"]
+[ext_resource type="Texture2D" uid="uid://csq7hqub7g1q8" path="res://LEVELS_ACTUAL/comics/biome1comic0.png" id="7_k47yh"]
+[ext_resource type="Texture2D" uid="uid://dttkinjdoccbb" path="res://MENU/continue.png" id="8_8dnvl"]
+[ext_resource type="Texture2D" uid="uid://dpftybht82y1k" path="res://MENU/continuepressed.png" id="9_3shuu"]
+[ext_resource type="Texture2D" uid="uid://bp2p6ml5uyv8i" path="res://MENU/LEVELS BUTTON GENERIC PRESSED.png" id="10_dvq4t"]
+[ext_resource type="Texture2D" uid="uid://i5cwkt5rod1s" path="res://MENU/LEVELS BUTTON GENERIC.png" id="11_tum2y"]
+
+[node name="Comic" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pgo67")
+pages = Array[Texture2D]([ExtResource("2_185fx"), ExtResource("3_baue3")])
+next_level = "res://LEVELS_ACTUAL/Time_Trials_Easy.tscn"
+level_track = ExtResource("4_1l01j")
+
+[node name="Page" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_k47yh")
+
+[node name="NextButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 5.0
+offset_right = 715.0
+offset_bottom = 105.0
+texture_normal = ExtResource("8_8dnvl")
+texture_pressed = ExtResource("9_3shuu")
+
+[node name="SkipButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 256.0
+offset_bottom = 127.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("10_dvq4t")
+texture_pressed = ExtResource("11_tum2y")
+
+[node name="Label" type="Label" parent="SkipButton"]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 139.99998
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 50
+text = "SKIP"
+horizontal_alignment = 1
+vertical_alignment = 1

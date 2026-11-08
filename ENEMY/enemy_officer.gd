@@ -3,8 +3,8 @@ extends TextureRect
 signal died
 signal spawned_drone
 
-@export var max_hp: int = 75
-@export var points: int = 5
+@export var max_hp: int = 25
+@export var points: int = 12
 @export var dead_texture: Texture2D
 @export var death_effect: PackedScene
 @export var drone_scene: PackedScene

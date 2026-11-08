@@ -1,0 +1,32 @@
+[gd_scene load_steps=9 format=3 uid="uid://trt7iyw8l1xl"]
+
+[ext_resource type="Texture2D" uid="uid://dn4cgjwy2hd47" path="res://SURVIVAL_ALL/Squid.png" id="1_k0a3u"]
+[ext_resource type="Script" uid="uid://chlsjh8lsks6c" path="res://ENEMY/enemy_pawn.gd" id="2_nyhrp"]
+[ext_resource type="Texture2D" uid="uid://dt0np8oqlck13" path="res://SURVIVAL_ALL/Squid_Dead.png" id="3_nyhrp"]
+[ext_resource type="PackedScene" uid="uid://b1nwmic8gik1i" path="res://ENEMY/Squid_Death_Effect.tscn" id="4_s6333"]
+[ext_resource type="AudioStream" uid="uid://dxqtkxmpxnk2n" path="res://SOUNDS/Reloading.wav" id="9_k0a3u"]
+[ext_resource type="AudioStream" uid="uid://28bgnrgxcjmg" path="res://SOUNDS/ufo_fire_zap.mp3" id="10_nyhrp"]
+[ext_resource type="AudioStream" uid="uid://c10j1bj642sy8" path="res://SOUNDS/03_enemy_mech_explosion.mp3" id="11_etkja"]
+[ext_resource type="Texture2D" uid="uid://ci4sesvicivva" path="res://SURVIVAL_ALL/Attack_Indicator_Squid.png" id="12_k0a3u"]
+
+[node name="squid" type="TextureRect"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(52, 43)
+mouse_filter = 2
+texture = ExtResource("1_k0a3u")
+script = ExtResource("2_nyhrp")
+dead_texture = ExtResource("3_nyhrp")
+death_effect = ExtResource("4_s6333")
+base_texture = ExtResource("1_k0a3u")
+windup_sound = ExtResource("9_k0a3u")
+attack_sound = ExtResource("10_nyhrp")
+death_sound = ExtResource("11_etkja")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -23.0
+offset_top = 17.0
+offset_right = 127.0
+offset_bottom = 67.0
+texture = ExtResource("12_k0a3u")

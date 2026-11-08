@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c44lb5srkqred"]
+
+[ext_resource type="Texture2D" uid="uid://bogny80hkolxe" path="res://Enemies Assets/Pawn.png" id="1_vuweh"]
+[ext_resource type="Script" uid="uid://cd3fdmr5dddok" path="res://TIMETRIALS_ALL/time_trials_pawn.gd" id="2_0rlap"]
+
+[node name="Enemy_Test" type="TextureRect"]
+offset_right = 120.0
+offset_bottom = 120.0
+pivot_offset = Vector2(63, 65)
+mouse_filter = 2
+texture = ExtResource("1_vuweh")
+script = ExtResource("2_0rlap")
+light_off = ExtResource("1_vuweh")
+light_on = ExtResource("1_vuweh")

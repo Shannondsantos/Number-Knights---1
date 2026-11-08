@@ -1,0 +1,155 @@
+[gd_scene load_steps=15 format=3 uid="uid://bkj45n23lpjxw"]
+
+[ext_resource type="Script" uid="uid://1mtstxqx7adb" path="res://ENEMY/squid_mastermind.gd" id="1_g30v6"]
+[ext_resource type="PackedScene" uid="uid://bbw8ugtkkg0os" path="res://ENEMY/enemy_tank_shell.tscn" id="2_w28na"]
+[ext_resource type="PackedScene" uid="uid://bo5bas4vijgi2" path="res://ENEMY/Air_Pawn.tscn" id="3_vo8ro"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="4_ldb81"]
+[ext_resource type="Texture2D" uid="uid://b2kak4spge1bn" path="res://Enemies Assets/SteamLord.png" id="5_y7evw"]
+[ext_resource type="Texture2D" uid="uid://ygsb4d1bxv5c" path="res://Enemies Assets/SteamLord_50.png" id="6_6bnxx"]
+[ext_resource type="Texture2D" uid="uid://bsatuo3rn7at7" path="res://Enemies Assets/SteamLord_25.png" id="7_k58ep"]
+[ext_resource type="Texture2D" uid="uid://c1rhdwaug5nne" path="res://Enemies Assets/SteamLord_dead.png" id="8_ka2qi"]
+[ext_resource type="AudioStream" uid="uid://c6a8qd0qgmpi8" path="res://SOUNDS/01_getout_foghorn.mp3" id="9_g30v6"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="10_w28na"]
+[ext_resource type="Texture2D" uid="uid://cqw5ikqtbhdyj" path="res://Enemies Assets/officer_Indicator.png" id="12_2vmym"]
+[ext_resource type="Texture2D" uid="uid://c1hls27tv3gka" path="res://Enemies Assets/SteamLord_shield.png" id="13_47kxb"]
+[ext_resource type="Texture2D" uid="uid://ditmpr6arruqd" path="res://Enemies Assets/SteamLord_Orb.png" id="14_4ooh3"]
+[ext_resource type="Script" uid="uid://c2ouis1p1rwgj" path="res://ENEMY/Squid_Mastermind_Ball.gd" id="15_7qxrd"]
+
+[node name="SteamLord" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(191, 136)
+script = ExtResource("1_g30v6")
+max_hp = 200
+points = 50
+fly_time = 1.0
+fire_interval = 4.0
+shell_scene = ExtResource("2_w28na")
+fodder_scene = ExtResource("3_vo8ro")
+death_effect = ExtResource("4_ldb81")
+ball_spin = 1.0
+hull_tex_100 = ExtResource("5_y7evw")
+hull_tex_50 = ExtResource("6_6bnxx")
+hull_tex_25 = ExtResource("7_k58ep")
+hull_tex_dead = ExtResource("8_ka2qi")
+windup_sound = ExtResource("9_g30v6")
+fire_sound = ExtResource("10_w28na")
+death_sound = ExtResource("9_g30v6")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 300.0
+pivot_offset = Vector2(192, 136)
+texture = ExtResource("5_y7evw")
+
+[node name="Attack_Indicator1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 213.0
+offset_right = 142.0
+offset_bottom = 263.0
+pivot_offset = Vector2(72, 27)
+texture = ExtResource("12_2vmym")
+
+[node name="Attack_Indicator2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 211.0
+offset_right = 397.0
+offset_bottom = 261.0
+pivot_offset = Vector2(70, 29)
+texture = ExtResource("12_2vmym")
+
+[node name="MastermindShield" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("13_47kxb")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(186, 140)
+
+[node name="Ball1" type="TextureRect" parent="Marker2D"]
+offset_left = -57.0
+offset_top = -328.0
+offset_right = 59.0
+offset_bottom = -218.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("14_4ooh3")
+script = ExtResource("15_7qxrd")
+death_effect = ExtResource("4_ldb81")
+
+[node name="Ball2" type="TextureRect" parent="Marker2D"]
+offset_left = 245.0
+offset_top = -70.0
+offset_right = 361.0
+offset_bottom = 40.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("14_4ooh3")
+script = ExtResource("15_7qxrd")
+death_effect = ExtResource("4_ldb81")
+
+[node name="Ball3" type="TextureRect" parent="Marker2D"]
+offset_left = -51.0
+offset_top = 252.0
+offset_right = 65.0
+offset_bottom = 362.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("14_4ooh3")
+script = ExtResource("15_7qxrd")
+death_effect = ExtResource("4_ldb81")
+
+[node name="Ball4" type="TextureRect" parent="Marker2D"]
+offset_left = -365.0
+offset_top = -57.0
+offset_right = -249.0
+offset_bottom = 53.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("14_4ooh3")
+script = ExtResource("15_7qxrd")
+death_effect = ExtResource("4_ldb81")
+
+[node name="Ball5" type="TextureRect" parent="Marker2D"]
+offset_left = 170.0
+offset_top = -239.0
+offset_right = 286.0
+offset_bottom = -129.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("14_4ooh3")
+script = ExtResource("15_7qxrd")
+death_effect = ExtResource("4_ldb81")
+
+[node name="Ball6" type="TextureRect" parent="Marker2D"]
+offset_left = 144.0
+offset_top = 135.0
+offset_right = 260.0
+offset_bottom = 245.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("14_4ooh3")
+script = ExtResource("15_7qxrd")
+death_effect = ExtResource("4_ldb81")
+
+[node name="Ball7" type="TextureRect" parent="Marker2D"]
+offset_left = -284.0
+offset_top = -245.0
+offset_right = -168.0
+offset_bottom = -135.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("14_4ooh3")
+script = ExtResource("15_7qxrd")
+death_effect = ExtResource("4_ldb81")
+
+[node name="Ball8" type="TextureRect" parent="Marker2D"]
+offset_left = -254.0
+offset_top = 185.0
+offset_right = -138.0
+offset_bottom = 295.0
+pivot_offset = Vector2(55, 54)
+texture = ExtResource("14_4ooh3")
+script = ExtResource("15_7qxrd")
+death_effect = ExtResource("4_ldb81")

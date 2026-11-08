@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://3di4hi6m307j"]
+[gd_scene load_steps=31 format=3 uid="uid://3di4hi6m307j"]
 
 [ext_resource type="Script" uid="uid://dvmnsxr02fhlx" path="res://MENUS/story_mode_menu.gd" id="1_xjuud"]
 [ext_resource type="Texture2D" uid="uid://b3wpqheleixvn" path="res://MENU/midmenubackground_2.png" id="2_kmdxt"]
@@ -12,8 +12,24 @@
 [ext_resource type="Script" uid="uid://lltg142d3cj0" path="res://LEVELS_ACTUAL/level_buttons/level_start_1.gd" id="7_3gsnj"]
 [ext_resource type="PackedScene" uid="uid://bdm5oktrfc7nd" path="res://MENU/cog.tscn" id="8_0xced"]
 [ext_resource type="PackedScene" uid="uid://c4oou5s0otjg6" path="res://MENU/cog2.tscn" id="9_vtbi8"]
+[ext_resource type="Texture2D" uid="uid://46epi188atxy" path="res://MENU/button_generic.png" id="10_1l0nu"]
+[ext_resource type="Texture2D" uid="uid://boad1gxaci3ur" path="res://MENU/button_generic_pressed.png" id="11_uva1t"]
+[ext_resource type="Script" uid="uid://bgb53kltl17ss" path="res://MENUS/story_mode_upgrades.gd" id="12_1l0nu"]
 [ext_resource type="Texture2D" uid="uid://gbsc1a2o81ug" path="res://MENU/level_locked.png" id="13_0xced"]
 [ext_resource type="Script" uid="uid://y2q1wdsikc2y" path="res://LEVELS_ACTUAL/level_buttons/level_start_2.gd" id="14_vtbi8"]
+[ext_resource type="Script" uid="uid://bwnccqpasj6vb" path="res://LEVELS_ACTUAL/level_buttons/level_start_3.gd" id="15_mxv08"]
+[ext_resource type="Texture2D" uid="uid://dg5nrwpxqh1ju" path="res://MENU/boss.png" id="16_ngcqh"]
+[ext_resource type="Script" uid="uid://ddt72dsf3auxp" path="res://LEVELS_ACTUAL/level_buttons/level_start_4.gd" id="17_riadh"]
+[ext_resource type="Script" uid="uid://d2cfbsp55034" path="res://LEVELS_ACTUAL/level_buttons/level_start_5.gd" id="18_vyihk"]
+[ext_resource type="Script" uid="uid://b85imwhbvrnvb" path="res://LEVELS_ACTUAL/level_buttons/level_start_6.gd" id="19_vyihk"]
+[ext_resource type="Script" uid="uid://135igco58wfl" path="res://LEVELS_ACTUAL/level_buttons/level_start_7.gd" id="20_avf0j"]
+[ext_resource type="Script" uid="uid://dsn04doe16us" path="res://LEVELS_ACTUAL/level_buttons/level_start_8.gd" id="21_pwc1d"]
+[ext_resource type="Script" uid="uid://cux6uj8ty3kan" path="res://LEVELS_ACTUAL/level_buttons/level_start_9.gd" id="22_pwc1d"]
+[ext_resource type="Script" uid="uid://5r34a6twbx13" path="res://MENUS/level_start_10.gd" id="26_ao2a8"]
+[ext_resource type="Texture2D" uid="uid://i82yl6ba2qfu" path="res://MENU/final.png" id="27_62u66"]
+[ext_resource type="Texture2D" uid="uid://do1sxo5paiufc" path="res://MENU/ClearAward.png" id="28_62u66"]
+[ext_resource type="Script" uid="uid://bie0qokbumgja" path="res://MENUS/award.gd" id="29_fpw60"]
+[ext_resource type="PackedScene" uid="uid://c44lb5srkqred" path="res://TIMETRIALS_ALL/A_StoryMode_Pawn.tscn" id="30_bdryf"]
 
 [node name="Storymode" type="Control"]
 layout_mode = 3
@@ -34,7 +50,20 @@ texture = ExtResource("2_kmdxt")
 expand_mode = 1
 script = ExtResource("3_ot5t8")
 
+[node name="Award" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 816.0
+offset_right = 1181.0
+offset_bottom = 1484.0
+rotation = 0.17930444
+scale = Vector2(0.4930664, 0.4930664)
+mouse_filter = 2
+texture = ExtResource("28_62u66")
+script = ExtResource("29_fpw60")
+
 [node name="LevelButtonsContainer" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 4.0
 offset_top = -39.0
@@ -56,17 +85,52 @@ script = ExtResource("5_u7ok6")
 
 [node name="Cog" parent="BackButton_MidMenu" instance=ExtResource("8_0xced")]
 layout_mode = 0
-offset_left = 16.0
-offset_top = -18.0
-offset_right = 66.0
-offset_bottom = 32.0
+offset_left = 8.0
+offset_top = -27.0
+offset_right = 58.0
+offset_bottom = 23.0
 
 [node name="Cog2" parent="BackButton_MidMenu" instance=ExtResource("9_vtbi8")]
 layout_mode = 0
-offset_left = -10.0
-offset_top = 15.0
-offset_right = 40.0
-offset_bottom = 65.0
+offset_left = -18.0
+offset_top = 6.0
+offset_right = 32.0
+offset_bottom = 56.0
+
+[node name="Upgrades" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 1150.0
+offset_right = 265.0
+offset_bottom = 1270.0
+texture_normal = ExtResource("10_1l0nu")
+texture_pressed = ExtResource("11_uva1t")
+script = ExtResource("12_1l0nu")
+next_scene = "res://MENUS/UpgradeMenu_Storymode.tscn"
+
+[node name="Label" type="Label" parent="Upgrades"]
+layout_mode = 0
+offset_right = 249.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.44313726, 0.30588236, 0.1764706, 1)
+theme_override_font_sizes/font_size = 30
+text = "Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cog" parent="Upgrades" instance=ExtResource("8_0xced")]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 51.0
+offset_right = 264.0
+offset_bottom = 101.0
+
+[node name="Cog2" parent="Upgrades" instance=ExtResource("9_vtbi8")]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 84.0
+offset_right = 238.0
+offset_bottom = 134.0
 
 [node name="StoryModeLevelsHolder" type="Control" parent="."]
 anchors_preset = 0
@@ -78,36 +142,42 @@ scale = Vector2(0.79999983, 0.79999983)
 
 [node name="level_start1" type="TextureButton" parent="StoryModeLevelsHolder"]
 layout_mode = 0
-offset_left = 90.00002
-offset_top = 185.00005
-offset_right = 340.00003
-offset_bottom = 305.00006
+offset_left = 125.00003
+offset_top = 185.00009
+offset_right = 375.00003
+offset_bottom = 305.00012
+scale = Vector2(1.2499989, 1.2499989)
 texture_normal = ExtResource("6_x8bej")
 texture_pressed = ExtResource("7_1gnyd")
 script = ExtResource("7_3gsnj")
-next_scene = "res://LEVELS_ACTUAL/Level_1.tscn"
+next_scene = "res://LEVELS_ACTUAL/Level_1_Comic.tscn"
 
 [node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start1"]
 layout_mode = 0
-offset_right = 249.0
-offset_bottom = 118.0
+offset_left = 6.0000076
+offset_top = 6.9999685
+offset_right = 131.00015
+offset_bottom = 117.0
 theme_override_font_sizes/font_size = 30
-text = "Level 1"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start1"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -50.000053
+offset_top = -1.0000011
+offset_right = 199.99994
+offset_bottom = 119.0
 texture = ExtResource("13_0xced")
 
 [node name="level_start2" type="TextureButton" parent="StoryModeLevelsHolder"]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 185.0
-offset_right = 634.0
-offset_bottom = 305.0
+offset_left = 419.0
+offset_top = 185.00005
+offset_right = 669.0
+offset_bottom = 305.00006
+scale = Vector2(1.2499989, 1.2499989)
 texture_normal = ExtResource("6_x8bej")
 texture_pressed = ExtResource("7_1gnyd")
 script = ExtResource("14_vtbi8")
@@ -115,41 +185,304 @@ next_scene = "res://LEVELS_ACTUAL/Level_2.tscn"
 
 [node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start2"]
 layout_mode = 0
-offset_right = 249.0
-offset_bottom = 118.0
+offset_left = 6.800083
+offset_top = 4.0
+offset_right = 127.8002
+offset_bottom = 118.00003
 theme_override_font_sizes/font_size = 30
-text = "Level 2"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start2"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -52.20001
+offset_top = 3.051761e-05
+offset_right = 197.79999
+offset_bottom = 120.00003
 texture = ExtResource("13_0xced")
 
 [node name="level_start3" type="TextureButton" parent="StoryModeLevelsHolder"]
 layout_mode = 0
-offset_left = 700.0002
-offset_top = 185.00005
-offset_right = 950.0002
-offset_bottom = 305.00006
+offset_left = 735.0002
+offset_top = 185.00009
+offset_right = 985.0002
+offset_bottom = 305.00012
+scale = Vector2(1.2499989, 1.2499989)
 texture_normal = ExtResource("6_x8bej")
 texture_pressed = ExtResource("7_1gnyd")
-script = ExtResource("7_3gsnj")
-next_scene = "res://Level_3.tscn"
+script = ExtResource("15_mxv08")
+next_scene = "res://LEVELS_ACTUAL/Level_3.tscn"
 
 [node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start3"]
 layout_mode = 0
-offset_right = 249.0
-offset_bottom = 118.0
+offset_left = 2.9999733
+offset_top = 5.999954
+offset_right = 130.00015
+offset_bottom = 117.999954
 theme_override_font_sizes/font_size = 30
-text = "Level 3"
+text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="StoryModeLevelsHolder/level_start3"]
+layout_mode = 0
+offset_left = -81.00008
+offset_top = -43.000042
+offset_right = 44.999924
+offset_bottom = 74.999954
+texture = ExtResource("16_ngcqh")
+
 [node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start3"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -54.000057
+offset_top = -4.5776367e-05
+offset_right = 195.99994
+offset_bottom = 119.999954
 texture = ExtResource("13_0xced")
+
+[node name="level_start4" type="TextureButton" parent="StoryModeLevelsHolder"]
+layout_mode = 0
+offset_left = 125.00003
+offset_top = 365.00015
+offset_right = 375.00003
+offset_bottom = 485.00015
+scale = Vector2(1.2499989, 1.2499989)
+texture_normal = ExtResource("6_x8bej")
+texture_pressed = ExtResource("7_1gnyd")
+script = ExtResource("17_riadh")
+next_scene = "res://LEVELS_ACTUAL/Level_4.tscn"
+
+[node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start4"]
+layout_mode = 0
+offset_left = 4.000004
+offset_top = 1.9999368
+offset_right = 131.00015
+offset_bottom = 115.99997
+theme_override_font_sizes/font_size = 30
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start4"]
+layout_mode = 0
+offset_left = -50.000053
+offset_top = -2.0000327
+offset_right = 199.99994
+offset_bottom = 117.99997
+texture = ExtResource("13_0xced")
+
+[node name="level_start5" type="TextureButton" parent="StoryModeLevelsHolder"]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 365.0001
+offset_right = 669.0
+offset_bottom = 485.0001
+scale = Vector2(1.2499989, 1.2499989)
+texture_normal = ExtResource("6_x8bej")
+texture_pressed = ExtResource("7_1gnyd")
+script = ExtResource("18_vyihk")
+next_scene = "res://LEVELS_ACTUAL/Level_5.tscn"
+
+[node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start5"]
+layout_mode = 0
+offset_left = -0.19991684
+offset_top = 7.000001
+offset_right = 132.80023
+offset_bottom = 119.0
+theme_override_font_sizes/font_size = 30
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start5"]
+layout_mode = 0
+offset_left = -53.20001
+offset_top = 1.0000011
+offset_right = 196.79999
+offset_bottom = 121.0
+texture = ExtResource("13_0xced")
+
+[node name="level_start6" type="TextureButton" parent="StoryModeLevelsHolder"]
+layout_mode = 0
+offset_left = 735.0002
+offset_top = 365.00015
+offset_right = 985.0002
+offset_bottom = 485.00015
+scale = Vector2(1.2499989, 1.2499989)
+texture_normal = ExtResource("6_x8bej")
+texture_pressed = ExtResource("7_1gnyd")
+script = ExtResource("19_vyihk")
+next_scene = "res://LEVELS_ACTUAL/Level_6.tscn"
+
+[node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start6"]
+layout_mode = 0
+offset_left = 4.999977
+offset_top = 1.9999379
+offset_right = 132.00015
+offset_bottom = 116.99994
+theme_override_font_sizes/font_size = 30
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="StoryModeLevelsHolder/level_start6"]
+layout_mode = 0
+offset_left = -85.000084
+offset_top = -46.000076
+offset_right = 40.999916
+offset_bottom = 71.99992
+texture = ExtResource("16_ngcqh")
+
+[node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start6"]
+layout_mode = 0
+offset_left = -50.000084
+offset_top = -1.0000621
+offset_right = 199.99991
+offset_bottom = 118.99994
+texture = ExtResource("13_0xced")
+
+[node name="level_start7" type="TextureButton" parent="StoryModeLevelsHolder"]
+layout_mode = 0
+offset_left = 123.75003
+offset_top = 555.00024
+offset_right = 373.75003
+offset_bottom = 675.00024
+scale = Vector2(1.2499989, 1.2499989)
+texture_normal = ExtResource("6_x8bej")
+texture_pressed = ExtResource("7_1gnyd")
+script = ExtResource("20_avf0j")
+next_scene = "res://LEVELS_ACTUAL/Level_7_Comic.tscn"
+
+[node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start7"]
+layout_mode = 0
+offset_left = 6.0000076
+offset_top = -9.1552734e-05
+offset_right = 132.00015
+offset_bottom = 117.99994
+theme_override_font_sizes/font_size = 30
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start7"]
+layout_mode = 0
+offset_left = -48.000053
+offset_top = -6.103522e-05
+offset_right = 201.99994
+offset_bottom = 119.99994
+texture = ExtResource("13_0xced")
+
+[node name="level_start8" type="TextureButton" parent="StoryModeLevelsHolder"]
+layout_mode = 0
+offset_left = 417.75
+offset_top = 555.0002
+offset_right = 667.75
+offset_bottom = 675.0002
+scale = Vector2(1.2499989, 1.2499989)
+texture_normal = ExtResource("6_x8bej")
+texture_pressed = ExtResource("7_1gnyd")
+script = ExtResource("21_pwc1d")
+next_scene = "res://LEVELS_ACTUAL/Level_8.tscn"
+
+[node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start8"]
+layout_mode = 0
+offset_left = 4.800083
+offset_top = 2.999939
+offset_right = 133.80023
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 30
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start8"]
+layout_mode = 0
+offset_left = -53.20001
+offset_right = 196.79999
+offset_bottom = 120.0
+texture = ExtResource("13_0xced")
+
+[node name="level_start9" type="TextureButton" parent="StoryModeLevelsHolder"]
+layout_mode = 0
+offset_left = 733.7502
+offset_top = 555.00024
+offset_right = 983.7502
+offset_bottom = 675.00024
+scale = Vector2(1.2499989, 1.2499989)
+texture_normal = ExtResource("6_x8bej")
+texture_pressed = ExtResource("7_1gnyd")
+script = ExtResource("22_pwc1d")
+next_scene = "res://LEVELS_ACTUAL/Level_9.tscn"
+
+[node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start9"]
+layout_mode = 0
+offset_left = 2.9999733
+offset_top = 1.9999084
+offset_right = 131.00015
+offset_bottom = 117.99991
+theme_override_font_sizes/font_size = 30
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="StoryModeLevelsHolder/level_start9"]
+layout_mode = 0
+offset_left = -88.00009
+offset_top = -45.000107
+offset_right = 37.99991
+offset_bottom = 72.99989
+texture = ExtResource("16_ngcqh")
+
+[node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start9"]
+layout_mode = 0
+offset_left = -53.000088
+offset_top = -9.1552836e-05
+offset_right = 196.99991
+offset_bottom = 119.99991
+texture = ExtResource("13_0xced")
+
+[node name="level_start10" type="TextureButton" parent="StoryModeLevelsHolder"]
+layout_mode = 0
+offset_left = 420.0001
+offset_top = 967.50024
+offset_right = 670.0001
+offset_bottom = 1087.5002
+scale = Vector2(1.2499989, 1.2499989)
+texture_normal = ExtResource("6_x8bej")
+texture_pressed = ExtResource("7_1gnyd")
+script = ExtResource("26_ao2a8")
+next_scene = "res://LEVELS_ACTUAL/Level_10_Comic.tscn"
+
+[node name="Label" type="Label" parent="StoryModeLevelsHolder/level_start10"]
+layout_mode = 0
+offset_top = 5.999939
+offset_right = 132.00015
+offset_bottom = 117.99994
+theme_override_font_sizes/font_size = 30
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="StoryModeLevelsHolder/level_start10"]
+layout_mode = 0
+offset_left = -85.000084
+offset_top = -45.000076
+offset_right = 40.999916
+offset_bottom = 72.99992
+texture = ExtResource("27_62u66")
+
+[node name="level_lock" type="TextureRect" parent="StoryModeLevelsHolder/level_start10"]
+layout_mode = 0
+offset_left = -50.000084
+offset_top = -6.103522e-05
+offset_right = 199.99991
+offset_bottom = 119.99994
+texture = ExtResource("13_0xced")
+
+[node name="Enemy_Test" parent="." instance=ExtResource("30_bdryf")]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 18.0
+offset_right = 146.0
+offset_bottom = 138.0

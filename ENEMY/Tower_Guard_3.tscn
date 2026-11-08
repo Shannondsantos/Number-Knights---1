@@ -1,0 +1,243 @@
+[gd_scene load_steps=28 format=3 uid="uid://balr2twlsx7lu"]
+
+[ext_resource type="Script" uid="uid://cjjwsa8nbk3tg" path="res://ENEMY/tower_guard_2.gd" id="1_qv7ex"]
+[ext_resource type="PackedScene" uid="uid://bbw8ugtkkg0os" path="res://ENEMY/enemy_tank_shell.tscn" id="2_n4tco"]
+[ext_resource type="PackedScene" uid="uid://d1df78ylw5eqa" path="res://ENEMY/Enemy_Stormtrooper.tscn" id="3_tq8vw"]
+[ext_resource type="Texture2D" uid="uid://detjt2pprkd5m" path="res://Enemies Assets/Tower_Guard_3.png" id="4_n4tco"]
+[ext_resource type="Texture2D" uid="uid://bcbq6rbwscgnb" path="res://Enemies Assets/Tower_Guard_3_75.png" id="5_tq8vw"]
+[ext_resource type="Texture2D" uid="uid://df0xndqvl2s63" path="res://Enemies Assets/Tower_Guard_3_50.png" id="6_dadix"]
+[ext_resource type="Texture2D" uid="uid://cprfk5bsr02dt" path="res://Enemies Assets/Tower_Guard_3_25.png" id="7_kvxsl"]
+[ext_resource type="Texture2D" uid="uid://dh8xtd2xft7n0" path="res://Enemies Assets/Tower_Guard_3_dead.png" id="8_wdjk5"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="9_s1q8d"]
+[ext_resource type="Texture2D" uid="uid://w0ji0emn4ptp" path="res://Enemies Assets/blackroto1.png" id="10_0cbu2"]
+[ext_resource type="Texture2D" uid="uid://q6nbn8i2gk58" path="res://Enemies Assets/dulahan_roto_main.png" id="10_bqbsi"]
+[ext_resource type="Texture2D" uid="uid://dpns2dfkpn0dn" path="res://Enemies Assets/blackroto2.png" id="11_fxslc"]
+[ext_resource type="Texture2D" uid="uid://dkxxedmmofg7e" path="res://Enemies Assets/blackroto3.png" id="12_s1q8d"]
+[ext_resource type="Texture2D" uid="uid://dcak0jpmddfd8" path="res://Enemies Assets/blackroto4.png" id="13_bqbsi"]
+[ext_resource type="AudioStream" uid="uid://c6a8qd0qgmpi8" path="res://SOUNDS/01_getout_foghorn.mp3" id="14_mm6ck"]
+[ext_resource type="AudioStream" uid="uid://ioansqnexlnq" path="res://SOUNDS/09_heal.mp3" id="15_jgi3d"]
+[ext_resource type="AudioStream" uid="uid://c8cyk7oqj6et0" path="res://SOUNDS/AssaultShot.wav" id="16_xeqgp"]
+[ext_resource type="AudioStream" uid="uid://biphrf8c8cyn8" path="res://SOUNDS/01_enemy_windup_warning.mp3" id="17_f18y0"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="18_mw7w7"]
+[ext_resource type="AudioStream" uid="uid://c47omi7urvb5p" path="res://SOUNDS/helicopter_blades_slow.mp3" id="19_c2cwj"]
+[ext_resource type="Texture2D" uid="uid://dbx7js40d5l7m" path="res://Enemies Assets/Command_Aura_3.png" id="20_l8eu2"]
+[ext_resource type="Texture2D" uid="uid://cljkpbd7wlyv4" path="res://MENU/number holder.png" id="21_rr7it"]
+[ext_resource type="Texture2D" uid="uid://crd0vnwfnuf28" path="res://Enemies Assets/Attack_Indicator_boss.png" id="22_vl022"]
+[ext_resource type="Texture2D" uid="uid://6wqlurudisvy" path="res://Enemies Assets/Tower_Guard_1_shield.png" id="23_64tkf"]
+[ext_resource type="Texture2D" uid="uid://d3a0rb3l2whjs" path="res://Enemies Assets/tower1_panel3.png" id="25_8chdw"]
+[ext_resource type="Texture2D" uid="uid://cfsaadbb5r7kl" path="res://Enemies Assets/tower1_panel2.png" id="26_t7d4o"]
+[ext_resource type="Texture2D" uid="uid://b0uu8i1lq0at2" path="res://Enemies Assets/tower1_panel1.png" id="27_gaq1l"]
+
+[node name="tower_guard_3" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 300.0
+offset_top = 207.0
+offset_right = 700.0
+offset_bottom = 507.0
+pivot_offset = Vector2(-32, 4)
+script = ExtResource("1_qv7ex")
+max_hp = 5
+points = 500
+shell_scene = ExtResource("2_n4tco")
+stormtrooper_scene = ExtResource("3_tq8vw")
+hull_tex_100 = ExtResource("4_n4tco")
+hull_tex_75 = ExtResource("5_tq8vw")
+hull_tex_50 = ExtResource("6_dadix")
+hull_tex_25 = ExtResource("7_kvxsl")
+dead_texture = ExtResource("8_wdjk5")
+death_effect = ExtResource("9_s1q8d")
+main_frames = Array[Texture2D]([ExtResource("10_0cbu2"), ExtResource("11_fxslc"), ExtResource("12_s1q8d"), ExtResource("13_bqbsi")])
+arrive_sound = ExtResource("14_mm6ck")
+correct_sound = ExtResource("15_jgi3d")
+wrong_sound = ExtResource("16_xeqgp")
+windup_sound = ExtResource("17_f18y0")
+fire_sound = ExtResource("18_mw7w7")
+death_sound = ExtResource("16_xeqgp")
+heli_loop = ExtResource("19_c2cwj")
+
+[node name="Hull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -245.0
+offset_top = -91.4845
+offset_right = 255.0
+offset_bottom = 208.5155
+texture = ExtResource("4_n4tco")
+
+[node name="LED" type="Label" parent="."]
+layout_mode = 0
+offset_left = -121.0
+offset_top = -16.484497
+offset_right = 115.0
+offset_bottom = 104.5155
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 79.5155
+offset_right = 309.0
+offset_bottom = 229.5155
+texture = ExtResource("20_l8eu2")
+
+[node name="Answers" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -187.0
+offset_top = 36.0
+offset_right = -147.0
+offset_bottom = 76.0
+
+[node name="Answer0" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = 278.0
+offset_right = 122.0
+offset_bottom = 398.0
+texture_normal = ExtResource("21_rr7it")
+
+[node name="Label" type="Label" parent="Answers/Answer0"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer2" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 278.0
+offset_right = 651.0
+offset_bottom = 398.0
+texture_normal = ExtResource("21_rr7it")
+
+[node name="Label" type="Label" parent="Answers/Answer2"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer1" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 283.0
+offset_right = 293.0
+offset_bottom = 403.0
+texture_normal = ExtResource("21_rr7it")
+
+[node name="Label" type="Label" parent="Answers/Answer1"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer3" type="TextureButton" parent="Answers"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 278.0
+offset_right = 476.0
+offset_bottom = 398.0
+texture_normal = ExtResource("21_rr7it")
+
+[node name="Label" type="Label" parent="Answers/Answer3"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 11.0
+offset_right = 167.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainRotor" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -79.0
+offset_top = -106.000015
+offset_right = 315.0
+offset_bottom = -66.000015
+rotation = 0.0014802935
+scale = Vector2(1, 0.7200006)
+texture = ExtResource("10_bqbsi")
+
+[node name="MainRotor2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -369.00003
+offset_top = -112.0
+offset_right = 24.99997
+offset_bottom = -72.0
+rotation = -0.013999209
+scale = Vector2(1, 0.7200006)
+texture = ExtResource("10_bqbsi")
+
+[node name="RocketIndicator1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -212.0
+offset_top = -18.0
+offset_right = -62.0
+offset_bottom = 32.0
+pivot_offset = Vector2(50, 54)
+texture = ExtResource("22_vl022")
+
+[node name="Shield" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -245.0
+offset_top = -88.4845
+offset_right = 255.0
+offset_bottom = 211.5155
+mouse_filter = 2
+texture = ExtResource("23_64tkf")
+
+[node name="RocketIndicator2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 134.0
+offset_top = -11.0
+offset_right = 284.0
+offset_bottom = 39.0
+pivot_offset = Vector2(48, 50)
+texture = ExtResource("22_vl022")
+
+[node name="Panel3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -139.0
+offset_top = -25.0
+offset_right = 147.0
+offset_bottom = 115.0
+texture = ExtResource("25_8chdw")
+
+[node name="Panel2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -139.0
+offset_top = -25.0
+offset_right = 147.0
+offset_bottom = 115.0
+texture = ExtResource("26_t7d4o")
+
+[node name="Panel1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -139.0
+offset_top = -25.0
+offset_right = 147.0
+offset_bottom = 115.0
+texture = ExtResource("27_gaq1l")
+
+[node name="Health" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -313.0
+offset_top = -155.0
+offset_right = -235.96382
+offset_bottom = -115.0
+scale = Vector2(8.840002, 1)
+color = Color(0.36347285, 0.003931777, 0.37205544, 1)

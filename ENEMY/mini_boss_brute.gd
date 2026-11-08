@@ -4,7 +4,7 @@ signal parked
 signal defeated
 signal failed_answer
 
-@export var max_hp: int = 5
+@export var max_hp: int = 15
 @export var points: int = 50
 @export var contact_damage: int = 1
 @export var fly_time := 7.0
@@ -12,23 +12,21 @@ signal failed_answer
 @export var fire_interval := 3.2
 @export var shell_scene: PackedScene
 @export var death_effect: PackedScene
-
 @export var hull_tex_100: Texture2D
 @export var hull_tex_50: Texture2D
 @export var hull_tex_25: Texture2D
 @export var dead_texture: Texture2D
-
+@export var prop_frames: Array[Texture2D] = []
+@export var prop_flip := 0.07
 @export var prop_wiggle := 0.16
 @export var prop_wiggle_speed := 3.5
 @export var hurt_wobble_move := 8.0
 @export var hurt_wobble_rot := 0.05
 @export var attack_fade_in := 0.4
 @export var attack_windup := 0.55
-
 @export var missing_max := 12
 @export var double_min := 10
 @export var double_max := 30
-
 @export var arrive_sound: AudioStream
 @export var windup_sound: AudioStream
 @export var fire_sound: AudioStream
@@ -64,7 +62,7 @@ var _shield_up := false
 var _hp_fill: Control
 var _hp_fill_w := 0.0
 var _correct := 0
-
+var _seen: Array[String] = []
 var _props: Array[TextureRect] = []
 var _prop_base_rot: Array[float] = []
 var _prop_park_rot: Array[float] = []
@@ -72,6 +70,8 @@ var _prop_phase: Array[float] = []
 var _prop_spd: Array[float] = []
 var _prop_amp: Array[float] = []
 var _prop_home: Array[Vector2] = []
+var _prop_frame: Array[int] = []
+var _prop_flip_t: Array[float] = []
 
 func _ready() -> void:
 	add_to_group("minibosses")
@@ -117,6 +117,9 @@ func _collect_props() -> void:
 	_prop_spd.clear()
 	_prop_amp.clear()
 	_prop_home.clear()
+	_prop_frame.clear()
+	_prop_flip_t.clear()
+	var i := 0
 	for n in [get_node_or_null("Propeller"), get_node_or_null("Propeller2"), get_node_or_null("Propeller3")]:
 		if n is TextureRect:
 			var p := n as TextureRect
@@ -129,6 +132,12 @@ func _collect_props() -> void:
 			_prop_spd.append(randf_range(0.7, 1.4))
 			_prop_amp.append(randf_range(0.65, 1.35))
 			_prop_home.append(p.position)
+			var start := i % maxi(prop_frames.size(), 1)
+			_prop_frame.append(start)
+			_prop_flip_t.append(float(i) * prop_flip * 0.33)
+			if prop_frames.size() > 0 and prop_frames[start]:
+				p.texture = prop_frames[start]
+			i += 1
 
 func _collect_rockets() -> void:
 	_guns.clear()
@@ -230,23 +239,85 @@ func _on_parked() -> void:
 	_new_question()
 	parked.emit()
 
+func _diff() -> float:
+	return 1.0 - clampf(float(hp) / float(maxi(max_hp, 1)), 0.0, 1.0)
+
 func _new_question() -> void:
+	if hp <= 1:
+		_question_final()
+		return
 	if randf() < 0.5:
 		_question_missing()
 	else:
 		_question_double()
 
 func _question_missing() -> void:
-	var a := randi_range(1, missing_max)
-	var b := randi_range(1, missing_max)
+	var t := _diff()
+	var hi := int(round(lerpf(6.0, float(missing_max), t)))
+	hi = clampi(hi, 6, missing_max)
+	var a := 1
+	var b := 1
+	var key := ""
+	var found := false
+	for _try in 40:
+		a = randi_range(1, hi)
+		b = randi_range(1, hi)
+		key = "%d+_%d" % [a, b]
+		if _seen.has(key):
+			continue
+		found = true
+		break
+	if not found:
+		_seen.clear()
+		a = randi_range(1, hi)
+		b = randi_range(1, hi)
+		key = "%d+_%d" % [a, b]
+	_seen.append(key)
 	_correct = b
 	if led:
 		led.text = "%d + _ = %d" % [a, a + b]
 	_fill_answers(_correct)
 
 func _question_double() -> void:
-	var a := randi_range(double_min, double_max)
-	var b := randi_range(double_min, double_max)
+	var t := _diff()
+	var hard := hp * 2 <= maxi(max_hp, 1)
+	var lo := 1
+	var hi := 9
+	if hard:
+		lo = double_min
+		hi = int(round(lerpf(float(double_min + 4), float(double_max), t)))
+		hi = clampi(hi, lo, double_max)
+	var a := lo
+	var b := lo
+	var key := ""
+	var found := false
+	for _try in 40:
+		a = randi_range(lo, hi)
+		b = randi_range(lo, hi)
+		key = "%d+%d" % [a, b]
+		if _seen.has(key):
+			continue
+		found = true
+		break
+	if not found:
+		_seen.clear()
+		a = randi_range(lo, hi)
+		b = randi_range(lo, hi)
+		key = "%d+%d" % [a, b]
+	_seen.append(key)
+	_correct = a + b
+	if led:
+		led.text = "%d + %d = ?" % [a, b]
+	_fill_answers(_correct)
+
+func _question_final() -> void:
+	var a := randi_range(100, 160)
+	var b := randi_range(10, 40)
+	var key := "final%d+%d" % [a, b]
+	if _seen.has(key):
+		b = mini(60, b + 3)
+		key = "final%d+%d" % [a, b]
+	_seen.append(key)
 	_correct = a + b
 	if led:
 		led.text = "%d + %d = ?" % [a, b]
@@ -309,6 +380,7 @@ func _process(delta: float) -> void:
 		var m := u * u
 		hull.position = _hull_home + Vector2(sin(t * 0.7) * hurt_wobble_move * m, sin(t * 0.5) * hurt_wobble_move * 0.6 * m)
 		hull.rotation = _hull_rot + sin(t * 0.45) * hurt_wobble_rot * m
+	_spin_blades(delta)
 	if not (_alive and _parked):
 		_force_rockets_off()
 		return
@@ -335,6 +407,21 @@ func _process(delta: float) -> void:
 		_show_lights(0.45 + 0.55 * sin(_phase_t * freq * TAU))
 		if _phase_t >= attack_windup:
 			_fire()
+
+func _spin_blades(delta: float) -> void:
+	if not _alive or prop_frames.size() == 0:
+		return
+	for i in _props.size():
+		var p := _props[i]
+		if p == null or not is_instance_valid(p):
+			continue
+		_prop_flip_t[i] += delta
+		if _prop_flip_t[i] < prop_flip:
+			continue
+		_prop_flip_t[i] = 0.0
+		_prop_frame[i] = (_prop_frame[i] + 1) % prop_frames.size()
+		if prop_frames[_prop_frame[i]]:
+			p.texture = prop_frames[_prop_frame[i]]
 
 func _force_rockets_off() -> void:
 	for g in _guns:

@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://wvsgqcntxsuw"]
+
+[ext_resource type="Texture2D" uid="uid://cit3y205ge77m" path="res://SURVIVAL_ALL/squid_Shell.png" id="1_20k1q"]
+[ext_resource type="Script" uid="uid://chg7s2hxwicip" path="res://tank_shell.gd" id="2_gja32"]
+[ext_resource type="PackedScene" uid="uid://b1nwmic8gik1i" path="res://ENEMY/Squid_Death_Effect.tscn" id="3_20k1q"]
+[ext_resource type="AudioStream" uid="uid://banbv6onjixbb" path="res://SOUNDS/06_missile_travel_b.mp3" id="4_nx3fr"]
+[ext_resource type="AudioStream" uid="uid://dll14e42la7f" path="res://SOUNDS/drone_attack.mp3" id="5_jhrrs"]
+[ext_resource type="AudioStream" uid="uid://b0trwf27nrgo0" path="res://SOUNDS/04_tank_fire_b.mp3" id="6_1mr1o"]
+[ext_resource type="Texture2D" uid="uid://dnurkq6uqk4ps" path="res://SURVIVAL_ALL/Command_Aura_Squid.png" id="7_gja32"]
+[ext_resource type="Texture2D" uid="uid://ctxmn3x1r78jx" path="res://Enemies Assets/squid_Shell_explosion.png" id="8_gja32"]
+
+[node name="Enemy_Tank_Shell" type="TextureRect"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 51)
+texture = ExtResource("1_20k1q")
+script = ExtResource("2_gja32")
+death_effect = ExtResource("3_20k1q")
+travel_sound = ExtResource("4_nx3fr")
+hit_player_sound = ExtResource("5_jhrrs")
+death_sound = ExtResource("6_1mr1o")
+
+[node name="Glow" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 124.0
+offset_bottom = 124.0
+texture = ExtResource("7_gja32")
+
+[node name="Hitbox" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 31.999998
+offset_top = 33.0
+offset_right = 72.0
+offset_bottom = 73.0
+scale = Vector2(2.5122805, 2.6799998)
+pivot_offset = Vector2(20.656075, 20.37202)
+
+[node name="explosion" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -52.0
+offset_top = -45.0
+offset_right = 148.0
+offset_bottom = 155.0
+texture = ExtResource("8_gja32")

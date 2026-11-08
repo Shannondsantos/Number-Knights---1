@@ -1,0 +1,41 @@
+[gd_scene load_steps=11 format=3 uid="uid://yy3e0i1c6mbj"]
+
+[ext_resource type="Texture2D" uid="uid://bsf1j7sqekp0q" path="res://SURVIVAL_ALL/Squid_Officer.png" id="1_0wm54"]
+[ext_resource type="Script" uid="uid://b38rnje7m78lj" path="res://ENEMY/enemy_officer.gd" id="2_5g16h"]
+[ext_resource type="Texture2D" uid="uid://cmcu6572jb2nf" path="res://SURVIVAL_ALL/Squid_Officer_Officer.png" id="3_5g16h"]
+[ext_resource type="PackedScene" uid="uid://b1nwmic8gik1i" path="res://ENEMY/Squid_Death_Effect.tscn" id="4_0wm54"]
+[ext_resource type="PackedScene" uid="uid://trt7iyw8l1xl" path="res://ENEMY/Squid.tscn" id="5_0wm54"]
+[ext_resource type="AudioStream" uid="uid://wplnxctvnlps" path="res://SOUNDS/03_transform_heavy.mp3" id="6_0dxd6"]
+[ext_resource type="AudioStream" uid="uid://cc2pqpa5tce5m" path="res://SOUNDS/drone_death.mp3" id="7_7dfin"]
+[ext_resource type="AudioStream" uid="uid://c6a8qd0qgmpi8" path="res://SOUNDS/01_getout_foghorn.mp3" id="8_fywgb"]
+[ext_resource type="Texture2D" uid="uid://cqw5ikqtbhdyj" path="res://Enemies Assets/officer_Indicator.png" id="9_hlg1d"]
+[ext_resource type="Texture2D" uid="uid://c36krjr2usbvs" path="res://Enemies Assets/Command_Aura_2.png" id="10_ngdev"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 47)
+texture = ExtResource("1_0wm54")
+script = ExtResource("2_5g16h")
+dead_texture = ExtResource("3_5g16h")
+death_effect = ExtResource("4_0wm54")
+drone_scene = ExtResource("5_0wm54")
+windup_sound = ExtResource("6_0dxd6")
+death_sound = ExtResource("7_7dfin")
+burst_windup_sound = ExtResource("8_fywgb")
+
+[node name="Attack_Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -42.0
+offset_top = 12.0
+offset_right = 108.0
+offset_bottom = 62.0
+texture = ExtResource("9_hlg1d")
+
+[node name="Command_Aura" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -34.0
+offset_right = 127.0
+offset_bottom = 116.0
+texture = ExtResource("10_ngdev")

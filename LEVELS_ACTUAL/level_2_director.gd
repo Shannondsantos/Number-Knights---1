@@ -50,22 +50,14 @@ func _run() -> void:
 	if not _alive_dir():
 		return
 
-	# beat 3 — one each on Spawn1, Spawn2, Spawn3
-	_spawn(fodder, "Spawn1")
-	await get_tree().create_timer(0.5).timeout
-	if not _alive_dir():
-		return
-	_spawn(fodder, "Spawn2")
-	await get_tree().create_timer(0.5).timeout
-	if not _alive_dir():
-		return
-	_spawn(fodder, "Spawn3")
+	_spawn(tank, "SpawnTank1")
 	await _cleared()
 	if not _alive_dir():
 		return
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.5).timeout
 	if not _alive_dir():
 		return
+
 	var go := get_tree().current_scene.get_node_or_null("GameOverLayer")
 	if go and go.has_method("show_win"):
 		go.show_win()

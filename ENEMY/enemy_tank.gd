@@ -2,8 +2,8 @@ extends Control
 
 signal died
 
-@export var max_hp: int = 150
-@export var points: int = 8
+@export var max_hp: int = 80
+@export var points: int = 5
 @export var fly_time := 6.0
 @export var travel_distance := 500.0
 @export var fire_interval := 3.0
@@ -303,9 +303,10 @@ func _die() -> void:
 			host.add_child(fx)
 		if fx.has_method("setup"):
 			fx.setup(global_position)
-	var origin := global_position
-	_spawn_heal_at(origin + Vector2(-heal_side, -heal_rise))
-	_spawn_heal_at(origin + Vector2(heal_side, -heal_rise))
+	if _parked:
+		var origin := global_position
+		_spawn_heal_at(origin + Vector2(-heal_side, -heal_rise))
+		_spawn_heal_at(origin + Vector2(heal_side, -heal_rise))
 	_wreck_hull()
 
 func _wreck_hull() -> void:

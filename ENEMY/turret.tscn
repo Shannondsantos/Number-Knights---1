@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://cq8bo4547waya"]
+
+[ext_resource type="Script" uid="uid://bemspuwy0cqsa" path="res://ENEMY/turret.gd" id="1_o2tvw"]
+[ext_resource type="PackedScene" uid="uid://bbw8ugtkkg0os" path="res://ENEMY/enemy_tank_shell.tscn" id="2_syylc"]
+[ext_resource type="PackedScene" uid="uid://bq5vwsqkbb7ad" path="res://ENEMY/Enemy_Death_Effect.tscn" id="3_gkc4a"]
+[ext_resource type="Texture2D" uid="uid://d01243u87p01y" path="res://Enemies Assets/Turret.png" id="4_gtkmg"]
+[ext_resource type="Texture2D" uid="uid://dawie0jam7s0w" path="res://Enemies Assets/Turret_50.png" id="5_pptdn"]
+[ext_resource type="Texture2D" uid="uid://cyorg0ngoiiki" path="res://Enemies Assets/Turret_25.png" id="6_rd5wa"]
+[ext_resource type="Texture2D" uid="uid://b20u7elaogp1n" path="res://Enemies Assets/Turret_dead.png" id="7_gvyhm"]
+[ext_resource type="AudioStream" uid="uid://dxqtkxmpxnk2n" path="res://SOUNDS/Reloading.wav" id="8_jguct"]
+[ext_resource type="AudioStream" uid="uid://co6lifya0cdli" path="res://SOUNDS/HeavyShot (2).wav" id="9_66nue"]
+[ext_resource type="Texture2D" uid="uid://c36krjr2usbvs" path="res://Enemies Assets/Command_Aura_2.png" id="10_syylc"]
+
+[node name="Turret" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -126.0
+offset_bottom = -942.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o2tvw")
+points = 25
+shell_scene = ExtResource("2_syylc")
+death_effect = ExtResource("3_gkc4a")
+tex_100 = ExtResource("4_gtkmg")
+tex_50 = ExtResource("5_pptdn")
+tex_25 = ExtResource("6_rd5wa")
+tex_dead = ExtResource("7_gvyhm")
+windup_sound = ExtResource("8_jguct")
+fire_sound = ExtResource("9_66nue")
+
+[node name="Health" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 77.0
+offset_right = 137.0
+offset_bottom = 234.0
+color = Color(0.6517048, 0, 0.028434781, 1)
+
+[node name="Turret" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 376.0
+offset_bottom = 273.0
+pivot_offset = Vector2(188, 150)
+texture = ExtResource("4_gtkmg")
+
+[node name="Attack" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 21.0
+offset_right = 328.0
+offset_bottom = 171.0
+pivot_offset = Vector2(3, 122)
+texture = ExtResource("10_syylc")

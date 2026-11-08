@@ -1,0 +1,189 @@
+[gd_scene load_steps=25 format=3 uid="uid://cmn3utpk7fdq"]
+
+[ext_resource type="Script" uid="uid://dvmnsxr02fhlx" path="res://MENUS/story_mode_menu.gd" id="1_46y6g"]
+[ext_resource type="Texture2D" uid="uid://31hpoe33yl4g" path="res://TIMETRIALS_ALL/time trials trophy_blank.png" id="2_kcug2"]
+[ext_resource type="Texture2D" uid="uid://dop55dg651q6x" path="res://MENU/midmenubackgroundplayers.png" id="2_tbvfj"]
+[ext_resource type="Script" uid="uid://vp1qa5l4yedn" path="res://background_1.gd" id="3_p3nru"]
+[ext_resource type="Texture2D" uid="uid://byovb2lwudgqh" path="res://TIMETRIALS_ALL/survival trophy_blank.png" id="4_0ocxp"]
+[ext_resource type="Texture2D" uid="uid://cvmkfx7ky0amd" path="res://MENU/timetrialsportal.png" id="4_gwpb7"]
+[ext_resource type="Texture2D" uid="uid://df4jb78fgvbyu" path="res://MENU/timetrialsportal_clicked.png" id="5_mxqlq"]
+[ext_resource type="Script" uid="uid://dpo3x1ybkurcg" path="res://MENUS/survival_button.gd" id="7_mxbn5"]
+[ext_resource type="Texture2D" uid="uid://bde7t3tag24a1" path="res://MENU/clockpointer.png" id="8_vrjuk"]
+[ext_resource type="Texture2D" uid="uid://gbsc1a2o81ug" path="res://MENU/level_locked.png" id="10_gwpb7"]
+[ext_resource type="Script" uid="uid://cfd7v1uy4sk1p" path="res://MENUS/survival_button_menu.gd" id="16_6061r"]
+[ext_resource type="Texture2D" uid="uid://dw8hghnnm3bc2" path="res://MENU/survivalportal.png" id="17_8lgnx"]
+[ext_resource type="Texture2D" uid="uid://cohgx12sfub6a" path="res://MENU/survivalportal_clicked.png" id="18_kcug2"]
+[ext_resource type="Texture2D" uid="uid://b5xkjs0g6vomi" path="res://MENU/back.png" id="19_u30t4"]
+[ext_resource type="Texture2D" uid="uid://4iokg6iqpfal" path="res://MENU/back_pressed.png" id="20_jdu4p"]
+[ext_resource type="Texture2D" uid="uid://q11v8kgsskqb" path="res://TIMETRIALS_ALL/time trials trophy.png" id="20_vrjuk"]
+[ext_resource type="Texture2D" uid="uid://gdqhlrgr33u5" path="res://MENU/display.png" id="21_0ocxp"]
+[ext_resource type="Texture2D" uid="uid://c4gih2xldfaok" path="res://TIMETRIALS_ALL/survival trophy.png" id="21_8lgnx"]
+[ext_resource type="Script" uid="uid://ccwcvniig07hc" path="res://MENUS/back_button_mid_menu.gd" id="21_ll6h7"]
+[ext_resource type="PackedScene" uid="uid://bdm5oktrfc7nd" path="res://MENU/cog.tscn" id="22_x3vg2"]
+[ext_resource type="PackedScene" uid="uid://c4oou5s0otjg6" path="res://MENU/cog2.tscn" id="23_vxn0l"]
+[ext_resource type="Texture2D" uid="uid://46epi188atxy" path="res://MENU/button_generic.png" id="24_84bs8"]
+[ext_resource type="Texture2D" uid="uid://boad1gxaci3ur" path="res://MENU/button_generic_pressed.png" id="25_orrow"]
+[ext_resource type="Script" uid="uid://bgb53kltl17ss" path="res://MENUS/story_mode_upgrades.gd" id="26_e8m1d"]
+
+[node name="MiniGames" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_46y6g")
+time_trials_blank = ExtResource("2_kcug2")
+time_trials_diamond = ExtResource("20_vrjuk")
+survival_blank = ExtResource("4_0ocxp")
+survival_diamond = ExtResource("21_8lgnx")
+
+[node name="Background1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("2_tbvfj")
+script = ExtResource("3_p3nru")
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 1280.0
+offset_right = 720.0
+offset_bottom = 2560.0
+texture = ExtResource("2_tbvfj")
+script = ExtResource("3_p3nru")
+
+[node name="TimeTrialsButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 218.0
+offset_right = 608.0
+offset_bottom = 418.0
+pivot_offset = Vector2(47, 87)
+texture_normal = ExtResource("4_gwpb7")
+texture_pressed = ExtResource("5_mxqlq")
+script = ExtResource("7_mxbn5")
+
+[node name="Cog" parent="TimeTrialsButton" instance=ExtResource("22_x3vg2")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 24.000008
+offset_top = 50.000023
+offset_right = 124.00001
+offset_bottom = 150.00003
+rotation = 0.7853982
+pivot_offset = Vector2(49.999954, 60.603546)
+texture = ExtResource("8_vrjuk")
+
+[node name="level_lock" type="TextureRect" parent="TimeTrialsButton"]
+visible = false
+layout_mode = 0
+offset_left = 79.0
+offset_right = 329.0
+offset_bottom = 120.0
+texture = ExtResource("10_gwpb7")
+
+[node name="BackButton_MidMenu" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 1141.0
+offset_right = 708.0
+offset_bottom = 1261.0
+texture_normal = ExtResource("19_u30t4")
+texture_pressed = ExtResource("20_jdu4p")
+script = ExtResource("21_ll6h7")
+
+[node name="Cog" parent="BackButton_MidMenu" instance=ExtResource("22_x3vg2")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -18.0
+offset_right = 66.0
+offset_bottom = 32.0
+
+[node name="Cog2" parent="BackButton_MidMenu" instance=ExtResource("23_vxn0l")]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 15.0
+offset_right = 40.0
+offset_bottom = 65.0
+
+[node name="Upgrades" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 15.0
+offset_top = 1150.0
+offset_right = 265.0
+offset_bottom = 1270.0
+texture_normal = ExtResource("24_84bs8")
+texture_pressed = ExtResource("25_orrow")
+script = ExtResource("26_e8m1d")
+
+[node name="Cog" parent="Upgrades" instance=ExtResource("22_x3vg2")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -18.0
+offset_right = 66.0
+offset_bottom = 32.0
+
+[node name="Cog2" parent="Upgrades" instance=ExtResource("23_vxn0l")]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 15.0
+offset_right = 40.0
+offset_bottom = 65.0
+
+[node name="Label" type="Label" parent="Upgrades"]
+layout_mode = 0
+offset_right = 249.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 30
+text = "Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 821.0
+offset_right = 555.0
+offset_bottom = 1021.0
+scale = Vector2(1.2400006, 1.2400006)
+mouse_filter = 2
+texture = ExtResource("21_0ocxp")
+
+[node name="SurvivalButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 450.0
+offset_right = 608.0
+offset_bottom = 650.0
+pivot_offset = Vector2(457, 71)
+texture_normal = ExtResource("17_8lgnx")
+texture_pressed = ExtResource("18_kcug2")
+script = ExtResource("16_6061r")
+
+[node name="level_lock" type="TextureRect" parent="SurvivalButton"]
+visible = false
+layout_mode = 0
+offset_left = 79.0
+offset_right = 329.0
+offset_bottom = 120.0
+texture = ExtResource("10_gwpb7")
+
+[node name="TimeTrialsTrophy" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 650.0
+offset_right = 331.0
+offset_bottom = 1000.0
+mouse_filter = 2
+texture = ExtResource("20_vrjuk")
+
+[node name="SurvivalTrophy" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 379.0
+offset_top = 650.0
+offset_right = 629.0
+offset_bottom = 1000.0
+mouse_filter = 2
+texture = ExtResource("21_8lgnx")

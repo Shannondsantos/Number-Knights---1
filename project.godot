@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Math Troopers V3-5.2 (level_architecture) (Copy)"
+config/name="Number Knights V7 Revisions"
 run/main_scene="uid://c1qpwj7xue4gh"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
@@ -25,9 +25,10 @@ Music="*res://music.gd"
 window/size/viewport_width=720
 window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.48964375, 0.4506383, 0.42167962, 1)
