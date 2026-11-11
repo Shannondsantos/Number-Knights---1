@@ -53,12 +53,9 @@ func try_fire() -> bool:
 	if PlayerData.ammo_time > 0.0:
 		return true
 	if ammo <= 0:
-		_start_reload()
 		return false
 	ammo -= 1
 	_refresh_ammo(true)
-	if ammo <= 0:
-		_start_reload()
 	return true
 func request_reload() -> void:
 	if reloading:

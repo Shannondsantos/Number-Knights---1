@@ -9,7 +9,7 @@ extends Control
 @export var beacon_icon: Texture2D
 @export var nag_every := 2.2
 @export var reload_right_lock := 2.0
-@export var reload_wrong_lock := 8.0
+@export var reload_wrong_lock := 2
 @onready var ability_button: TextureButton = get_node_or_null("AbilityButton")
 @onready var reload_button: TextureButton = get_node_or_null("ReloadButton")
 @onready var question: Label = get_node_or_null("Question")
